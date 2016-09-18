@@ -6,11 +6,12 @@
 <style lang="scss" rel="stylesheet/scss">
   .header {
     width: 80%;
-    margin: auto;
+    height: 146px;
+    margin: auto auto 40px;
   }
 </style>
 <script type="text/ecmascript-6" lang="babel">
-  import TopbarItemComponent from './topbarItem.vue';
+  import TopbarItemComponent from './TopbarItem.vue';
   export default {
     data() {
       return {
