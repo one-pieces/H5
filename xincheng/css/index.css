@@ -1,0 +1,285 @@
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: url('../images/public/bg.jpg') no-repeat center;
+  background-size: cover;
+  /*display: none;*/
+  overflow: hidden;
+}
+
+.infoPage {
+  background: none;
+  z-index: 33;
+}
+.infoPage .head {
+  position: absolute;
+  width: 422px;
+  height: 192px;
+  left: 50%;
+  margin-left: -211px;
+  top: 140px;
+}
+.infoPage .head .tit {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: url('../images/tit.png') no-repeat;
+}
+.infoPage .head .light {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+}
+.infoPage .head .light .l1 {
+  left: -70px;
+  top: 120px;
+}
+.infoPage .head .light div {
+  position: absolute;
+}
+.infoPage .head .txt {
+  position: absolute;
+  bottom: -35px;
+  left: 48px;
+}
+.infoPage .tips {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  margin-left: -20px;
+}
+
+.homePage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: block;
+  overflow: hidden;
+  z-index: 22;
+}
+.homePage .homeScroll {
+  position: relative;
+  width: 100%;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  height: 1856px;
+}
+.homePage .con {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: none;
+}
+.homePage .con .light {
+  top: 129px;
+  position: absolute;
+  left: 50%;
+  margin-left: -267px;
+  z-index: 10;
+  display: none;
+}
+.homePage .con .maskLight {
+  top: 129px;
+  position: absolute;
+  left: 50%;
+  margin-left: -267px;
+  width: 552px;
+  height: 0;
+  overflow: hidden;
+  z-index: 9;
+}
+.homePage .con .maxLight {
+  position: absolute;
+  width: 100%;
+  height: 1391px;
+  top: 129px;
+  z-index: 10;
+  background: url('../images/public/maxLight.png') no-repeat;
+  display: none;
+  left: 50%;
+  margin-left: -273px;
+}
+.homePage .con .nav {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  top: -84px;
+  display: block;
+}
+.homePage .con .nav .sNav {
+  display: none;
+}
+.homePage .con .nav .n1 {
+  left: 431px;
+  top: 327px;
+  width: 150px;
+  height: 160px;
+  -webkit-transform: scale(.85);
+  -webkit-transform-origin: center 80%;
+}
+.homePage .con .nav .mc-pointer {
+  left: 43px;
+  top: 38px;
+  -webkit-transform-origin: 55% 90%;
+}
+.homePage .con .nav div {
+  position: absolute;
+}
+.homePage .infoFoot {
+  position: absolute;
+  width: 465px;
+  height: 210px;
+  top: 665px;
+  left: 50%;
+  margin-left: -232px;
+  z-index: 2;
+  display: none;
+}
+.homePage .infoFoot .mc-logo_1 {
+  position: absolute;
+  left: 79px;
+  top: 0;
+}
+.homePage .infoFoot .logos {
+  position: absolute;
+  left: 0;
+  top: 60px;
+}
+.homePage .infoFoot .logoPar {
+  position: absolute;
+  top: 75px;
+}
+.homePage .foot {
+  position: absolute;
+  width: 100%;
+  height: 450px;
+  top: 1350px;
+  z-index: 45;
+}
+.homePage .bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('../images/public/bg2.jpg') center top no-repeat;
+  background-size: cover;
+}
+
+.mc-sprite, .mc-addr, .mc-back, .mc-cir, .mc-db1, .mc-ef_1, .mc-ef_2, .mc-ef_3, .mc-house1, .mc-house2, .mc-house3, .mc-house4, .mc-jz, .mc-light2, .mc-light3, .mc-logoLine, .mc-logoPar, .mc-logo_1, .mc-ml, .mc-music, .mc-n1, .mc-n2, .mc-n3, .mc-n4, .mc-n5, .mc-p1_light, .mc-pen, .mc-pointer, .mc-qr_txt, .mc-rotate, .mc-sLight, .mc-sound, .mc-space, .mc-tel, .mc-tips, .mc-tit, .mc-txt, .mc-watch {
+  background: url('../images/mc-s03333fefe8.png') no-repeat;
+}
+.mc-p1_light {
+  background-position: -1183px -5px;
+  height: 58px;
+  width: 271px;
+}
+.mc-txt {
+  background-position: -536px -214px;
+  height: 20px;
+  width: 323px;
+}
+.mc-tips {
+  background-position: -239px -214px;
+  height: 32px;
+  width: 41px;
+}
+.mc-logo_1 {
+  background-position: -530px -349px;
+  height: 83px;
+  width: 415px;
+}
+.mc-logoPar {
+  background-position: -1291px -214px;
+  height: 132px;
+  width: 424px;
+}
+.mc-watch {
+  background-position: -294px -214px;
+  height: 113px;
+  width: 88px;
+}
+.mc-pointer {
+  background-position: -283px -214px;
+  height: 37px;
+  width: 8px;
+}
+
+.logos-sprite, .logos-1, .logos-2, .logos-3, .logos-4, .logos-5, .logos-6, .logos-7, .logos-8, .logos-9, .logos-10, .logos-11, .logos-12, .logos-13 {
+  background: url('../images/logos-s583d83ae86.png') no-repeat;
+}
+.logos-1 {
+  background-position: 0 0;
+  height: 152px;
+  width: 380px;
+}
+.logos-2 {
+  background-position: 0 -765px;
+  height: 152px;
+  width: 380px;
+}
+.logos-3 {
+  background-position: 0 -918px;
+  height: 152px;
+  width: 380px;
+}
+.logos-4 {
+  background-position: 0 -1071px;
+  height: 152px;
+  width: 380px;
+}
+.logos-5 {
+  background-position: 0 -1224px;
+  height: 152px;
+  width: 380px;
+}
+.logos-6 {
+  background-position: 0 -1377px;
+  height: 152px;
+  width: 380px;
+}
+.logos-7 {
+  background-position: 0 -1530px;
+  height: 152px;
+  width: 380px;
+}
+.logos-8 {
+  background-position: 0 -1683px;
+  height: 152px;
+  width: 380px;
+}
+.logos-9 {
+  background-position: 0 -1836px;
+  height: 152px;
+  width: 380px;
+}
+.logos-10 {
+  background-position: 0 -153px;
+  height: 152px;
+  width: 380px;
+}
+.logos-11 {
+  background-position: 0 -306px;
+  height: 152px;
+  width: 380px;
+}
+.logos-12 {
+  background-position: 0 -459px;
+  height: 152px;
+  width: 380px;
+}
+.logos-13 {
+  background-position: 0 -612px;
+  height: 152px;
+  width: 380px;
+}
