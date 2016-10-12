@@ -2,7 +2,9 @@
   <div class="grid-item col-md-3 col-sm-4 col-xs-6 col-ps-12">
     <div class="grid-item-bg" v-el:grid-item>
       <div class="img-wrap">
-        <img v-bind:src="imgUrl" v-on:mouseover="hoverImg(true)" v-on:mouseout="hoverImg(false)">
+        <a v-link="{ name: 'h5Detail', params: { id: item.id }}">
+          <img v-bind:src="imgUrl" v-on:mouseover="hoverImg(true)" v-on:mouseout="hoverImg(false)">
+        </a>
       </div>
       <div class="info">
         <div class="name">{{item.name}}</div>
@@ -13,11 +15,6 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
   .grid-item {
-    @media (max-width: 450px) {
-      &.col-ps-12 {
-        width: 100%;
-      }
-    }
     margin-bottom: 20px;
     .grid-item-bg {
       position: relative;

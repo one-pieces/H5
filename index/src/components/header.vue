@@ -16,13 +16,21 @@
     data() {
       return {
         navItems: [{
-          label: 'H5案例'
+          label: 'H5案例',
+          active: true,
+          routerName: 'h5'
         }, {
-          label: '流量推广'
+          label: '流量推广',
+          active: false,
+          routerName: ''
         }, {
-          label: '效果监测'
+          label: '效果监测',
+          active: false,
+          routerName: ''
         }, {
-          label: '案例解读'
+          label: '案例解读',
+          active: false,
+          routerName: 'h5'
         }]
       };
     },
