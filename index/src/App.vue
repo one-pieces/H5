@@ -16,7 +16,7 @@
 <style lang="scss" rel="stylesheet/scss">
   @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
   body {
-    background: url('./images/bg.png') repeat-y;
+    background: url('./images/bg1.png');
     @media (max-width: 450px) {
       .col-ps-12 {
         width: 100%;

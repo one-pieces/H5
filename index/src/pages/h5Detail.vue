@@ -6,7 +6,7 @@
     </div>
     <div class="detail-container row">
       <div class="col-md-offset-3 col-md-4 col-xs-5 col-ps-12">
-        <img class="col-ps-width100" v-bind:src="h5Detail.gifUrl">
+        <img class="col-ps-width100" :src="h5Detail.gifUrl">
       </div>
       <div class="col-md-5 col-xs-6 col-ps-12">
         <div class="name">{{h5Detail.name}}</div>
@@ -18,7 +18,7 @@
         </div>
         <div class="price-detail">
           <div class="col-xs-6">
-            <img class="qr-code" v-bind:src="h5Detail.QRCode">
+            <img class="qr-code" :src="h5Detail.QRCode">
             <div class="scan">扫码查看H5详情</div>
           </div>
           <div class="col-xs-6">

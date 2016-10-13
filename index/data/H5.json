@@ -8,7 +8,7 @@
   "to": "腾讯",
   "intro": "这个H5以动画来展现不同形式的电影，用黑与白的对比来表现光影。点击羽毛就会出播放视频，不同情境定格的画面分别对应一部著名的电影，同时也会呈现这不电影里有名的话。最后是腾讯影业发布会的宣传。我们看过的有很多，但没看到的，更多，期待腾讯影业为我们带来更多惊喜。",
   "tags": ["电影", "视频", "H5"],
-  "QRCode": "/src/images/QRCode/0001.png",
+  "QRCode": "./src/images/QRCode/0001.png",
   "imgs": [
     "https://ocrg4fmwp.qnssl.com/57de0c27a39aa90323949.jpg",
     "https://ocrg4fmwp.qnssl.com/57d9323915ce651658793.jpg",
@@ -31,7 +31,7 @@
   "to": "洋河1号",
   "intro": "中秋到了咱碰个杯吧，免费的梦之蓝，你要不要来？这个H5是一个虚拟饮酒互动小游戏，分享给朋友以后就可以与好友干杯，有3个情境，分别师长、家人和朋友，点击图片，图片就换显示和他们饮酒的画面。尽可能多与好友干杯可以获得一瓶500ml梦之蓝一瓶。",
   "tags": ["酒", "中秋节", "H5"],
-  "QRCode": "/src/images/QRCode/0002.png",
+  "QRCode": "./src/images/QRCode/0002.png",
   "imgs": [
     "https://ocrg4fmwp.qnssl.com/57d92a8947e1c16652348.jpg",
     "https://ocrg4fmwp.qnssl.com/57d929d5c5dd426157973.jpg",
@@ -52,7 +52,7 @@
   "to": "腾讯",
   "intro": "这个H5以精美的插画和走心的文字内容，展现了父母对子女的思念,棕色的背景让阅读更舒服。向下滑动会展示调查数据，数据表明孩子长大后，远离父母，陪伴父母的时间减少。用户点击开启2016中秋团圆，页面动图里的情境中，就会出现子女回家和父母团圆的画面。分享H5来加入中秋回家爱心接力。",
   "tags": ["公益", "中秋节", "漫画", "H5"],
-  "QRCode": "/src/images/QRCode/0003.png",
+  "QRCode": "./src/images/QRCode/0003.png",
   "imgs": [
     "https://ocrg4fmwp.qnssl.com/57d90cdce310227646578.jpg",
     "https://ocrg4fmwp.qnssl.com/57d90a7c1d90918972188.jpg",
@@ -74,7 +74,7 @@
   "to": "",
   "intro": "六一-寻找给孩子的节日礼物H5页面是一个手绘形式的页面，孩子在整个画面中间，需要用户左右滑动页面，点击物品，来给孩子送礼物，点击各种类型的物品，会出现简介和相关的图片及性能参数。还可以查看更多产品信息。",
   "tags": ["公益", "漫画", "H5"],
-  "QRCode": "/src/images/QRCode/0004.png",
+  "QRCode": "./src/images/QRCode/0004.png",
   "imgs": [
     "https://ocrg4fmwp.qnssl.com/57d8befbd4f8216972879.jpg",
     "https://ocrg4fmwp.qnssl.com/57d8be6dd955498367448.jpg",
@@ -94,7 +94,7 @@
   "to": "世纪佳缘",
   "intro": "世纪佳缘的么么么么么么么么H5是一个婚恋邀请函，一连串的漫画形式的动图，讲述一位女性在找对象时因体重问题产生了各种困惑和困难的故事，世纪佳缘能够为这类人群提供更好的服务。在信笺页面，用户可以滑动屏幕来拖出信件查看具体内容，在语音界面可以点击语音播放，点击卸腿来玩小游戏。",
   "tags": ["邀请", "漫画", "H5"],
-  "QRCode": "/src/images/QRCode/0005.png",
+  "QRCode": "./src/images/QRCode/0005.png",
   "imgs": [
     "https://ocrg4fmwp.qnssl.com/57d8b98d05aaf96220325.jpg",
     "https://ocrg4fmwp.qnssl.com/57d8b9602a37424840144.jpg",
@@ -120,7 +120,7 @@
   "to": "网易一元购",
   "intro": "网易一元购：中国区货源告急！如何抢到第一批iPhone7 主体是搞笑的视频，以人与自然中的一段动物介绍视频场景，配合iphone7难买到的说辞，让用户有所领会，最后渗入网易一元购的广告，达到宣传产品的效果。",
   "tags": ["视频", "H5"],
-  "QRCode": "/src/images/QRCode/0006.png",
+  "QRCode": "./src/images/QRCode/0006.png",
   "imgs": [
     "https://ocrg4fmwp.qnssl.com/57d7c3a06052b69996800.jpg",
     "https://ocrg4fmwp.qnssl.com/57d7c368e8d2997938977.jpg",
@@ -143,7 +143,7 @@
   "to": "一号店",
   "intro": "一号店的一万零一日H5页面采用了漫画形式的页面配合视频，来从4个情境展示一号店带给用户的方便和快捷，分别是长假、失恋、压力和早起人群的困惑障碍，最后一号店帮他们解决了这些问题。最后呈现出来的是一号店9月9日的低价邀请活动。",
   "tags": ["电商", "漫画", "邀请", "H5"],
-  "QRCode": "/src/images/QRCode/0007.png",
+  "QRCode": "./src/images/QRCode/0007.png",
   "imgs": [
     "https://ocrg4fmwp.qnssl.com/57d6220fbb1c961136414.jpg",
     "https://ocrg4fmwp.qnssl.com/57d62175a973860174219.jpg",

@@ -1,9 +1,9 @@
 <template>
   <div class="topbar-item">
     <div class="public-rotate-circle1">
-      <div class="rotate-circle3-bg" v-bind:class="{ 'active': item.active }"></div>
-      <div class="rotate-circle4-bg" v-bind:class="{ 'active': item.active }"></div>
-      <div class="rotate-circle6-bg" v-bind:class="{ 'active': item.active }"></div>
+      <div class="rotate-circle3-bg" :class="{ 'active': item.active }"></div>
+      <div class="rotate-circle4-bg" :class="{ 'active': item.active }"></div>
+      <div class="rotate-circle6-bg" :class="{ 'active': item.active }"></div>
       <span v-link="{ name: item.routerName }">{{item.label}}</span>
     </div>
   </div>

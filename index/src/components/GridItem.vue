@@ -3,7 +3,7 @@
     <div class="grid-item-bg" v-el:grid-item>
       <div class="img-wrap">
         <a v-link="{ name: 'h5Detail', params: { id: item.id }}">
-          <img v-bind:src="imgUrl" v-on:mouseover="hoverImg(true)" v-on:mouseout="hoverImg(false)">
+          <img :src="imgUrl" v-on:mouseover="hoverImg(true)" v-on:mouseout="hoverImg(false)">
         </a>
       </div>
       <div class="info">
