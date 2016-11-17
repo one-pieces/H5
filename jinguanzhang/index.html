@@ -6,10 +6,16 @@
   <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">
   <link rel="stylesheet" href="css/index.css">
   <script type="text/javascript" src="js/preload.js"></script>
+  <script>
+    document.addEventListener('touchmove', function (event) {
+      event.preventDefault();
+    })
+  </script>
 </head>
 <body>
   <div id="xl-container">
     <div id="progress" style="display: block"></div>
+    <canvas id="videoCanvas" style="width: 100%; height: 100%; top: 0; left: 0; position: absolute;"></canvas>
   </div>
   <script type="text/javascript">
     // reload
@@ -32,27 +38,25 @@
         'http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/feiwenbeijing.jpg',
         'http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/feiwenbeijing.jpg',
         'http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/blank.png',
-        'http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/start.mp4'
+        'http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/start.mp4',
+        'http://hudong.midoci.com/img/jgz/jgz_android.hyperesources/start.mpg'
       ],
       onStart: function(total) {
       },
       onProgress: function(current, total) {
         console.log(current/total);
-//        var percent = current/total * 100 + '%';
-//        $('.meter span').width(percent);
-//        $('.meter .text').text('loading...' + percent);
         $('#progress').text(current/total);
       },
       onComplete: function(total) {
         console.log('complete');
-        $('<video autoplay x-webkit-airplay="true" webkit-playsinline="true" preload="auto" src="http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/start.mp4" style="width: 100%; height: 100%; top: 0; left: 0; position: absolute;" poster="http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/blank.png"></video>').appendTo($('#xl-container'));
-//        setTimeout(function() {
-//          $('.loading').hide();
-//        }, 1000);
+//        $('<video autoplay x-webkit-airplay="true" webkit-playsinline="true" preload="auto" src="http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/start.mp4" style="width: 100%; height: 100%; top: 0; left: 0; position: absolute;" poster="http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/blank.png"></video>').appendTo($('#xl-container'));
+        var canvas = document.getElementById('videoCanvas');
+        var player = new jsmpeg('http://hudong.midoci.com/img/jgz/jgz_android.hyperesources/start.mpg', {canvas: canvas, autoplay: true});
       }
     });
     loader.start();
   </script>
   <script type="text/javascript" src="js/libs/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="js/libs/jsmpg.js"></script>
 </body>
 </html>
