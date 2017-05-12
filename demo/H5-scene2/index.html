@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <title>直播！中国男欧巴私房的秘密</title>
+    <!--<meta charset="utf-8" />-->
+    <!--<meta name="viewport" content="width=device-width , initial-scale=1.0 , maximum-scale=1.0 , user-scalable=0" />-->
+    <!--<meta name="format-detection" content="telephone=no , email=no" />-->
+    <!--<meta name="apple-mobile-app-web-capable" content="yes" />-->
+    <!--<meta name="apple-mobile-app-web-status-bar-style" content="black" />-->
+    <!--<meta name="apple-touch-fullscreen" content="yes">-->
+    <!--<meta http-equiv="Pragma" content="no-cache" />-->
+    <!--<meta http-equiv="Expires" content="-1" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="css/style2.css" />
+    <link rel="stylesheet" type="text/css" href="css/vendor.css" />
+    <script type="text/javascript" src="js/vconsole.min.js"></script>
+    <script>
+        console.log('Hello world');
+        // then tap vConsole button to see the log
+    </script>
+</head>
+<body>
+    <!--music-->
+    <i id="music" data-src="audio/music.mp3"></i>
+    <i id="phone" data-src="audio/phone.mp3"></i>
+
+    <!--bg-->
+    <div class="bg">
+        <div class="bg" id="st">
+            <a id="look">
+                <img src="images/look.png" class="btn">
+            </a>
+        </div>
+    </div>
+
+    <div class="page1">
+        <video id="video" class="video video1 hide" x-webkit-airplay="true" webkit-playsinline="true"
+               preload="auto" src="videos/full.mp4">
+        </video>
+    </div>
+    <div class="page2" id="pano">
+        haha
+    </div>
+
+    <!--嘘-->
+    <div class="box quietbox" id="quietbox">
+        <img src="images/android1.png">
+    </div>
+    <!--看看-->
+    <div class="box seebox" id="seebox">
+        <img src="images/android2.png">
+    </div>
+
+    <!--loading-->
+    <div class="loading">
+        <div class="progress">
+            <div class="hdCon">
+                <div class="headimg">
+                    <div class="pic picRotateAm">
+                        <!--<img src="images/head1.png">-->
+                        <img src="images/head.gif">
+                    </div>
+                </div>
+            </div>
+            <div class="meter">
+                <span></span>
+            </div>
+            <div class="txt">
+                <img src="images/loading.jpg">
+            </div>
+            <div class="percent tiaofont">
+                <img src="images/p.png">
+            </div>
+            <div class="tip">
+                <img src="images/tip.jpg">
+            </div>
+        </div>
+        <img src="images/logo.png" class="logo">
+    </div>
+    <div id="orientLayer" class="mod-orient-layer">
+        <div class="mod-orient-layer__content">
+            <i class="icon mod-orient-layer__icon-orient"></i>
+            <div class="mod-orient-layer___desc">为了更好的体验, 请使用竖屏浏览</div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/util/utils.js"></script>
+<script type="text/javascript" src="js/krpano.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</html>

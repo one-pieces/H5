@@ -1,0 +1,57 @@
+<krpano>
+
+    <action name="startup" autorun="onstart">
+        loadscene(picpano);
+    </action>
+
+    <scene name="picpano">
+        <hotspot name="hs0" url="images/tip0.png" ath="-23.761815" atv="-2.317987" distorted="true" width="395" height="426" scale="1" depth="1000" polyline="false" scaleflying="true" tx="0" ty="0" tz="0" zoom="true" enabled="false" />
+
+        <hotspot name="hs1" url="images/tip1.png" ath="198.602337" atv="43.209087" distorted="true" rx="0" ry="0" rz="-6.268938" width="272" height="212" scale="0.8" depth="1000" polyline="false" scaleflying="true" tx="0" ty="0" tz="0" visible="false" zoom="true"  enabled="false" />
+
+        <hotspot name="hs2" url="images/tip2.png" ath="105.182065" atv="45.629878" distorted="true" width="234" height="336" scale="0.55" depth="1000" polyline="false" scaleflying="true" tx="0" ty="0" tz="0" zoom="true" visible="false"  enabled="false" />
+
+        <hotspot name="hs3" fillcolor="0xaaaaaa" fillalpha="0" borderwidth="0" distorted="true" bordercolor="0xaaaaaa" borderalpha="0" depth="1000"  polyline="false" scaleflying="true" tx="0" ty="0" tz="0" onclick="js(openHello());" zoom="true" >
+            <point ath="-9.785631" atv="-24.421064" />
+            <point ath="15.297663" atv="-23.68955" />
+            <point ath="8.826422" atv="32.203665" />
+            <point ath="-18.709648" atv="32.095353" />
+        </hotspot>
+
+        <hotspot name="hs4" fillcolor="0xaaafff" fillalpha="0" borderwidth="0" distorted="true" bordercolor="0xaaaaaa" borderalpha="0" depth="1000" polyline="false" scaleflying="true" tx="0" ty="0" tz="0" zoom="true" onclick="js(openPhone());" visible="false">
+            <point ath="87.928796" atv="50.543289" />
+            <point ath="93.465308" atv="42.680563" />
+            <point ath="120.254147" atv="48.682882" />
+            <point ath="115.309837" atv="57.339276" />
+        </hotspot>
+
+        <hotspot name="hs5" fillcolor="0xcccaaa" fillalpha="0" borderwidth="0" distorted="true" bordercolor="0xaaaaaa" borderalpha="0" depth="1000" polyline="false" scaleflying="true" tx="0" ty="0" tz="0" zoom="true" onclick="js(openTip());" visible="false">
+            <point ath="179.713572" atv="25.484966" />
+            <point ath="-158.165409" atv="24.390668" />
+            <point ath="-157.034453" atv="39.429247" />
+            <point ath="177.76825" atv="40.688861" />
+        </hotspot>
+
+        <hotspot name="hs6" url="images/tip4.png"
+                 ath="-27.215622" atv="1.874282" rx="0" ry="0" rz="1.094151" width="357" height="107" scale="1.081081"
+                 depth="1000"
+                 polyline="false"
+                 scaleflying="true"
+                 distorted="true"
+                 tx="0"
+                 ty="0"
+                 tz="0"
+                 visible="false"
+                 zoom="true"
+        />
+
+        <plugin name="editor" url="plugins/editor.swf" keep="true"/>
+        <plugin name="gyro" devices="html5" url="plugins/gyro2.js" enabled="true" friction=".7" velastic="0" vrelative="true"/>
+        <view hlookat="0" vlookat="0" maxpixelzoom="1.0" fov="115" fovmin="115" fovmax="115" limitview="auto"/>
+        <preview url="images/preview.jpg"/>
+        <image>
+            <cube url="images/mobile_%s.jpg"/>
+        </image>
+    </scene>
+
+</krpano>

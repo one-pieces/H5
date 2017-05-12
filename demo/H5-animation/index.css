@@ -1,0 +1,23 @@
+.main-page {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+.main-page.z-current {
+	z-index: 1;
+	display: inline-block;
+}
+
+.red {
+	background-color: red;
+}
+.orange {
+	background-color: red;
+}
+.blue {
+	background-color: red;
+}
+.yellow {
+	background-color: red;
+}

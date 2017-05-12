@@ -1,0 +1,333 @@
+#qq {
+    position: absolute;
+    width: 373px;
+    height: 601px;
+    
+    background-color: red;
+    border: 1px solid blue;
+    
+    z-index: 100000;
+    top: 0;
+    left: 0;
+    
+/*    background: url('../images/wawa.png') no-repeat;*/
+    display: none;
+}
+
+
+/************* 第一页：欢迎背景 开始 *************/
+.bgC011 { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 640px;
+    height: 1029px;
+    /*background: url('../images/375_603.png') no-repeat;*/
+    background: url('../images/page_welcome.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+
+/************* 第一页：欢迎背景 结束 *************/
+
+/************* 第二页：准备去现场 开始 *************/
+/*** 第一幅图 ***/
+.bgC021 { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 640px;
+    height: 438px;
+    background: url('../images/opening_1_bg.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第一幅图三组对话 ***/
+.bgC0210 { 
+    position: absolute;
+    left: 340px;
+    top: 9px;
+    width: 146px;
+    height: 293px;
+}
+
+.bgC0211 { 
+    background: url('../images/opening_1_talk_1.png') no-repeat;    
+}
+
+.bgC0212 { 
+    background: url('../images/opening_1_talk_2.png') no-repeat;
+}
+
+.bgC0213 { 
+    background: url('../images/opening_1_talk_3.png') no-repeat;
+}
+
+/*** 第二幅图 ***/
+.bgC022 { 
+    position: absolute;
+    left: 0;
+    top: 277px;
+    width: 640px;
+    height: 476px;
+    background: url('../images/opening_2_bg.png') no-repeat;
+}
+
+/*** 第二幅图手部 ***/
+.bgC0221 { 
+    position: absolute;
+    right: 0px;
+    top: 350px;
+    width: 508px;
+    height: 316px;
+    background: url('../images/opening_2_hand.png') no-repeat;
+}
+
+/*** 第三幅图 ***/
+.bgC023 { 
+    position: absolute;
+    left: 0;
+    top: 654px;
+    width: 640px;
+    height: 375px;
+    background: url('../images/opening_3_bg.png') no-repeat;
+}
+
+/*** 第三幅图对话 ***/
+.bgC0231 { 
+    position: absolute;
+    left: 100px;
+    top: 715px;
+    width: 179px;
+    height: 277px;
+    background: url('../images/opening_3_talk_1.png') no-repeat;
+}
+
+/************* 第二页：准备去现场 结束 *************/
+
+/************* 第三页：进门 开始 *************/
+
+/*** 关着的门 ***/
+.bgC031 { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 640px;
+    height: 1137px;
+    background: url('../images/door_close.png') no-repeat;
+}
+
+/*** 打开的门 ***/
+.bgC032 { 
+    position: absolute;
+    left: 172px;
+    top: -753px;
+    width: 284px;
+    height: 460px;
+    background: url('../images/door_open.png') no-repeat;
+}
+
+/************* 第三页：进门 结束 *************/
+
+
+/************* 第八页：真相还原 开始 *************/
+/*** 第一幅图 ***/
+.bgC081 { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 640px;
+    height: 383px;
+    background: url('../images/true_1_bg.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第一幅图，真相还原四字遮罩 ***/
+.bgC0811 { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 640px;
+    height: 383px;
+    background: url('../images/true_1_cover.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第一幅图，手部特写 ***/
+.bgC0812 { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 393px;
+    height: 149px;
+    background: url('../images/true_1_hand_1.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第一幅图，对话 ***/
+.bgC0813 { 
+    position: absolute;
+    right: 10px;
+    top: 80px;
+    width: 113px;
+    height: 205px;
+    background: url('../images/true_1_talk_1.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第二幅图 ***/
+.bgC082 { 
+    position: absolute;
+    left: 0;
+    top: 355px;
+    width: 640px;
+    height: 466px;
+    background: url('../images/true_2_bg.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第二幅图 对话 ***/
+.bgC0821 { 
+    position: absolute;
+    right: 0;
+    top: 378px;
+    width: 204px;
+    height: 357px;
+    background: url('../images/true_2_talk_1.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第三幅图 ***/
+.bgC083 { 
+    position: absolute;
+    left: 0;
+    top: 745px;
+    width: 640px;
+    height: 293px;
+    background: url('../images/true_3_bg.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/************* 第八页：真相还原 结束 *************/
+
+/************* 第九页：失败结局 开始 *************/
+/*** 第一幅图 ***/
+.bgC091 { 
+    position: absolute;
+    left: 0px;
+    top: 0;
+    width: 640px;
+    height: 352px;
+    background: url('../images/result_1_bg.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第一幅图 对话 ***/
+.bgC0911 { 
+    position: absolute;
+    right: 50px;
+    top: 25px;
+    width: 130px;
+    height: 250px;
+    background: url('../images/result_1_talk.png') no-repeat;
+    background-size: 100% 100%;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+/*** 第二幅图 ***/
+.bgC092 { 
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 527px;
+    background: url('../images/result_2_bg.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第二幅图 对话 ***/
+.bgC0921 { 
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 341px;
+    height: 385px;
+    background: url('../images/result_2_talk.png') no-repeat;
+    background-size: 100% 100%;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+/*** 第三幅图 ***/
+.bgC093 { 
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 640px;
+    height: 403px;
+    background: url('../images/result_3_bg.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+/*** 第三幅图 对话 ***/
+.bgC0931 { 
+    position: absolute;
+    left: 30px;
+    bottom: 250px;
+    width: 282px;
+    height: 147px;
+    background: url('../images/result_3_talk.png') no-repeat;
+    background-size: 100% 100%;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+/************* 第九页：失败结局 结束 *************/
+
+/************* 第十页：反馈 开始 *************/
+.bgC101 { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 640px;
+    height: 1140px;
+    background: url('../images/report_1_bg.png') no-repeat;
+    background-size: 100% 100%;
+}
+/************* 第十页：反馈 结束 *************/
+
+/************* 第十页：优惠码 开始 *************/
+.bgC111 { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 640px;
+    height: 1029px;
+    background: url('../images/coupon_1_bg.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+#discountCode {
+    position: absolute;
+    left: 255px;
+    top: 415px;
+    width: 240px;
+    height: 40px;
+    color: #b80803;
+    font-size: 48px;
+    line-height: 40px;
+    font-weight: bold;
+    font-family:"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+}
+
+#discountRule {
+    position: absolute;
+    left: 365px;
+    top: 500px;
+    width: 190px;
+    height: 35px;
+    color: #b80803;
+    font-size: 48px;
+    line-height: 40px;
+}
+/************* 第十页：优惠码 结束 *************/
