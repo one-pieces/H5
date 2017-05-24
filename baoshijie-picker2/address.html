@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link href="dist/css/swiper.min.css" rel="stylesheet">
+  <script src="dist/js/jquery-1.10.1.min.js"></script>
+  <script src="dist/js/swiper.min.js"></script>
+  <style>
+    body {
+      font-family: Helvetica Neue,Helvetica,STHeiTi,Arial,sans-serif;
+      background: #000000;
+      color: #ffffff;
+      font-size: 18px;
+    }
+    .picker-header {
+      border-bottom: 2px solid #000000;
+      text-align: center;
+      padding: 5px;
+    }
+    .picker-container {
+      display: flex;
+    }
+    .swiper-container {
+      flex: 1;
+      height: 200px;
+      position: relative;
+      left: 0;
+    }
+    .swiper-container .swiper-slide {
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+      text-align: center;
+      color: #b3b3b3;
+    }
+    .gradient {
+      /*filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);*/
+      /*-ms-filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);!*IE8*!*/
+      background: #000000; /* 一些不支持背景渐变的浏览器 */
+      /*background:-moz-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+      background:-webkit-gradient(linear, left top, right top, from(#000000), color-stop(0.3, #282828), color-stop(0.7, #282828), to(#000000));
+      /*background:-o-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+    }
+  </style>
+</head>
+<body>
+  <div class="picker-wrapper gradient">
+    <div class="picker-header">地区</div>
+    <div class="picker-container">
+      <div class="swiper-container" id="swiper-container1">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">slide1</div>
+        </div>
+      </div>
+      <div class="swiper-container" id="swiper-container2">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">slide2</div>
+        </div>
+      </div>
+      <div class="swiper-container" id="swiper-container3">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">slide3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="page-picker-desc">
+    地址:
+    <span id="picker-selected1"></span>
+    <span id="picker-selected2"></span>
+    <span id="picker-selected3"></span>
+  </p>
+  <script>
+    (function($) {
+      var address = {
+        '亚洲': {
+          '中国': ['北京', '上海', '广州', '深圳'],
+          '韩国': ['首尔', '济州岛']
+        },
+        '欧洲': {
+          '英国': ['伦敦', '爱尔兰']
+        },
+        '北美洲': {
+          '美国': ['纽约', '硅谷', '西雅图'],
+          '加拿大': ['多伦多']
+        },
+        '亚洲1': {
+          '中国': ['北京', '上海', '广州', '深圳'],
+          '韩国': ['首尔', '济州岛']
+        },
+        '欧洲2': {
+          '英国': ['伦敦', '爱尔兰'],
+          '法国': ['巴黎', '爱尔兰']
+        },
+        '北美洲2': {
+          '美国': ['纽约', '硅谷', '西雅图'],
+          '加拿大': ['多伦多']
+        }
+      };
+      function InitSlides(id, outDomId, contents, transitionEndCallback) {
+        var loopCount = 10;
+        var count = contents.length;
+        var topPoint = 0;
+        var bottomPoint = count;
+        var mySwiper = new Swiper(id, {
+          direction: 'vertical',
+          slidesPerView: 5,
+          freeMode: true,
+          freeModeSticky: true,
+          centeredSlides: true,
+          runCallbacksOnInit: false,
+          mousewheelControl: true,
+          onInit: function(swiper) {
+            swiper.removeAllSlides();
+            var s = new Array();
+            for(var i = 0; i < count; i++) {
+              s[i] = '<div class="swiper-slide" data-index="'+ i + '">' + contents[i] + '</div>';
+            }
+            for (var i = 0; i < loopCount; i++) {
+              swiper.appendSlide(s);
+            }
+            swiper.update();
+            topPoint = count * 4;
+            bottomPoint = count * 8;
+            swiper.slideTo(topPoint, 0);
+            swiper.update();
+          },
+          onSlideChangeEnd: function(swiper) {
+            if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
+              swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+            }
+          },
+          onTransitionStart: function(swiper) {
+            $(swiper.slides).css('color', '#b3b3b3');
+          },
+          onTransitionEnd: function(swiper) {
+            var currentSlides = swiper.slides[swiper.activeIndex];
+            var currentIndex = currentSlides.dataset.index;
+            $(outDomId).text(currentSlides.innerHTML + currentIndex);
+            $(currentSlides).css('color', '#fff');
+            if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
+              swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+            }
+            transitionEndCallback && transitionEndCallback(currentSlides.innerHTML, currentIndex);
+          },
+          onTouchStart: function(swiper, even) {
+            if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
+              swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+            }
+          }
+        });
+        return mySwiper;
+      }
+      
+      var mySwiper1, mySwiper2, mySwiper3;
+      mySwiper1 = new InitSlides('#swiper-container1',
+        '#picker-selected1', Object.keys(address), function(value1, currentIndex) {
+        mySwiper2 = new InitSlides('#swiper-container2',
+          '#picker-selected2', Object.keys(address[value1]), function(value2, currentIndex) {
+            mySwiper3 = new InitSlides('#swiper-container3', '#picker-selected3', address[value1][value2]);
+          });
+      });
+      console.log(mySwiper1.init());
+      
+//      var continentList = Object.keys(address);
+//      var firstContinent = address[continentList[0].label];
+//      var countryList = Object.keys(firstContinent);
+//      var cityList = firstContinent[countryList[0].label];
+//
+//      var mySwiper1 = new InitSlides('#swiper-container1', '#picker-selected1', continentList);
+//      var mySwiper2 = new InitSlides('#swiper-container2', '#picker-selected1', countryList);
+//      var mySwiper3 = new InitSlides('#swiper-container3', '#picker-selected1', cityList);
+//      mySwiper1.on('transitionEnd', function() {
+//        var currentSlides = swiper.slides[swiper.activeIndex];
+//        var currentIndex = currentSlides.dataset.index;
+//        $(outDomId).text(currentSlides.innerHTML + currentIndex);
+//        $(currentSlides).css('color', '#fff');
+//        if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
+//          swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+//        }
+//      });
+    })(jQuery);
+  </script>
+</body>
+</html>

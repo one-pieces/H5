@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+  <style>
+    body {
+      font-family: Helvetica Neue,Helvetica,STHeiTi,Arial,sans-serif;
+      background: #000000;
+      color: #ffffff;
+      font-size: 18px;
+    }
+    .picker-item.picker-selected {
+      color: #ffffff;
+    }
+    .picker-center-highlight {
+      display: none;
+    }
+    .picker-items {
+      margin: 0 20px;
+    }
+    .picker-header {
+      border-bottom: 2px solid #000000;
+      text-align: center;
+      padding: 5px;
+    }
+    .divider {
+      width: 1px;
+      background:-webkit-gradient(linear, left top, left bottom, color-stop(0.3, #282828), color-stop(0.5, #000000), color-stop(0.7, #282828));
+    }
+    .gradient {
+      /*filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);*/
+      /*-ms-filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);!*IE8*!*/
+      background: #000000; /* 一些不支持背景渐变的浏览器 */
+      /*background:-moz-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+      background:-webkit-gradient(linear, left top, right top, from(#000000), color-stop(0.3, #282828), color-stop(0.7, #282828), to(#000000));
+      /*background:-o-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+    }
+  </style>
+  <!-- 先引入 Vue -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- 引入组件库 -->
+  <script src="./lib/mint-ui/index.js"></script>
+</head>
+<body>
+<div id="app">
+  <div class="picker-wrapper gradient">
+    <div class="picker-header">地区</div>
+    <mt-picker :slots="slots" @change="onChange" value-key="label"></mt-picker>
+  </div>
+  <p class="page-picker-desc">地址: {{ language }}</p>
+</div>
+<script>
+  var language = [
+    '生日快乐1',
+    '生日快乐2',
+    '生日快乐3',
+    '生日快乐4',
+    '生日快乐5',
+    '生日快乐6',
+    '生日快乐7',
+    '生日快乐8',
+  ];
+  var app = new Vue({
+    el: '#app',
+    methods: {
+      onChange(picker, values) {
+        this.language = values[0].label;
+      },
+      formatArray(arr) {
+        // 重复8次
+        arr.push.apply(arr, arr);
+        arr.push.apply(arr, arr);
+        arr.push.apply(arr, arr);
+        return arr.map(function(item, index) {
+          return {
+            id: index,
+            label: item
+          };
+        });
+      }
+    },
+    data() {
+      var options = this.formatArray(language);
+      var defaultIndex = Math.floor(options.length / 2);
+      return {
+        slots: [
+          {
+            flex: 1,
+            defaultIndex: defaultIndex,
+            values: options,
+            className: 'slot1',
+            textAlign: 'center'
+          }
+        ],
+        language: language[0]
+      };
+    }
+  });
+</script>
+</body>
+</html>

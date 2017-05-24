@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+  <style>
+    body {
+      font-family: Helvetica Neue,Helvetica,STHeiTi,Arial,sans-serif;
+      background: #000000;
+      color: #ffffff;
+      font-size: 18px;
+    }
+    .picker-item.picker-selected {
+      color: #ffffff;
+    }
+    .picker-center-highlight {
+      display: none;
+    }
+    .picker-items {
+      margin: 0 20px;
+    }
+    .picker-header {
+      border-bottom: 2px solid #000000;
+      text-align: center;
+      padding: 5px;
+    }
+    .divider {
+      width: 1px;
+      background:-webkit-gradient(linear, left top, left bottom, color-stop(0.3, #282828), color-stop(0.5, #000000), color-stop(0.7, #282828));
+    }
+    .gradient {
+      /*filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);*/
+      /*-ms-filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);!*IE8*!*/
+      background: #000000; /* 一些不支持背景渐变的浏览器 */
+      /*background:-moz-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+      background:-webkit-gradient(linear, left top, right top, from(#000000), color-stop(0.3, #282828), color-stop(0.7, #282828), to(#000000));
+      /*background:-o-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+    }
+  </style>
+  <!-- 先引入 Vue -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!--<script src="https://unpkg.com/mint-ui/lib/index.js"></script>-->
+  <!-- 引入组件库 -->
+  <script src="./lib/mint-ui/index.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="picker-wrapper gradient">
+      <div class="picker-header">地区</div>
+      <mt-picker style="position: absolute;" :slots="addressSlots" @change="onAddressChange" value-key="label"></mt-picker>
+      <img src="./imgs/cat1.png">
+    </div>
+    <p class="page-picker-desc">地址: {{ addressContinent }} {{ addressCountry }} {{ addressCity }}</p>
+  </div>
+  <script>
+    var address = {
+      '亚洲': {
+        '中国': ['北京', '上海', '广州', '深圳'],
+        '韩国': ['首尔', '济州岛']
+      },
+      '欧洲': {
+        '英国': ['伦敦', '爱尔兰']
+      },
+      '北美洲': {
+        '美国': ['纽约', '硅谷', '西雅图'],
+        '加拿大': ['多伦多']
+      },
+      '亚洲1': {
+        '中国': ['北京', '上海', '广州', '深圳'],
+        '韩国': ['首尔', '济州岛']
+      },
+      '欧洲2': {
+        '英国': ['伦敦', '爱尔兰'],
+        '法国': ['巴黎', '爱尔兰']
+      },
+      '北美洲2': {
+        '美国': ['纽约', '硅谷', '西雅图'],
+        '加拿大': ['多伦多']
+      }
+    }
+    var app = new Vue({
+      el: '#app',
+      methods: {
+        onAddressChange(picker, values) {
+          console.log(values);
+          if (values[0] && this.addressContinent !== values[0].label) {
+            this.addressContinent = values[0].label;
+            // 修改第二栏选项
+            var countryList = this.formatArray(Object.keys(address[this.addressContinent]));
+            var countryListDefaultIndex = Math.floor(countryList.length / 2);
+            picker.setSlotValues(1, countryList);
+            picker.setSlotDefaultIndex(1, countryListDefaultIndex);
+            this.addressCountry = countryList[countryListDefaultIndex].label;
+
+            // 修改第三栏选项，默认使用
+            var cityList = this.formatArray(address[this.addressContinent][this.addressCountry]);
+            var cityListDefaultIndex = Math.floor(cityList.length / 2);
+            picker.setSlotValues(2, cityList);
+            picker.setSlotDefaultIndex(2, cityListDefaultIndex);
+            this.addressCity = cityList[cityListDefaultIndex].label;
+            return;
+          }
+          if (values[1] && this.addressCountry !== values[1].label) {
+            this.addressCountry = values[1].label;
+            // 修改第三栏选项，默认使用
+            var countryList = this.formatArray(Object.keys(address[this.addressContinent]));
+            var cityList = this.formatArray(address[this.addressContinent][this.addressCountry] || address[this.addressContinent][countryList[0].label]);
+            var cityListDefaultIndex = Math.floor(cityList.length / 2);
+            picker.setSlotValues(2, cityList);
+            picker.setSlotDefaultIndex(2, cityListDefaultIndex);
+            this.addressCity = cityList[cityListDefaultIndex].label;
+            return;
+          }
+          if (values[2] && this.addressCity !== values[2].label) {
+            this.addressCity = values[2].label;
+          }
+        },
+        formatArray(arr) {
+          // 重复8次
+          var resultArr = [].concat(arr);
+          resultArr.push.apply(resultArr, resultArr);
+          resultArr.push.apply(resultArr, resultArr);
+          resultArr.push.apply(resultArr, resultArr);
+          return resultArr.map(function(item, index) {
+            return {
+              id: index,
+              label: item
+            };
+          });
+        }
+      },
+      data() {
+        var continentList = this.formatArray(Object.keys(address));
+        var continentListDefaultIndex = Math.floor(continentList.length / 2);
+        var firstContinent = address[continentList[0].label];
+        var countryList = this.formatArray(Object.keys(firstContinent));
+        var countryListDefaultIndex = Math.floor(countryList.length / 2);
+        var cityList = this.formatArray(firstContinent[countryList[0].label]);
+        var cityListDefaultIndex = Math.floor(cityList.length / 2);
+        return {
+          addressSlots: [
+            {
+              flex: 1,
+              values: continentList,
+              defaultIndex: continentListDefaultIndex,
+              className: 'slot1',
+              textAlign: 'center'
+            }, {
+              divider: true,
+              content: '',
+              className: 'divider'
+            }, {
+              flex: 1,
+              values: countryList,
+              defaultIndex: countryListDefaultIndex,
+              className: 'slot2',
+              textAlign: 'center'
+            }, {
+              divider: true,
+              content: '',
+              className: 'divider'
+            }, {
+              flex: 1,
+              values: cityList,
+              defaultIndex: cityListDefaultIndex,
+              className: 'slot3',
+              textAlign: 'center'
+            }
+          ],
+//          addressContinentData: address['亚洲'],
+          addressContinent: '亚洲',
+          addressCountry: '中国',
+          addressCity: '北京'
+        };
+      }
+    });
+  </script>
+</body>
+</html>

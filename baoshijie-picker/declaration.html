@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+  <style>
+    body {
+      font-family: Helvetica Neue,Helvetica,STHeiTi,Arial,sans-serif;
+      background: #000000;
+      color: #ffffff;
+      font-size: 18px;
+    }
+    .picker-item.picker-selected {
+      color: #ffffff;
+    }
+    .picker-center-highlight {
+      display: none;
+    }
+    .picker-items {
+      margin: 0 20px;
+    }
+    .picker-header {
+      border-bottom: 2px solid #000000;
+      text-align: center;
+      padding: 5px;
+    }
+    .picker-wrapper {
+      position: relative;
+    }
+    .picker-index {
+      position: absolute;
+      top: 50%;
+      left: 0;
+    }
+    .picker-index div {
+      width: 10px;
+      height: 3px;
+      background: #707274;
+      margin-bottom: 5px;
+    }
+    .picker-index div.selected-index {
+      background: red;
+      width: 15px;
+    }
+    .declaration-1 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .picker-item.picker-selected .declaration-1 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .declaration-2 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .picker-item.picker-selected .declaration-2 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .declaration-3 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .picker-item.picker-selected .declaration-3 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .declaration-4 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .picker-item.picker-selected .declaration-4 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .declaration-5 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .picker-item.picker-selected .declaration-5 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .gradient {
+      /*filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);*/
+      /*-ms-filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);!*IE8*!*/
+      background: #000000; /* 一些不支持背景渐变的浏览器 */
+      /*background:-moz-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+      background:-webkit-gradient(linear, left top, right top, from(#000000), color-stop(0.3, #282828), color-stop(0.7, #282828), to(#000000));
+      /*background:-o-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+    }
+  </style>
+  <!-- 先引入 Vue -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!--<script src="https://unpkg.com/mint-ui/lib/index.js"></script>-->
+  <!-- 引入组件库 -->
+  <script src="./lib/mint-ui/index.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="picker-wrapper gradient">
+      <div class="picker-index">
+        <div :class="{'selected-index': selectedId % declarationListLength == (n - 1)}" v-for="n in declarationListLength"></div>
+      </div>
+      <div class="picker-header">宣言</div>
+      <mt-picker :slots="slots" @change="onChange" value-key="dom"></mt-picker>
+    </div>
+    <p class="page-picker-desc">宣言: {{ declaration }}</p>
+  </div>
+  <script>
+    var declarationList = [{
+      dom: '<div class="declaration-1"></div>',
+      label: '祝你 _____ 之行轻松愉快'
+    }, {
+      dom: '<div class="declaration-2"></div>',
+      label: '是时候来一场 _____ 旅行'
+    }, {
+      dom: '<div class="declaration-3"></div>',
+      label: '祝你 _____ 之行顺利1'
+    }, {
+      dom: '<div class="declaration-4"></div>',
+      label: '祝你 _____ 之行轻松愉快2'
+    }, {
+      dom: '<div class="declaration-5"></div>',
+      label: '祝你 _____ 之行轻松愉快hahaha'
+    }];
+    var app = new Vue({
+      el: '#app',
+      methods: {
+        onChange(picker, values) {
+          this.selectedId = values[0].id;
+          this.declaration = values[0].label;
+        },
+        formatArray(arr) {
+          // 重复8次
+          var resultArr = [];
+          resultArr = arr.concat(arr);
+          resultArr = resultArr.concat(resultArr);
+          resultArr = resultArr.concat(resultArr);
+          return resultArr.map(function(item, index) {
+            return {
+              id: index,
+              dom: item.dom,
+              label: item.label
+            };
+          });
+        }
+      },
+      data() {
+        var options = this.formatArray(declarationList);
+        var defaultIndex = Math.floor(options.length / 2);
+        return {
+          slots: [
+            {
+              flex: 1,
+              defaultIndex: defaultIndex,
+              values: options,
+              className: 'slot1',
+              textAlign: 'center'
+            }
+          ],
+          declaration: declarationList[0],
+          declarationListLength: declarationList.length,
+          selectedId: 0
+        };
+      }
+    });
+  </script>
+</body>
+</html>
