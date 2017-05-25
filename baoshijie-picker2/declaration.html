@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link href="dist/css/swiper.min.css" rel="stylesheet">
+  <script src="dist/js/jquery-1.10.1.min.js"></script>
+  <script src="dist/js/swiper.min.js"></script>
+  <style>
+    body {
+      font-family: Helvetica Neue,Helvetica,STHeiTi,Arial,sans-serif;
+      background: #000000;
+      color: #ffffff;
+      font-size: 18px;
+    }
+    .picker-header {
+      border-bottom: 2px solid #000000;
+      text-align: center;
+      padding: 5px;
+    }
+    .picker-wrapper {
+      position: relative;
+    }
+    .picker-index {
+      position: absolute;
+      top: 50%;
+      left: 0;
+    }
+    .picker-index div {
+      width: 10px;
+      height: 3px;
+      background: #707274;
+      margin-bottom: 5px;
+    }
+    .picker-index div.selected-index {
+      background: red;
+      width: 15px;
+    }
+    .picker-container {
+      display: flex;
+      margin: 0 35px;
+    }
+    .swiper-container {
+      flex: 1;
+      height: 200px;
+      position: relative;
+      left: 0;
+    }
+    .swiper-container .swiper-slide {
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+      text-align: center;
+      color: #b3b3b3;
+    }
+    .declaration-1 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .swiper-slide.swiper-slide-active .declaration-1 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .declaration-2 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .swiper-slide.swiper-slide-active .declaration-2 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .declaration-3 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .swiper-slide.swiper-slide-active .declaration-3 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .declaration-4 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .swiper-slide.swiper-slide-active .declaration-4 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .declaration-5 {
+      height: 100%;
+      background: url("./imgs/cat1.png");
+    }
+    .swiper-slide.swiper-slide-active .declaration-5 {
+      background: url("./imgs/cat2.jpg");
+    }
+    .gradient {
+      /*filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);*/
+      /*-ms-filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=red,endcolorstr=blue,gradientType=0);!*IE8*!*/
+      background: #000000; /* 一些不支持背景渐变的浏览器 */
+      /*background:-moz-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+      background:-webkit-gradient(linear, left top, right top, from(#000000), color-stop(0.3, #282828), color-stop(0.7, #282828), to(#000000));
+      /*background:-o-linear-gradient(left, red, rgba(0, 0, 255, 0.5));*/
+    }
+  </style>
+</head>
+<body>
+  <div class="picker-wrapper gradient">
+    <div class="picker-index">
+    </div>
+    <div class="picker-header">地区</div>
+    <div class="picker-container">
+      <div class="swiper-container" id="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">slide1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="page-picker-desc">
+    地址:
+    <span id="picker-selected"></span>
+  </p>
+  <script>
+    (function($) {
+      var loopCount = 10;
+      var contents = [
+        '<div class="declaration-1"><span style="display: none;">来一场XXX旅行1</span></div>',
+        '<div class="declaration-2"><span style="display: none;">来一场XXX旅行2</span></div>',
+        '<div class="declaration-3"><span style="display: none;">来一场XXX旅行3</span></div>',
+        '<div class="declaration-4"><span style="display: none;">来一场XXX旅行4</span></div>',
+        '<div class="declaration-5"><span style="display: none;">来一场XXX旅行5</span></div>'
+      ];
+      var count = contents.length;
+      var topPoint = 0;
+      var bottomPoint = count;
+      for(var i = 0; i < count; i++) {
+        $('.picker-index').append('<div id="picker-index-' + i +'"></div>');
+      }
+      var mySwiper = new Swiper('#swiper-container', {
+        direction: 'vertical',
+        slidesPerView: 5,
+        freeMode: true,
+        freeModeSticky: true,
+        centeredSlides: true,
+        mousewheelControl: true,
+        onInit: function(swiper) {
+          swiper.removeSlide(0);
+          var s = new Array();
+          for(var i = 0; i < count; i++) {
+            s[i] = '<div class="swiper-slide" data-index="'+ i + '">' + contents[i] + '</div>';
+          }
+          for (var i = 0; i < loopCount; i++) {
+            swiper.appendSlide(s);
+          }
+          swiper.update();
+          topPoint = Math.floor(swiper.slides.length / 3);
+          bottomPoint = Math.floor(swiper.slides.length / 3 * 2);
+          swiper.slideTo(topPoint, 0);
+        },
+        onSlideChangeEnd: function(swiper) {
+          if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
+            swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+          }
+        },
+        onTransitionStart: function(swiper) {
+          $(swiper.slides).css('color', '#b3b3b3');
+        },
+        onTransitionEnd: function(swiper) {
+          var currentSlides = swiper.slides[swiper.activeIndex];
+          var currentIndex = currentSlides.dataset.index;
+          $('#picker-selected').text((currentSlides.childNodes[0].childNodes[0] ? currentSlides.childNodes[0].childNodes[0].innerHTML : currentSlides.childNodes[0].innerHTML) + ' ' + currentIndex);
+          $('.picker-index div').removeClass('selected-index');
+          $('#picker-index-' + currentIndex).addClass('selected-index');
+          $(currentSlides).css('color', '#fff');
+          if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
+            swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+          }
+        },
+        onTouchStart: function(swiper, even) {
+          if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
+            swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+          }
+        }
+      });
+    })(jQuery);
+  </script>
+</body>
+</html>
