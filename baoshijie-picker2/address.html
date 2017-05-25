@@ -99,11 +99,28 @@
           '加拿大': ['多伦多']
         }
       };
-      function InitSlides(id, outDomId, contents, transitionEndCallback) {
-        var loopCount = 10;
-        var count = contents.length;
-        var topPoint = 0;
-        var bottomPoint = count;
+      var loopCount = 30;
+      function resetSlides(slot, contents) {
+        slot.swiper.removeAllSlides();
+        slot.count = contents.length;
+        var s = new Array();
+        for(var i = 0; i < slot.count; i++) {
+          s[i] = '<div class="swiper-slide" data-index="'+ i + '">' + contents[i] + '</div>';
+        }
+        for (var i = 0; i < loopCount; i++) {
+          slot.swiper.appendSlide(s);
+        }
+        slot.swiper.update();
+        slot.topPoint = slot.count * Math.floor(loopCount / 3);
+        slot.bottomPoint = slot.count * Math.floor(loopCount / 3 * 2);
+        slot.swiper.slideTo(slot.topPoint, 0);
+      }
+      function InitSlides(id, outDomId, contents) {
+        this.count = contents.length;
+        this.topPoint = 0;
+        this.bottomPoint = this.count;
+        this.transitionEndCallback = null;
+        var that = this;
         var mySwiper = new Swiper(id, {
           direction: 'vertical',
           slidesPerView: 5,
@@ -113,23 +130,13 @@
           runCallbacksOnInit: false,
           mousewheelControl: true,
           onInit: function(swiper) {
-            swiper.removeAllSlides();
-            var s = new Array();
-            for(var i = 0; i < count; i++) {
-              s[i] = '<div class="swiper-slide" data-index="'+ i + '">' + contents[i] + '</div>';
-            }
-            for (var i = 0; i < loopCount; i++) {
-              swiper.appendSlide(s);
-            }
-            swiper.update();
-            topPoint = count * 4;
-            bottomPoint = count * 8;
-            swiper.slideTo(topPoint, 0);
-            swiper.update();
+            that.swiper = swiper;
+            resetSlides(that, contents);
+            swiper.slideTo(that.topPoint, 0);
           },
           onSlideChangeEnd: function(swiper) {
-            if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
-              swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+            if (swiper.activeIndex > that.bottomPoint || swiper.activeIndex < that.topPoint) {
+              swiper.slideTo(that.topPoint + swiper.activeIndex % that.count, 0);
             }
           },
           onTransitionStart: function(swiper) {
@@ -138,49 +145,43 @@
           onTransitionEnd: function(swiper) {
             var currentSlides = swiper.slides[swiper.activeIndex];
             var currentIndex = currentSlides.dataset.index;
-            $(outDomId).text(currentSlides.innerHTML + currentIndex);
             $(currentSlides).css('color', '#fff');
-            if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
-              swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+            setTimeout(function() {
+              $(outDomId).text(currentSlides.innerHTML + currentIndex);
+              that.transitionEndCallback && that.transitionEndCallback(currentSlides.innerHTML, currentIndex);
+            });
+            if (swiper.activeIndex > that.bottomPoint || swiper.activeIndex < that.topPoint) {
+              swiper.slideTo(that.topPoint + swiper.activeIndex % that.count, 0);
             }
-            transitionEndCallback && transitionEndCallback(currentSlides.innerHTML, currentIndex);
           },
           onTouchStart: function(swiper, even) {
-            if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
-              swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
+            if (swiper.activeIndex > that.bottomPoint || swiper.activeIndex < that.topPoint) {
+              swiper.slideTo(that.topPoint + swiper.activeIndex % that.count, 0);
             }
           }
         });
-        return mySwiper;
       }
       
-      var mySwiper1, mySwiper2, mySwiper3;
-      mySwiper1 = new InitSlides('#swiper-container1',
-        '#picker-selected1', Object.keys(address), function(value1, currentIndex) {
-        mySwiper2 = new InitSlides('#swiper-container2',
-          '#picker-selected2', Object.keys(address[value1]), function(value2, currentIndex) {
-            mySwiper3 = new InitSlides('#swiper-container3', '#picker-selected3', address[value1][value2]);
-          });
-      });
-      console.log(mySwiper1.init());
+      var continentList = Object.keys(address);
+      var firstContinent = address[continentList[0]];
+      var countryList = Object.keys(firstContinent);
+      var cityList = firstContinent[countryList[0]];
       
-//      var continentList = Object.keys(address);
-//      var firstContinent = address[continentList[0].label];
-//      var countryList = Object.keys(firstContinent);
-//      var cityList = firstContinent[countryList[0].label];
-//
-//      var mySwiper1 = new InitSlides('#swiper-container1', '#picker-selected1', continentList);
-//      var mySwiper2 = new InitSlides('#swiper-container2', '#picker-selected1', countryList);
-//      var mySwiper3 = new InitSlides('#swiper-container3', '#picker-selected1', cityList);
-//      mySwiper1.on('transitionEnd', function() {
-//        var currentSlides = swiper.slides[swiper.activeIndex];
-//        var currentIndex = currentSlides.dataset.index;
-//        $(outDomId).text(currentSlides.innerHTML + currentIndex);
-//        $(currentSlides).css('color', '#fff');
-//        if (swiper.activeIndex > bottomPoint || swiper.activeIndex < topPoint) {
-//          swiper.slideTo(topPoint + swiper.activeIndex % count, 0);
-//        }
-//      });
+      var mySlot1 = new InitSlides('#swiper-container1', '#picker-selected1', continentList);
+      var mySlot2 = new InitSlides('#swiper-container2', '#picker-selected2', countryList);
+      var mySlot3 = new InitSlides('#swiper-container3', '#picker-selected3', cityList);
+      mySlot1.transitionEndCallback = function(value1, currentIndex1) {
+        console.log('aaaaddd2');
+        var countryList = Object.keys(address[value1]);
+        resetSlides(mySlot2, countryList);
+        mySlot2.transitionEndCallback = function(value2, currentIndex2) {
+          console.log('aaaaddd3');
+          var cityList = address[value1][value2];
+          resetSlides(mySlot3, cityList);
+          mySlot3.swiper.slideTo(mySlot3.topPoint, 0);
+        }
+        mySlot2.swiper.slideTo(mySlot2.topPoint, 0);
+      }
     })(jQuery);
   </script>
 </body>
