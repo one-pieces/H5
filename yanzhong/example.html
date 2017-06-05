@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script>
+    function getParem(href){
+      if(href.indexOf("?") == -1){return "";}
+      return href.split("?")[1].replace(/'/g, '').replace(/"/g, '').replace(/>/g, '').replace(/</g, '');
+    }
+    var param = getParem(window.location.href),
+      jumpUrl="http://all.vic.sina.com.cn/201611richan/wap/";
+    jumpUrl = param ? (jumpUrl+"?"+param) : jumpUrl;
+    var isWeixin= /micromessenger|qq/.test(navigator.userAgent.toLowerCase());
+//    !isWeixin ? window.location.href = jumpUrl : "";
+  </script>
+  <script>
+    function viewport(){
+      var phoneWidth = parseInt(window.screen.width);
+      var phoneScale = phoneWidth/640;
+      var ua = navigator.userAgent;
+      if (/Android (\d+\.\d+)/.test(ua)){
+        var version = parseFloat(RegExp.$1);
+        if(version>2.3){
+          document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+        }else{
+          document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+        }
+      }else{
+        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+      }
+    }
+    viewport();
+  </script>
+  <title>东风日产微博之夜·i宣言</title>
+  <link href='css/default.css?v=1101' rel='stylesheet' type='text/css'/>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3f8c42046e1d2b16521a94116be8dabb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    var SUDA = SUDA || [];
+    SUDA["uid"] = ""; // uid 选填
+    SUDA["appkey"] = "WB16110370"; // 合同号
+    SUDA["product"] = "mini"; // 一般给mini
+    SUDA["type"] = "wap"; // 手机wap,电脑端PC
+  </script>
+  <script type="text/javascript" charset="utf-8" src="http://www.sinaimg.cn/unipro/pub/suda_app.js"></script>
+</head>
+<body>
+<div class="page_first page hide">
+  <div class="imgshaow">
+    <img class="defaultimg" alt="" src=""/>
+  </div>
+  <div class="bottomtoo">
+    <div class="playtoo"></div>
+  </div>
+</div>
+<div class="previewloading">
+  <div class="number">1%</div>
+</div>
+<div class="poptip pop" onclick='$.sSina.popDomOff($(".poptip"));'>提交成功!感谢参与!</div>
+<div id="popMask"></div>
+<div id="lanren">
+  <div id="audio-btn" class="on">
+    <audio autoplay loop src="audio/bg_music.mp3" id="media"></audio>
+  </div>
+</div>
+<audio src="audio/sound_effect.mp3" id="sound_effect" preload="preload"></audio>
+<audio src="audio/button01a.mp3" id="finger" preload="preload"></audio>
+<input id="currenttype" type="hidden" value="man"/>
+<input id="comefrom" class="comefrom" type="hidden" value="0"/>
+<input id="awardbtn" type="button" value=""/>
+<div id="drawtxt">
+  <div class="cvtxt txtstyle1 txt0" startX="28" txth="180">
+    <span></span>
+  </div>
+  <div class="cvtxt txtstyle2 txt1" startX="28" txth="36"></div>
+</div>
+<div style="display:none;">
+  <canvas id="specialimg" width="328" height="47"></canvas>
+  <canvas id="specialimg1" width="172" height="154"></canvas>
+</div>
+<script id="scriptrequire" src="http://all.vic.sina.com.cn/hdcommon/js/sina.require.min.js" data-src="js/main.js?v=1101" type="text/javascript"></script>
+</body>
+</html>
