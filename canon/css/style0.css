@@ -1,0 +1,114 @@
+
+* { padding: 0;margin: 0; }
+html,body,.main{
+  height: 100%;
+  overflow: hidden;
+  font-size: 12px;
+  font-family: 'Miscrosoft Yahei';
+  background-color: #eeeeee;
+}
+.swiper-slide{ transform: translate3d(0, 0, 0);overflow: hidden; }
+.swiper-container { width: 100%; height: 100%; }
+.swiper-slide { text-align: center;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center; }
+.loading2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  background-color: #eeeeee;
+}
+.loadinggif{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 254px;
+  height: 284px;
+  margin: auto;
+  background: url("http://news.sohu.com/upload/yf/enenh5/imgs/loading.gif");
+}
+.swiper-slide2 { text-align: center;display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center; width: 100%;position: relative; }
+.swiper-container2 {
+  width: 100%;
+  height: 1008px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.swiper-slide2 {
+  -webkit-flex-shrink: 0;
+  -ms-flex: 0 0 auto;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.swiper-slide2:nth-child(1){ height: 1036px; }
+.swiper-slide2:nth-child(2){ height: 482px; margin-top: 12px; }
+.swiper-slide2:nth-child(3){ height: 657px;margin-top: -172px; }
+.swiper-slide2:nth-child(4){ height: 503px;margin-top: -229px; /*border-bottom: 2px solid red;*/}
+.swiper-slide2:nth-child(5){ height: 243px;margin-top: 20px; }
+.swiper-slide2:nth-child(6){ height: 345px;margin-top: 20px; }
+.swiper-slide2:nth-child(7){ height: 340px;margin-top: 20px; }
+/*.swiper-slide2:nth-child(1){ height: 752px; }*/
+/*.swiper-slide2:nth-child(2){ height: 256px; }*/
+/*.swiper-slide2:nth-child(3){ height: 451px;margin-top: 20px; }*/
+/*.swiper-slide2:nth-child(4){ height: 400px;margin-top: 20px; }*/
+/*.swiper-slide2:nth-child(5){ height: 243px;margin-top: 20px; }*/
+/*.swiper-slide2:nth-child(6){ height: 345px;margin-top: 20px; }*/
+/*.swiper-slide2:nth-child(7){ height: 340px;margin-top: 20px; }*/
+.end541{ background: url("http://i2.itc.cn/20160513/3649_e18b12e4_2024_4736_30c7_36c3334fcdcf_1.png") no-repeat; }
+.scrolltop { width: 110px;height: 60px; }
+#lastwd1{ top: 484px;position: absolute;left: 67px; }
+#lastwd2{ top: 700px;position: absolute;left: 21px; }
+.end23{ top: 240px; }
+.sharkbb{ top: 94px; }
+.sharkdb{ top: 0; }
+#lastwd3{ position: absolute;left: 50px;top: 518px; }
+#lastwd4{ position: absolute;left: 21px;top: 700px; }
+.end47 { top: 0; }
+.end46 { top: 92px; }
+.end54 { top: 330px; }
+.end56 { top: 14px; }
+#lastwd5{ position: absolute;left: 17px;top: 772px; }
+#lastwd6{ position: absolute;right: 25px;top: 570px; }
+#lastwd7{ position: absolute;left: 22px;top: 847px; }
+#lastwd8{ position: absolute;left: 26px;top: 784px; }
+.last1{ left: 415px;top: 300px; }
+.last2{ left: 400px;top: 360px; }
+.score3{ left: 90px;background: url("http://i1.itc.cn/20160513/3649_d381ed1e_d8f8_73b2_7921_2d4fdbf20ce6_1.png") no-repeat;height: 115px;background-position: 0 -1035px;width: 71px; }
+.score1 { left: 156px;background: url("http://i1.itc.cn/20160513/3649_d381ed1e_d8f8_73b2_7921_2d4fdbf20ce6_1.png") no-repeat;height: 115px;background-position: 0 -1035px;width: 71px; }
+.score2 { left: 222px;background: url("http://i1.itc.cn/20160513/3649_d381ed1e_d8f8_73b2_7921_2d4fdbf20ce6_1.png") no-repeat;height: 115px;background-position: 0 -1035px;width: 71px; }
+.last4{ top: 550px;background: url("http://i0.itc.cn/20160517/3649_3d2354d0_dbcd_f0a8_d109_901c8dc7a9fb_1.png") no-repeat;width:242px;height:277px; }
+.tryag{ top: 590px;}
+#sharewords{ position: absolute;left: 22px;top: 462px; }
+.process{
+  width: 122px;height: 900px;
+  background: url("http://i1.itc.cn/20160513/3649_d57345c2_5241_099c_0445_7b256b078886_1.png") no-repeat;
+}
+.target{ left: -6px; }
+.bb33{ background: url("http://i3.itc.cn/20160513/3649_a82dc8bb_4a17_d99c_1ada_02ba850973e6_1.png") no-repeat; }
+.bb42{ background: url("http://i2.itc.cn/20160513/3649_ecae6aa7_8d76_f371_a6f1_543c966d2c00_1.png") no-repeat; }
+.tishi{
+  position: absolute;
+  left: 129px;
+  top: 168px;
+  width: 410px;
+  height: 27px;
+  background: url("http://i2.itc.cn/20160513/3649_261b47eb_cd0d_973d_ad5c_ecc2894ebd49_1.png") no-repeat;
+}
+.end807{
+  background: url("http://i1.itc.cn/20160513/3649_667ff00a_3e59_10a7_2393_2bce2377ddf1_1.png") no-repeat;
+}
+.end714 { left: 545px;bottom: 523px;transition: all linear 1s; }.end7141 { left: 541px;bottom: 520px; }
+.end53{ top: 691px; } .end52{ top: 284px; }
+
+.bb21{ background: url("http://news.sohu.com/upload/yf/enenh5/imgs/words/1/1.png") no-repeat; }
+.bb22{ background: url("http://news.sohu.com/upload/yf/enenh5/imgs/words/3/1.png") no-repeat; }
+.bb23{ background: url("http://news.sohu.com/upload/yf/enenh5/imgs/words/2/1.png") no-repeat; }
+
+.bb31{ background: url("http://news.sohu.com/upload/yf/enenh5/imgs/words/4/1.png") no-repeat; }
+.bb32{ background: url("http://i0.itc.cn/20160513/3649_286a0199_c44a_71ec_f077_7d5c5d85be2d_1.png") no-repeat; }

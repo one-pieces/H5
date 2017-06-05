@@ -1,0 +1,433 @@
+/* loading */
+.loading {
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+}
+
+.loadingbg1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 320px;
+  height: 1029px;
+  background: url('../images/loading/page_loading_bg.jpg') no-repeat;
+  background-size: contain;
+}
+.loadingbg2 {
+  position: absolute;
+  left: 40px;
+  top: 140px;
+  width: 240px;
+  height: 1029px;
+  background: url('../images/loading/page_loading_man.png') no-repeat;
+  background-size: contain;
+}
+
+.loading .progress {
+  width: 100%;
+  position: absolute;
+  top: 265px;
+}
+
+.loading .meter {
+  position: relative;
+  width: 230px;
+  height: 16px;
+  margin: 0 auto;
+}
+
+.loading .meter>span {
+  display: block;
+  width: 0;
+  height: 100%;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: width .7s ease;
+  transition: width .7s ease;
+}
+
+.loading .meter>span:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../images/loading/page_loading_middle.png") repeat-x;
+  z-index: 1;
+  -webkit-animation: move 3s linear infinite;
+  animation: move 3s linear infinite;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.loading .meter .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+  z-index: 2;
+}
+
+@-webkit-keyframes move {
+  0% {
+    background-position: 0 0
+  }
+  100% {
+    background-position: 30px 0
+  }
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0
+  }
+  100% {
+    background-position: 30px 0
+  }
+}
+
+/* 开门 */
+#opendoor {
+
+}
+
+/**
+ * 页面切换
+ * 镜头方法
+ */
+.effect-out {
+  -webkit-animation: effectOut 5s ease-in-out forwards;
+  -webkit-transform-origin: 50% 72%;
+  -moz-animation: effectOut 5s ease-in-out forwards;
+  -moz-transform-origin: 50% 72%;
+}
+@-webkit-keyframes effectOut{
+  0% { opacity:1; }
+  100% { -webkit-transform: scale(20); opacity:0; }
+}
+@-moz-keyframes effectOut{
+  0% { opacity:1; }
+  100% { -moz-transform: scale(20); opacity:0; }
+}
+
+/* 线索查找场景 */
+#findclues {
+  display: none;
+}
+
+#wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.bg51 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1140px;
+  background: url('../images/findclues/640x1029_bg.png') no-repeat;
+}
+
+.computerScreen {
+  position: absolute;
+  left: 864px;
+  top: 479px;
+  width: 170px;
+  height: 99px;
+  background: url('../images/findclues/computerflash.gif') no-repeat;
+}
+
+.arrow {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: url('../images/arrow.png') no-repeat;
+  -webkit-animation: arrow 1s infinite;
+  animation: arrow 1s infinite;
+}
+
+#arrow1 {
+  left: 1298px;
+  top: 622px;
+}
+
+#arrow2 {
+  left: 760px;
+  top: 792px;
+}
+
+#arrow3 {
+  left: 1200px;
+  top: 422px;
+}
+
+#arrow4 {
+  left: 937px;
+  top: 412px;
+}
+
+#arrow5 {
+  left: 1400px;
+  top: 417px;
+}
+
+#arrow6 {
+  left: 1540px;
+  top: 547px;
+}
+
+@keyframes arrow {
+  from {
+    bottom: 0;
+    opacity: 0.5;
+  }
+  to {
+    bottom: 40px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes arrow {
+  from {
+    bottom: 0;
+    opacity: 0.5;
+  }
+  to {
+    bottom: 40px;
+    opacity: 1;
+  }
+}
+
+.grid {
+  position: absolute;
+  width: 91px;
+  height: 104px;
+  z-index: 1041;
+  background: url('../images/mark_bg.png');
+}
+
+#grid1 {
+  left: 40px;
+  top: 40px;
+}
+
+#grid2 {
+  left: 140px;
+  top: 40px;
+}
+
+#grid3 {
+  left: 240px;
+  top: 40px;
+}
+
+.audio {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 57px;
+  height: 57px;
+  z-index: 1041;
+  display: none;
+}
+
+.audio.audio-off {
+  background: url('../images/music_off.png');
+  background-size: contain;
+}
+
+.audio.audio-on {
+  background: url('../images/music_on.png');
+  background-size: contain;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  overflow: hidden;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+  opacity: .5;
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 100px 0;
+}
+
+.modal-content {
+  margin: 0 auto;
+  width: 251px;
+}
+
+.cluePicture {
+  width: 100%;
+  height: 251px;
+  margin-bottom: 20px;
+  background: url('../images/findclues/finalclues.png') no-repeat;
+  background-size: contain;
+}
+.clueTip {
+  width: 80%;
+  height: 100px;
+  margin: 0 auto;
+  background: url('../images/findclues/btn_continue.png') no-repeat;
+  background-size: contain;
+}
+
+.findclues {
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  width: 400px;
+  height: 83px;
+  background: url('../images/findclues/clues.png') no-repeat;
+  background-size: contain;
+}
+
+/* 最终线索场景 */
+#finalclues {
+  display: none;
+}
+
+.bg52 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1140px;
+  background: url('../images/finalclues/office_part.jpg') no-repeat;
+}
+
+.bb52 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 173px;
+  background: url('../images/finalclues/office_part_text.png') no-repeat;
+}
+
+#arrow7 {
+  left: 500px;
+  top: 510px;
+  display: none;
+}
+
+/* 二维码扫码场景 */
+#scancode {
+  display: none;
+}
+
+.bg531 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 640px;
+  height: 1029px;
+  background: url('../images/scancode/code_1.png') no-repeat;
+}
+
+.bg532 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 640px;
+  height: 1029px;
+  background: url('../images/scancode/code_2.png') no-repeat;
+}
+
+.bg533 {
+  position: absolute;
+  left: 0;
+  top: 490px;
+  width: 640px;
+  height: 1029px;
+  background: url('../images/scancode/scan_1.png') no-repeat;
+}
+
+.bg534 {
+  position: absolute;
+  left: 0;
+  top: 490px;
+  width: 640px;
+  height: 1029px;
+  background: url('../images/scancode/scan_2.png') no-repeat;
+}
+
+/* 选择答案场景 */
+#truthchoice {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: #000;
+}
+
+.choice {
+  margin: 50px auto;
+  width: 542px;
+}
+
+.bg61 {
+  margin: 0 auto 50px;
+  width: 100%;
+  height: 105px;
+  background: url('../images/truthchoice/choice_1.png') no-repeat;
+}
+
+.bg62 {
+  margin: 0 auto 50px;
+  width: 100%;
+  height: 105px;
+  background: url('../images/truthchoice/choice_2.png') no-repeat;
+}
+
+.bg63 {
+  margin: 0 auto 50px;
+  width: 100%;
+  height: 105px;
+  background: url('../images/truthchoice/choice_3.png') no-repeat;
+}
+
+.bg64 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 640px;
+  height: 482px;
+  background: url('../images/truthchoice/choice_bg.png') no-repeat;
+}
+
+/* 真相还原场景 */
+#truthrestore {
+  display: none;
+}

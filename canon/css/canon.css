@@ -1,0 +1,135 @@
+.canonHeader {
+  background-color: #FFFFFF;
+  height: 56px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+}
+
+#canonFooter {
+  background-color: #111111;
+  height: 83px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+  bottom: 0;
+  display: none;
+}
+
+.header_left {
+  float: left;
+  padding-left: 15px;
+  padding-top: 12px;
+  width: 80px;
+}
+
+.header_right {
+  float: right;
+  padding-right: 15px;
+  padding-top: 15px;
+  width: 96px;
+}
+
+#canonFooter ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  border-bottom: 1px solid #555555;
+}
+
+#canonFooter li{
+  text-shadow:none;
+  float: left;
+  padding-left: 10px;
+  color: white;
+  font-family: SimHei, Helvetica, Arial, sans-serif;
+}
+
+#canonFooter li a{
+  font-size: 10px;
+  color: white;
+  text-decoration: none;
+  line-height: 40px;
+  width: 100%;
+  /*border: 1px solid red;*/
+  display: block;
+}
+
+#canonFooter .canonWeb {
+  width: 40%;
+}
+
+#canonFooter .canonWeb a {
+  padding-left: 23px;
+  background: url("../images/web_botton_icon.png") no-repeat 0 12px;
+  background-size: 22px 17px;
+}
+
+
+#canonFooter .canonShare {
+  width: 23%;
+  border-left: 1px solid #555555;
+  border-right: 1px solid #555555;
+}
+
+#canonFooter .canonShare a {
+  padding-left: 23px;
+  background: url("../images/share_maps_icon.png") no-repeat 0 12px;
+  background-size: 15px 16px;
+}
+
+/*#canonFooter .canonContact {
+    width: 25%;
+}*/
+
+#canonFooter .canonContact a {
+  padding-left: 23px;
+  background: url("../images/contact_us_icon.png") no-repeat 0 12px;
+  background-size: 15px 16px;
+}
+
+#canonFooter .canonTerm {
+  width: 27%;
+}
+
+#canonFooter .canonTerm a {
+  padding-left: 23px;
+  background: url("../images/user_term_icon.png") no-repeat 0 12px;
+  background-size: 15px 16px;
+}
+
+
+#canonFooter .canonAgreement {
+  width: 27%;
+  border-left: 1px solid #555555;
+  border-right: 1px solid #555555;
+}
+
+#canonFooter .canonAgreement a {
+  padding-left: 23px;
+  background: url("../images/confidentiality_agreement_icon.png") no-repeat 0 12px;
+  background-size: 15px 16px;
+}
+
+
+/*@media only screen and (max-width: 480px) {
+	#canonHeader {
+		height: 50px;
+	}
+	.header_left {
+		width: 71px;
+		padding-top: 11px;
+	}
+	.header_right {
+		width: 85px;
+		padding-top: 13px;
+	}
+}*/
+
