@@ -1,27 +1,4 @@
 [{
-  "id": "0001",
-  "name": "致每一个被光影打动过的你",
-  "price": 80000,
-  "postUrl": "https://ocrg4fmwp.qnssl.com/57d93236468c599156574.jpg",
-  "gifUrl": "https://ocrg4fmwp.qnssl.com/57de0c0dd35d266793115.gif",
-  "from": "腾讯",
-  "to": "腾讯",
-  "intro": "这个H5以动画来展现不同形式的电影，用黑与白的对比来表现光影。点击羽毛就会出播放视频，不同情境定格的画面分别对应一部著名的电影，同时也会呈现这不电影里有名的话。最后是腾讯影业发布会的宣传。我们看过的有很多，但没看到的，更多，期待腾讯影业为我们带来更多惊喜。",
-  "tags": ["电影", "视频", "H5"],
-  "QRCode": "./src/images/QRCode/0001.png",
-  "imgs": [
-    "https://ocrg4fmwp.qnssl.com/57de0c27a39aa90323949.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d9323915ce651658793.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d9323f31bce19644482.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d9323f4b00b58485087.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d9323f4932914232070.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d9323f4822339816848.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d9323f4a68256710143.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d9323f49e5c49335337.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d9323f51d4d66704265.jpg"
-  ],
-  "originLink": "http://game.qq.com/act/a20160917fbh/index.html"
-}, {
   "id": "0002",
   "name": "举杯邀亲友,对饮梦之蓝",
   "price": 40000,
@@ -110,29 +87,6 @@
     "https://ocrg4fmwp.qnssl.com/57d8b96575a4a83325735.jpg"
   ],
   "originLink": "http://qinggan.jiayuan.com/zhuanti/weixin_page_test/"
-}, {
-  "id": "0006",
-  "name": "网易一元购：中国区货源告急！",
-  "price": 40000,
-  "postUrl": "https://ocrg4fmwp.qnssl.com/57d7c36687c1127927864.jpg",
-  "gifUrl": "https://ocrg4fmwp.qnssl.com/57d7c415ca62223757467.gif",
-  "from": "网易",
-  "to": "网易一元购",
-  "intro": "网易一元购：中国区货源告急！如何抢到第一批iPhone7 主体是搞笑的视频，以人与自然中的一段动物介绍视频场景，配合iphone7难买到的说辞，让用户有所领会，最后渗入网易一元购的广告，达到宣传产品的效果。",
-  "tags": ["视频", "H5"],
-  "QRCode": "./src/images/QRCode/0006.png",
-  "imgs": [
-    "https://ocrg4fmwp.qnssl.com/57d7c3a06052b69996800.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d7c368e8d2997938977.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d7c36cd12ba88688306.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d7c36cd831799722547.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d7c36ce588750996326.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d7c36ce4f0e66718465.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d7c36ce3ef242854114.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d7c36ce471871313978.jpg",
-    "https://ocrg4fmwp.qnssl.com/57d7c642d644e96046582.jpg"
-  ],
-  "originLink": "http://tech.163.com/special/iphone7_sp/?from=singlemessage&isappinstalled=1"
 }, {
   "id": "0007",
   "name": "一万零一日",

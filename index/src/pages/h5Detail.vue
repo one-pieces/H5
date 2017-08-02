@@ -10,31 +10,31 @@
       </div>
       <div class="col-md-5 col-xs-6 col-ps-12">
         <div class="name">{{h5Detail.name}}</div>
-        <div class="from">by{{h5Detail.from}}</div>
+        <!--<div class="from">by{{h5Detail.from}}</div>-->
         <div class="intro">{{h5Detail.intro}}</div>
         <div class="tags">
           <span>标签:</span>
           <span v-for="tag in h5Detail.tags">{{tag}}</span>
         </div>
-        <div class="price-detail">
-          <div class="col-xs-6">
-            <img class="qr-code" :src="h5Detail.QRCode">
-            <div class="scan">扫码查看H5详情</div>
-          </div>
-          <div class="col-xs-6">
-            <div class="price">
-              <span>价格:</span>
-              <span>{{h5Detail.price | currency '¥' 0}}起</span>
-            </div>
-            <div class="call">
-              <button class="btn btn-call">立刻定制</button>
-              <div class="contact">
-                <div class="qq">QQ:493433054</div>
-                <div class="phone">或致电186-1685-4188</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!--<div class="price-detail">-->
+          <!--<div class="col-xs-6">-->
+            <!--<img class="qr-code" :src="h5Detail.QRCode">-->
+            <!--<div class="scan">扫码查看H5详情</div>-->
+          <!--</div>-->
+          <!--<div class="col-xs-6">-->
+            <!--<div class="price">-->
+              <!--<span>价格:</span>-->
+              <!--<span>{{h5Detail.price | currency '¥' 0}}起</span>-->
+            <!--</div>-->
+            <!--<div class="call">-->
+              <!--<button class="btn btn-call">立刻定制</button>-->
+              <!--<div class="contact">-->
+                <!--<div class="qq">QQ:493433054</div>-->
+                <!--<div class="phone">或致电186-1685-4188</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
     </div>
   </div>
@@ -121,7 +121,7 @@
     }
   }
 </style>
-<script type="text/ecmascript-6" lang="babel">
+<script type="text/ecmascript-6" lang="babel-loader">
   import Grids from '../../data/H5.json';
   export default {
     data() {

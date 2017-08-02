@@ -10,7 +10,7 @@
     margin: auto auto 40px;
   }
 </style>
-<script type="text/ecmascript-6" lang="babel">
+<script type="text/ecmascript-6" lang="babel-loader">
   import TopbarItemComponent from './TopbarItem.vue';
   export default {
     data() {

@@ -8,7 +8,7 @@
       </div>
       <div class="info">
         <div class="name">{{item.name}}</div>
-        <div class="price">{{item.price | currency '¥' 0}}</div>
+        <!--<div class="price">{{item.price | currency '¥' 0}}</div>-->
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@
     }
   }
 </style>
-<script type="text/ecmascript-6" lang="babel">
+<script type="text/ecmascript-6" lang="babel-loader">
   export default {
     data() {
       return {

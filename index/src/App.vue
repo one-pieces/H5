@@ -10,7 +10,7 @@
         </router-view>
       </div>
     </div>
-    <footer-component></footer-component>
+    <!--<footer-component></footer-component>-->
   </div>
 </template>
 <style lang="scss" rel="stylesheet/scss">
@@ -27,7 +27,7 @@
     }
   }
 </style>
-<script type="text/ecmascript-6" lang="babel">
+<script type="text/ecmascript-6" lang="babel-loader">
   import HeaderComponent from './components/Header.vue';
   import FooterComponent from './components/Footer.vue';
   export default {
