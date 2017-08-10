@@ -51,7 +51,8 @@
         console.log('complete');
 //        $('<video autoplay x-webkit-airplay="true" webkit-playsinline="true" preload="auto" src="http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/start.mp4" style="width: 100%; height: 100%; top: 0; left: 0; position: absolute;" poster="http://hudong.midoci.com/img/jgz/jgz_ios.hyperesources/blank.png"></video>').appendTo($('#xl-container'));
         var canvas = document.getElementById('videoCanvas');
-        var player = new jsmpeg('http://hudong.midoci.com/img/jgz/jgz_android.hyperesources/start.mpg', {canvas: canvas, autoplay: true});
+//        var player = new jsmpeg('http://hudong.midoci.com/img/jgz/jgz_android.hyperesources/start.mpg', {canvas: canvas, autoplay: true});
+        var player = new jsmpeg('start.mpg', {canvas: canvas, autoplay: true});
       }
     });
     loader.start();
