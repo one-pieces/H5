@@ -17,13 +17,23 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
   // 打开单页
   self.open = function () {
-    self.start();
     self.loadVideo();
+    $('#fullscreen').on('click', function () {
+      self.playVideo('.video #video1');
+    });
   },
 
-  self.start = function () {
-    var video = $('.video>video')[0];
+  self.playVideo = function (video) {
+    $('.video').show();
+    var video = $(video)[0];
     video.play();
+  }
+
+  self.closeVideo = function (video) {
+    $('.video').hide();
+  }
+
+  self.start = function () {
   }
 
   self.loadVideo = function () {

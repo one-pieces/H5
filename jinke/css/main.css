@@ -19,10 +19,10 @@ html, body {
   bottom: 0;
   right: 0;
   z-index: 100;
+  display: none;
 }
 .video video {
   width: 100%;
-  height: 100%;
   font-size: 100%;
   line-height: 0;
   vertical-align: baseline;
@@ -31,4 +31,29 @@ html, body {
   -ms-user-select: none;
   user-select: none;
   outline: none;
+}
+
+.btn-group {
+  width: 100%;
+  position: absolute;
+  top: 40%;
+}
+
+.btn {
+  color: #ffffff;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  user-select: none;
+  border: 1px solid rgb(32, 160, 255);
+  outline: none;
+  margin: 0 0 20px 0;
+  width: 100%;
+  padding: 14px 0;
+  background: #0096ff;
+  border-radius: 2px;
+  font-size: 16px;
 }

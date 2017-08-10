@@ -20,9 +20,14 @@
 </head>
 
 <body>
+  <div class="btn-group">
+    <button class="btn" id="fullscreen">全屏播放</button>
+    <button class="btn" id="window">窗口播放</button>
+  </div>
   <!--<div class="block">请使用竖屏访问本页面</div>-->
   <div class="video">
-    <video x-webkit-airplay="true"
+    <video id="video1"
+           x-webkit-airplay="true"
            webkit-playsinline="true"
            playsinline="true"
            x5-video-player-type="h5"
