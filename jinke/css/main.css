@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.video {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  /*top: -5000px;*/
+  left: 0;
+  z-index: 100;
+}
+.video video {
+  width: 100%;
+  font-size: 100%;
+  line-height: 0;
+  vertical-align: baseline;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+}
