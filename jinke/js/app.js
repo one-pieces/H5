@@ -8,6 +8,7 @@ require.config({
   paths: {
     // 'swiper': 'swiper-3.4.0.jquery.min',
     'jquery': 'lib/jquery-3.1.0.min',
+    // 'jsmpeg': 'lib/jsmpeg1',
     'weixin': '//res.wx.qq.com/open/js/jweixin-1.0.0'
   },
   // shim: {

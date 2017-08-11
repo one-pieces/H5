@@ -21,6 +21,11 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     $('#fullscreen').on('click', function () {
       self.playVideo('.video #video1');
     });
+    $('#window').on('click', function () {
+      $('.video').show();
+      var canvas = document.getElementById('videoCanvas');
+      var player = new jsmpeg('assets/video/start.mpg', {canvas: canvas, autoplay: true});
+    });
   },
 
   self.playVideo = function (video) {
