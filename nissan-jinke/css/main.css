@@ -13,22 +13,37 @@ html, body {
 
 @media screen and (orientation: portrait) {
   /*竖屏 css*/
-  .block {
+  .block .warning {
     display: none;
   }
 }
-@media screen and (orientation: landscape) {
-  /*横屏 css*/
-  .block {
-    z-index: 9999;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #333;
-    color: #fff;
-    text-align: center;
-    line-height: 100vh;
-  }
+/*@media screen and (orientation: landscape) {*/
+  /*!*横屏 css*!*/
+  /*.block {*/
+    /*z-index: 9999;*/
+    /*position: absolute;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background: #333;*/
+    /*color: #fff;*/
+    /*text-align: center;*/
+    /*line-height: 100vh;*/
+  /*}*/
+/*}*/
+
+.block {
+  z-index: 9999;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  line-height: 100vh;
+}
+
+#video_player {
+  z-index: 9998;
 }
 
 .logo {

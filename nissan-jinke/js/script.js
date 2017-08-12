@@ -25,6 +25,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
       baseUrl: 'assets/img/loading/',
       resources: resources,
       onComplete: function (total) {
+        $('.block').hide();
         var loader2 = new resLoader({
           baseUrl: 'assets/',
           resources: [
@@ -55,7 +56,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
             'img/h5/ending/replay.png',
             'img/h5/ending/slogan.png',
             // 视频
-            'video/1502354622679.mp4'
+            'video/start.mp4'
           ],
           onProgress: function (current, total) {
             var percent = parseInt(current / total * 100);
@@ -75,8 +76,40 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   },
 
   self.start = function () {
-    self.gotoTaskPage();
+    self.playVideo({
+      url: 'assets/video/start.mp4',
+      canvasId: 'canvas',
+      onComplete: function () {
+        $('#video_player').hide();
+        self.gotoTaskPage();
+      }
+    });
   }
+
+  self.playVideo = function(options) {
+    $('#video_player').show();
+    var canvas = document.getElementById(options.canvasId);
+    var ctx = canvas.getContext('2d');
+    canvas.setAttribute('width', canvas.clientWidth);
+    canvas.setAttribute('height', canvas.clientHeight);
+
+    var video = document.createElement('video');
+    video.src = options.url;
+
+    video.addEventListener('play', function() {
+      var $this = this; //cache
+      (function loop() {
+        if (!$this.paused && !$this.ended) {
+          ctx.drawImage($this, 0, 0, canvas.clientWidth, canvas.clientHeight);
+          setTimeout(loop, 1000 / 30); // drawing at 30fps
+        }
+        if ($this.ended && options.onComplete && typeof options.onComplete === 'function') {
+          options.onComplete();
+        }
+      })();
+    }, false);
+    $(video)[0].play();
+  },
 
   self.gotoTaskPage = function () {
     $('#task_page').show();
@@ -173,28 +206,28 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
         }, 300);
       }
     });
-  }
 
-  var isToasterShown = false;
-  function showToaster(msg) {
-    // Toaster没有显示时才显示
-    if (!isToasterShown) {
-      $(".toaster div").html(msg);
-      $(".toaster").show();
-      isToasterShown = true;
-      var timeout = setTimeout(function () {
-        $(".toaster").hide();
-        isToasterShown = false;
-        clearTimeout(timeout);
-      }, 3000);
+    var isToasterShown = false;
+    function showToaster(msg) {
+      // Toaster没有显示时才显示
+      if (!isToasterShown) {
+        $(".toaster div").html(msg);
+        $(".toaster").show();
+        isToasterShown = true;
+        var timeout = setTimeout(function () {
+          $(".toaster").hide();
+          isToasterShown = false;
+          clearTimeout(timeout);
+        }, 3000);
+      }
     }
-  }
 
-  function showLoading() {
-    $(".loading").show();
-  }
-  function hideLoading() {
-    $(".loading").hide();
+    function showLoading() {
+      $(".loading").show();
+    }
+    function hideLoading() {
+      $(".loading").hide();
+    }
   }
 
   return self;
