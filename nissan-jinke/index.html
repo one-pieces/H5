@@ -1,0 +1,117 @@
+<!DOCTPYE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Nissan 劲客</title>
+  <meta http-equiv="Cache-Control" content="max-age">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="nissam，劲客，极限驾控营">
+  <meta name="WT.cg_abc" content="PL;PI;产品;产品介绍">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone-no, email=no">
+  <meta name="full-screen" content="true">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="360-fullscreen" content="true">
+  
+  <script data-main="js/app.js" src="js/lib/require.js"></script>
+  <!--<script src="js/lib/jsmpeg1.js"></script>-->
+  <!--<script src="js/lib/canvas-video-player.js"></script>-->
+  <link href="./css/main.css" rel="stylesheet"/>
+</head>
+
+<body>
+  <div class="block">
+    请使用竖屏访问本页面
+  </div>
+  
+  <div class="logo">
+    <img src="assets/img/h5/logo.png" />
+  </div>
+
+  <div id="loading" class="fullscreen">
+    <div class="loadingInfo">
+      <div class="percent"></div>
+    </div>
+  </div>
+  
+  <div id="task_page" class="fullscreen hidden">
+    <img class="slogan hCenter" src="assets/img/h5/task/slogan.png">
+    <img class="spiderman" src="assets/img/h5/task/spiderman.png">
+    <img class="lady" src="assets/img/h5/task/lady.png">
+    <img class="bgm" src="assets/img/h5/task/bgm.png">
+    <div class="cloud fullscreen"></div>
+    <button id="btn_spiderman">
+      <img src="assets/img/h5/task/btn-spiderman.png">
+    </button>
+    <button id="btn_lady">
+      <img src="assets/img/h5/task/btn-lady.png">
+    </button>
+    <button id="btn_bgm">
+      <img src="assets/img/h5/task/btn-bgm.png">
+    </button>
+  </div>
+  
+  <div id="ending_page" class="fullscreen hidden">
+    <img class="slogan hCenter" src="assets/img/h5/ending/slogan.png">
+    <img class="awesome" src="assets/img/h5/ending/666.png">
+    <img class="dialog" src="assets/img/h5/ending/dialog.png">
+    <button id="btn_replay">
+      <img src="assets/img/h5/ending/replay.png">
+    </button>
+    <button id="btn_goplay">
+      <img src="assets/img/h5/ending/goplay.png">
+    </button>
+  </div>
+  
+  <div id="info_page" class="fullscreen hidden">
+    <img class="slogan hCenter" src="assets/img/h5/info/slogan.png">
+  
+    <form method="post" id="user_info_form">
+      <div class="input name-input">
+        <input class="input__field" name="ame" id="name" value="">
+      </div>
+      <div class="input tel-input">
+        <input class="input__field" name="telNo" id="telNo" value="">
+      </div>
+      <div class="input city-input">
+        <input class="input__field" name="memo" id="memo" value="">
+      </div>
+  
+      <!--"activityId":活动id（int类型）,-->
+      <!--"name": "姓名",-->
+      <!--"telNo": "电话号码",-->
+      <!--"weibo": "微博",-->
+      <!--"memo": "其他信息"-->
+  
+      <button id="btn_confirm">
+        <img src="assets/img/h5/info/btn_confirm.png">
+      </button>
+    </form>
+  </div>
+  
+  <div class="video" style="display: none;">
+    <canvas id="videoCanvas" style="width: 100%; height: 100%; top: 0; left: 0; position: absolute;"></canvas>
+  </div>
+
+
+  <div class="toaster">
+    <div>输入信息不正确</div>
+  </div>
+
+  <div class="loading">
+    <div class="op__mask"></div>
+    <div class="loadEffect">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</body>
+</html>

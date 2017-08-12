@@ -1,6 +1,6 @@
 // 剧本
 
-define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
+define(['jquery', 'resLoader', 'weixin', 'canvid'], function ($, resLoader, wx, canvid) {
   var self = {};
   // 设备简单判断
   self.device = (function () {
@@ -23,8 +23,16 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     });
     $('#window').on('click', function () {
       $('.video').show();
-      var canvas = document.getElementById('videoCanvas');
-      var player = new jsmpeg('assets/video/start.mpg', {canvas: canvas, autoplay: true});
+      // var player = new jsmpeg('assets/video/1502354622679.mp4', {
+      //   canvas: document.getElementById('videoCanvas'),
+      //   autoplay: true
+      // });
+      var canvasVideo = new CanvasVideoPlayer({
+        videoSelector: '.js-video',
+        canvasSelector: '.js-canvas',
+        audio: true,
+      });
+      canvasVideo.play();
     });
   },
 

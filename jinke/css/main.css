@@ -23,7 +23,7 @@ html, body {
   z-index: 100;
   display: none;
 }
-.video video {
+.video video, canvas {
   width: 100%;
   font-size: 100%;
   line-height: 0;
