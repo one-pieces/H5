@@ -121,8 +121,9 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
             $('.loadingInfo .percent').text(percent + '%');
           },
           onComplete: function (total) {
-            $('#loading').hide();
-            self.start();
+            $('#btn_loaded').show().on('click', function () {
+              self.start();
+            });
           }
         });
         loader2.start();
@@ -132,14 +133,18 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   },
 
   self.start = function () {
-    // self.playVideo({
-    //   videoId: 'task3',
-    //   onComplete: function () {
-    //     $('#video_player').hide();
-    //     self.gotoTaskPage();
-    //   }
-    // });
-    self.gotoTaskPage();
+    self.playVideo({
+      videoId: 'start',
+      onStart: function () {
+        // 视频开始播放后才隐藏loading
+        $('#loading').hide();
+      },
+      onComplete: function () {
+        $('#video_player').hide();
+        self.gotoTaskPage();
+      }
+    });
+    // self.gotoTaskPage();
   }
 
   self.playVideo = function(options) {
@@ -173,10 +178,31 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     //   })();
     // }, false);
 
-    video.addEventListener('ended', function () {
-      $(video).hide();
-      if (options.onComplete && typeof options.onComplete === 'function') {
-        options.onComplete();
+    // video.addEventListener('ended', function () {
+    //   $(video).hide();
+    //   if (options.onComplete && typeof options.onComplete === 'function') {
+    //     options.onComplete();
+    //   }
+    // });
+
+    video.addEventListener('timeupdate', function () {
+      console.log('qqqqqq', this.duration, this.currentTime);
+      var isStartDone, isCompleteDone;
+      // 视频开始播放
+      if (this.currentTime > 0.5) {
+        if (!isStartDone && options.onStart && typeof options.onStart === 'function') {
+          options.onStart();
+          isStartDone = true;
+        }
+      }
+
+      // 视频快要结束
+      if (this.duration - this.currentTime < 0.5) {
+        $(video).hide();
+        if (!isCompleteDone && options.onComplete && typeof options.onComplete === 'function') {
+          options.onComplete();
+          isCompleteDone = true;
+        }
       }
     });
 
@@ -196,15 +222,12 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     });
 
     $('#btn_spiderman').on('click', function () {
-      hidePage('taskPage');
       self.spidermanTask();
     });
     $('#btn_bgm').on('click', function () {
-      hidePage('taskPage');
       self.bgmTask();
     });
     $('#btn_lady').on('click', function () {
-      hidePage('taskPage');
       self.ladyTask();
     });
   }
@@ -212,7 +235,10 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.spidermanTask = function () {
     console.log('spiderman');
     self.playVideo({
-      videoId: 'start',
+      videoId: 'task1',
+      onStart: function () {
+        hidePage('taskPage');
+      },
       onComplete: function () {
         $('#video_player').hide();
         self.gotoEndingPage();
@@ -224,6 +250,9 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     console.log('bgm');
     self.playVideo({
       videoId: 'task2',
+      onStart: function () {
+        hidePage('taskPage');
+      },
       onComplete: function () {
         $('#video_player').hide();
         self.gotoEndingPage();
@@ -235,6 +264,9 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     console.log('lady');
     self.playVideo({
       videoId: 'task3',
+      onStart: function () {
+        hidePage('taskPage');
+      },
       onComplete: function () {
         $('#video_player').hide();
         self.gotoEndingPage();
@@ -258,6 +290,10 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.gotoInfoPage = function () {
     showPage('infoPage');
     confirmUserInfo();
+  }
+
+  self.share = function () {
+
   }
 
   function confirmUserInfo() {
