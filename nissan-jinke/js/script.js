@@ -132,22 +132,22 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   },
 
   self.start = function () {
-    self.playVideo({
-      videoId: 'start',
-      canvasId: 'canvas',
-      onComplete: function () {
-        $('#video_player').hide();
-        self.gotoTaskPage();
-      }
-    });
+    // self.playVideo({
+    //   videoId: 'task3',
+    //   onComplete: function () {
+    //     $('#video_player').hide();
+    //     self.gotoTaskPage();
+    //   }
+    // });
+    self.gotoTaskPage();
   }
 
   self.playVideo = function(options) {
     $('#video_player').show();
-    var canvas = document.getElementById(options.canvasId);
-    var ctx = canvas.getContext('2d');
-    canvas.setAttribute('width', canvas.clientWidth);
-    canvas.setAttribute('height', canvas.clientHeight);
+    // var canvas = document.getElementById(options.canvasId);
+    // var ctx = canvas.getContext('2d');
+    // canvas.setAttribute('width', canvas.clientWidth);
+    // canvas.setAttribute('height', canvas.clientHeight);
 
     if (options.url) {
       var video = document.createElement('video');
@@ -157,23 +157,44 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
       var video = document.getElementById(options.videoId);
     }
 
-    video.addEventListener('play', function() {
-      var $this = this; //cache
-      (function loop() {
-        if (!$this.paused && !$this.ended) {
-          ctx.drawImage($this, 0, 0, canvas.clientWidth, canvas.clientHeight);
-          setTimeout(loop, 1000 / 30); // drawing at 30fps
-        }
-        if ($this.ended && options.onComplete && typeof options.onComplete === 'function') {
-          options.onComplete();
-        }
-      })();
-    }, false);
-    $(video)[0].play();
+    // video.addEventListener('play', function() {
+    //   // alert('play');
+    //   // ctx.drawImage(document.getElementById('logo'), 0, 0, canvas.clientWidth, canvas.clientHeight);
+    //   var $this = this; //cache
+    //   (function loop() {
+    //     // alert($this.paused);
+    //     if (!$this.paused && !$this.ended) {
+    //       ctx.drawImage($this, 0, 0, canvas.clientWidth, canvas.clientHeight);
+    //       setTimeout(loop, 1000 / 30); // drawing at 30fps
+    //     }
+    //     if ($this.ended && options.onComplete && typeof options.onComplete === 'function') {
+    //       options.onComplete();
+    //     }
+    //   })();
+    // }, false);
+
+    video.addEventListener('ended', function () {
+      $(video).hide();
+      if (options.onComplete && typeof options.onComplete === 'function') {
+        options.onComplete();
+      }
+    });
+
+    $(video).show()[0].play();
   },
 
   self.gotoTaskPage = function () {
     showPage('taskPage');
+    $('#task_page .bgm').addClass('fadeIn').on('webkitAnimationEnd', function() {
+      $('#task_page .spiderman').addClass('fadeIn').on('webkitAnimationEnd', function() {
+        $('#task_page .lady').addClass('fadeIn').on('webkitAnimationEnd', function() {
+          $('#task_page button img').addClass('fadeIn').on('webkitAnimationEnd', function() {
+            $('#task_page button img').css('opacity', 1).addClass('shake-rotate');
+          });
+        });
+      });
+    });
+
     $('#btn_spiderman').on('click', function () {
       hidePage('taskPage');
       self.spidermanTask();
@@ -191,9 +212,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.spidermanTask = function () {
     console.log('spiderman');
     self.playVideo({
-      // url: 'assets/video/task1.mp4',
-      videoId: 'task1',
-      canvasId: 'canvas',
+      videoId: 'start',
       onComplete: function () {
         $('#video_player').hide();
         self.gotoEndingPage();
@@ -204,9 +223,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.bgmTask = function () {
     console.log('bgm');
     self.playVideo({
-      // url: 'assets/video/task2.mp4',
       videoId: 'task2',
-      canvasId: 'canvas',
       onComplete: function () {
         $('#video_player').hide();
         self.gotoEndingPage();
@@ -217,9 +234,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.ladyTask = function () {
     console.log('lady');
     self.playVideo({
-      // url: 'assets/video/task3.mp4',
       videoId: 'task3',
-      canvasId: 'canvas',
       onComplete: function () {
         $('#video_player').hide();
         self.gotoEndingPage();

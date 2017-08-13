@@ -53,7 +53,16 @@
         r = results[0];
         media = document.createElement('VIDEO');
         media.id = results[1];
-        $('body').append(media);
+        media.style.display = 'none';
+
+        $(media).attr('x-webkit-airplay', true);
+        $(media).attr('webkit-playsinline', true);
+        $(media).attr('playsinline', true);
+        $(media).attr('x5-video-player-type', 'h5');
+        $(media).attr('x5-video-player-fullscreen', false);
+        // $(media).attr('autoplay', true);
+        // $('body').append(media);
+        $('#video_player').append(media);
       }
 
       var url = r.indexOf('http://') === 0 || r.indexOf('https://') === 0 ? r : baseUrl + r;

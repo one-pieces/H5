@@ -43,7 +43,23 @@ html, body {
 }
 
 #video_player {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
   z-index: 9998;
+  background: #000000;
+}
+#video_player video {
+  width: 100%;
+  font-size: 100%;
+  line-height: 0;
+  vertical-align: baseline;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
 }
 
 .logo {
@@ -177,6 +193,7 @@ html, body {
   position: absolute;
   bottom: 28vh;
   left: 0.5vw;
+  opacity: 0;
 }
 
 #task_page #btn_spiderman img {
@@ -184,6 +201,7 @@ html, body {
   position: absolute;
   bottom: 24vh;
   left: 2vw;
+  opacity: 0;
 }
 
 #task_page .bgm {
@@ -191,6 +209,7 @@ html, body {
   position: absolute;
   bottom: 11.5vh;
   left: 22vw;
+  opacity: 0;
 }
 
 #task_page #btn_bgm img {
@@ -198,6 +217,7 @@ html, body {
   position: absolute;
   bottom: 13.5vh;
   left: 27vw;
+  opacity: 0;
 }
 
 #task_page .lady {
@@ -205,6 +225,7 @@ html, body {
   position: absolute;
   right: -13vw;
   bottom: 8vh;
+  opacity: 0;
 }
 
 #task_page #btn_lady img {
@@ -212,6 +233,95 @@ html, body {
   position: absolute;
   bottom: 28.5vh;
   right: 3vw;
+  opacity: 0;
+}
+
+.fadeIn {
+  -webkit-animation: fadeIn 1s ease-in-out forwards;
+  -o-animation: fadeIn 1s ease-in-out forwards;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+  }
+  100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+  }
+  100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+  }
+}
+
+.shake-rotate {
+  -webkit-animation-name: shake-rotate;
+  -ms-animation-name: shake-rotate;
+  animation-name: shake-rotate;
+  -webkit-animation-duration: 5s;
+  -ms-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  -ms-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  -ms-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-delay: 0s;
+  -ms-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-animation-play-state: running;
+  -ms-animation-play-state: running;
+  animation-play-state: running
+}
+
+@-webkit-keyframes shake-rotate {
+  0% {
+    -webkit-transform: translate(0px, 0px) rotate(0deg)
+  }
+  2% {
+    -webkit-transform: translate(0px, 0px) rotate(-5.5deg)
+  }
+  4% {
+    -webkit-transform: translate(0px, 0px) rotate(1.5deg)
+  }
+  6% {
+    -webkit-transform: translate(0px, 0px) rotate(-7.5deg)
+  }
+  8% {
+    -webkit-transform: translate(0px, 0px) rotate(-7.5deg)
+  }
+  10% {
+    -webkit-transform: translate(0px, 0px) rotate(-0.5deg)
+  }
+  12% {
+    -webkit-transform: translate(0px, 0px) rotate(-5.5deg)
+  }
+  14% {
+    -webkit-transform: translate(0px, 0px) rotate(-4.5deg)
+  }
+  16% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg)
+  }
+  18% {
+    -webkit-transform: translate(0px, 0px) rotate(3.5deg)
+  }
+  20% {
+    -webkit-transform: translate(0px, 0px) rotate(-6.5deg)
+  }
+  22% {
+    -webkit-transform: translate(0px, 0px) rotate(-5.5deg)
+  }
+  24% {
+    -webkit-transform: translate(0px, 0px) rotate(3.5deg)
+  }
+  26% {
+    -webkit-transform: translate(0px, 0px) rotate(-0.5deg)
+  }
 }
 
 #task_page .cloud {
