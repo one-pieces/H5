@@ -61,7 +61,6 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           onProgress: function (current, total) {
             var percent = parseInt(current / total * 100);
             console.log('percent', percent);
-
             $('.loadingInfo .percent').text(percent + '%');
           },
           onComplete: function (total) {
@@ -114,28 +113,53 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.gotoTaskPage = function () {
     $('#task_page').show();
     $('#btn_spiderman').on('click', function () {
+      $('#task_page').hide();
       self.spidermanTask();
     });
     $('#btn_bgm').on('click', function () {
+      $('#task_page').hide();
       self.bgmTask();
     });
     $('#btn_lady').on('click', function () {
+      $('#task_page').hide();
       self.ladyTask();
     });
   }
 
   self.spidermanTask = function () {
     console.log('spiderman');
-    $('#task_page').hide();
-    self.gotoEndingPage();
+    self.playVideo({
+      url: 'assets/video/start.mp4',
+      canvasId: 'canvas',
+      onComplete: function () {
+        $('#video_player').hide();
+        self.gotoEndingPage();
+      }
+    });
   }
 
   self.bgmTask = function () {
     console.log('bgm');
+    self.playVideo({
+      url: 'assets/video/start.mp4',
+      canvasId: 'canvas',
+      onComplete: function () {
+        $('#video_player').hide();
+        self.gotoEndingPage();
+      }
+    });
   }
 
   self.ladyTask = function () {
     console.log('lady');
+    self.playVideo({
+      url: 'assets/video/start.mp4',
+      canvasId: 'canvas',
+      onComplete: function () {
+        $('#video_player').hide();
+        self.gotoEndingPage();
+      }
+    });
   }
 
   self.gotoEndingPage = function () {

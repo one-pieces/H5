@@ -61,8 +61,10 @@
         return url.indexOf(type) > -1;
       });
 
-      var media = isImage? new Image : document.createElement('VIDEO');
+      var media = isImage ? new Image() : document.createElement('VIDEO');
+      console.log('media', media, isImage);
       media[isImage? 'onload' : 'onloadeddata'] = function() {
+        console.log('medialoaded', this);
         _this.loaded();
       };
       media.onerror = function() {
