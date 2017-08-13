@@ -57,7 +57,7 @@
       // }
       // image.src = url;
 
-      var isImage = ['.png', '.jpg', '.git'].some(function(type) {
+      var isImage = ['.png', '.jpg', '.gif'].some(function(type) {
         return url.indexOf(type) > -1;
       });
 

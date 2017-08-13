@@ -1,7 +1,61 @@
 // 剧本
 
 define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
-  var self = {};
+  var self = {
+    pages: {
+      taskPage: null,
+      endingPage: null,
+      infoPage: null
+    }
+  };
+  // var taskPage, endingPage, infoPage;
+  var htmlMap = {
+    taskPage: '<div id="task_page" class="fullscreen hidden">\n' +
+    '    <img class="slogan hCenter" src="assets/img/h5/task/slogan.png">\n' +
+    '    <img class="spiderman" src="assets/img/h5/task/spiderman.png">\n' +
+    '    <img class="lady" src="assets/img/h5/task/lady.png">\n' +
+    '    <img class="bgm" src="assets/img/h5/task/bgm.png">\n' +
+    '    <div class="cloud fullscreen"></div>\n' +
+    '    <button id="btn_spiderman">\n' +
+    '      <img src="assets/img/h5/task/btn-spiderman.png">\n' +
+    '    </button>\n' +
+    '    <button id="btn_lady">\n' +
+    '      <img src="assets/img/h5/task/btn-lady.png">\n' +
+    '    </button>\n' +
+    '    <button id="btn_bgm">\n' +
+    '      <img src="assets/img/h5/task/btn-bgm.png">\n' +
+    '    </button>\n' +
+    '  </div>',
+    endingPage: '<div id="ending_page" class="fullscreen hidden">\n' +
+    '    <img class="slogan hCenter" src="assets/img/h5/ending/slogan.png">\n' +
+    '    <img class="awesome" src="assets/img/h5/ending/666.png">\n' +
+    '    <img class="dialog" src="assets/img/h5/ending/dialog.png">\n' +
+    '    <button id="btn_replay">\n' +
+    '      <img src="assets/img/h5/ending/replay.png">\n' +
+    '    </button>\n' +
+    '    <button id="btn_goplay">\n' +
+    '      <img src="assets/img/h5/ending/goplay.png">\n' +
+    '    </button>\n' +
+    '  </div>',
+    infoPage: '  <div id="info_page" class="fullscreen hidden">\n' +
+    '    <img class="slogan hCenter" src="assets/img/h5/info/slogan.png">\n' +
+    '  \n' +
+    '    <form method="post" id="user_info_form">\n' +
+    '      <div class="input name-input">\n' +
+    '        <input class="input__field" name="name" id="name" value="">\n' +
+    '      </div>\n' +
+    '      <div class="input tel-input">\n' +
+    '        <input class="input__field" name="telNo" id="telNo" value="">\n' +
+    '      </div>\n' +
+    '      <div class="input city-input">\n' +
+    '        <input class="input__field" name="memo" id="memo" value="">\n' +
+    '      </div>\n' +
+    '      <button id="btn_confirm">\n' +
+    '        <img src="assets/img/h5/info/btn_confirm.png">\n' +
+    '      </button>\n' +
+    '    </form>\n' +
+    '  </div>'
+  }
   // 设备简单判断
   self.device = (function () {
     var ua = navigator.userAgent.toLowerCase(), device;
@@ -111,17 +165,17 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   },
 
   self.gotoTaskPage = function () {
-    $('#task_page').show();
+    showPage('taskPage');
     $('#btn_spiderman').on('click', function () {
-      $('#task_page').hide();
+      hidePage('taskPage');
       self.spidermanTask();
     });
     $('#btn_bgm').on('click', function () {
-      $('#task_page').hide();
+      hidePage('taskPage');
       self.bgmTask();
     });
     $('#btn_lady').on('click', function () {
-      $('#task_page').hide();
+      hidePage('taskPage');
       self.ladyTask();
     });
   }
@@ -129,7 +183,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.spidermanTask = function () {
     console.log('spiderman');
     self.playVideo({
-      url: 'assets/video/start.mp4',
+      url: 'assets/video/task1.mp4',
       canvasId: 'canvas',
       onComplete: function () {
         $('#video_player').hide();
@@ -141,7 +195,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.bgmTask = function () {
     console.log('bgm');
     self.playVideo({
-      url: 'assets/video/start.mp4',
+      url: 'assets/video/task2.mp4',
       canvasId: 'canvas',
       onComplete: function () {
         $('#video_player').hide();
@@ -153,7 +207,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.ladyTask = function () {
     console.log('lady');
     self.playVideo({
-      url: 'assets/video/start.mp4',
+      url: 'assets/video/task3.mp4',
       canvasId: 'canvas',
       onComplete: function () {
         $('#video_player').hide();
@@ -163,20 +217,20 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   }
 
   self.gotoEndingPage = function () {
-    $('#ending_page').show();
+    showPage('endingPage');
+
     $('#btn_replay').on('click', function () {
-      $('#ending_page').hide();
+      hidePage('endingPage');
       self.gotoTaskPage();
     });
     $('#btn_goplay').on('click', function () {
-      $('#ending_page').hide();
+      hidePage('endingPage');
       self.gotoInfoPage();
     });
   }
 
   self.gotoInfoPage = function () {
-    $('#info_page').show();
-
+    showPage('infoPage');
     confirmUserInfo();
   }
 
@@ -254,5 +308,15 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     }
   }
 
+  function showPage(id) {
+    if (!self.pages[id]) {
+      self.pages[id] = $(htmlMap[id]);
+      $('body').append(self.pages[id]);
+    }
+    self.pages[id].show();
+  }
+  function hidePage(id) {
+    self.pages[id].hide();
+  }
   return self;
 });
