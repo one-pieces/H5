@@ -110,7 +110,10 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
             'img/h5/ending/replay.png',
             'img/h5/ending/slogan.png',
             // 视频
-            'video/start.mp4'
+            'video/start.mp4#start',
+            'video/task1.mp4#task1',
+            'video/task2.mp4#task2',
+            'video/task3.mp4#task3',
           ],
           onProgress: function (current, total) {
             var percent = parseInt(current / total * 100);
@@ -130,7 +133,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
   self.start = function () {
     self.playVideo({
-      url: 'assets/video/start.mp4',
+      videoId: 'start',
       canvasId: 'canvas',
       onComplete: function () {
         $('#video_player').hide();
@@ -146,8 +149,13 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     canvas.setAttribute('width', canvas.clientWidth);
     canvas.setAttribute('height', canvas.clientHeight);
 
-    var video = document.createElement('video');
-    video.src = options.url;
+    if (options.url) {
+      var video = document.createElement('video');
+      video.src = options.url;
+    }
+    if (options.videoId) {
+      var video = document.getElementById(options.videoId);
+    }
 
     video.addEventListener('play', function() {
       var $this = this; //cache
@@ -183,7 +191,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.spidermanTask = function () {
     console.log('spiderman');
     self.playVideo({
-      url: 'assets/video/task1.mp4',
+      // url: 'assets/video/task1.mp4',
+      videoId: 'task1',
       canvasId: 'canvas',
       onComplete: function () {
         $('#video_player').hide();
@@ -195,7 +204,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.bgmTask = function () {
     console.log('bgm');
     self.playVideo({
-      url: 'assets/video/task2.mp4',
+      // url: 'assets/video/task2.mp4',
+      videoId: 'task2',
       canvasId: 'canvas',
       onComplete: function () {
         $('#video_player').hide();
@@ -207,7 +217,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.ladyTask = function () {
     console.log('lady');
     self.playVideo({
-      url: 'assets/video/task3.mp4',
+      // url: 'assets/video/task3.mp4',
+      videoId: 'task3',
       canvasId: 'canvas',
       onComplete: function () {
         $('#video_player').hide();

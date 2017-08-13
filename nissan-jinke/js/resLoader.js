@@ -41,27 +41,22 @@
     var _this = this;
     var baseUrl = this.option.baseUrl;
     for (var i = 0, l = this.option.resources.length; i < l; i++) {
-      var r = this.option.resources[i], url = '';
-      if (r.indexOf('http://') === 0 || r.indexOf('https://') === 0) {
-        url = r;
-      } else {
-        url = baseUrl + r;
-      }
-
-      // var image = new Image();
-      // image.onload = function () {
-      //   _this.loaded();
-      // }
-      // image.onerror = function () {
-      //   _this.loaded();
-      // }
-      // image.src = url;
-
+      var media, r = this.option.resources[i];
       var isImage = ['.png', '.jpg', '.gif'].some(function(type) {
-        return url.indexOf(type) > -1;
+        return r.indexOf(type) > -1;
       });
 
-      var media = isImage ? new Image() : document.createElement('VIDEO');
+      if (isImage) {
+        media = new Image();
+      } else {
+        var results = r.split('#');
+        r = results[0];
+        media = document.createElement('VIDEO');
+        media.id = results[1];
+        $('body').append(media);
+      }
+
+      var url = r.indexOf('http://') === 0 || r.indexOf('https://') === 0 ? r : baseUrl + r;
       console.log('media', media, isImage);
       media[isImage? 'onload' : 'onloadeddata'] = function() {
         console.log('medialoaded', this);
