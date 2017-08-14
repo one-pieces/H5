@@ -67,7 +67,6 @@
 
       var url = r.indexOf('http://') === 0 || r.indexOf('https://') === 0 ? r : baseUrl + r;
       console.log('media', media, isImage);
-      // 在iphone上会出现onloadeddata没有被回调的情况，因此不建议load视频
       media[isImage? 'onload' : 'onloadeddata'] = function() {
         console.log('medialoaded', this);
         _this.loaded();

@@ -110,11 +110,10 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
             'img/h5/ending/replay.png',
             'img/h5/ending/slogan.png',
             // 视频
-            // 在iphone上会出现onloadeddata没有被回调的情况，因此不建议load视频
-            // 'video/start.mp4#start',
-            // 'video/task1.mp4#task1',
-            // 'video/task2.mp4#task2',
-            // 'video/task3.mp4#task3',
+            'video/start.mp4#start',
+            'video/task1.mp4#task1',
+            'video/task2.mp4#task2',
+            'video/task3.mp4#task3',
           ],
           onProgress: function (current, total) {
             var percent = parseInt(current / total * 100);
