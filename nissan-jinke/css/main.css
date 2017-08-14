@@ -105,7 +105,7 @@ button {
 #loading .loadingInfo {
   width: 120px;
   height: 80px;
-  background: url('../assets/img/loading/0.png') no-repeat;
+  background: url('../assets/img/loading/1.png') no-repeat;
   background-size: 100% 100%;
   margin: 40vh auto 0 auto;
   font-size: 18px;
@@ -128,30 +128,30 @@ button {
 
 @keyframes loading
 {
-  0% { background-image: url('../assets/img/loading/0.png'); }
-  4% { background-image: url('../assets/img/loading/1.png'); }
-  8% { background-image: url('../assets/img/loading/2.png'); }
-  12% { background-image: url('../assets/img/loading/3.png'); }
-  16% { background-image: url('../assets/img/loading/4.png'); }
-  21% { background-image: url('../assets/img/loading/5.png'); }
-  26% { background-image: url('../assets/img/loading/6.png'); }
-  31% { background-image: url('../assets/img/loading/7.png'); }
-  36% { background-image: url('../assets/img/loading/8.png'); }
-  41% { background-image: url('../assets/img/loading/9.png'); }
-  46% { background-image: url('../assets/img/loading/10.png'); }
-  51% { background-image: url('../assets/img/loading/11.png'); }
-  56% { background-image: url('../assets/img/loading/12.png'); }
-  61% { background-image: url('../assets/img/loading/13.png'); }
-  64% { background-image: url('../assets/img/loading/14.png'); }
-  68% { background-image: url('../assets/img/loading/15.png'); }
-  72% { background-image: url('../assets/img/loading/16.png'); }
-  76% { background-image: url('../assets/img/loading/17.png'); }
-  80% { background-image: url('../assets/img/loading/18.png'); }
-  84% { background-image: url('../assets/img/loading/19.png'); }
-  88% { background-image: url('../assets/img/loading/20.png'); }
-  92% { background-image: url('../assets/img/loading/21.png'); }
-  96% { background-image: url('../assets/img/loading/22.png'); }
-  100% { background-image: url('../assets/img/loading/23.png'); }
+  0% { background-image: url('../assets/img/loading/1.png'); }
+  4% { background-image: url('../assets/img/loading/2.png'); }
+  8% { background-image: url('../assets/img/loading/3.png'); }
+  12% { background-image: url('../assets/img/loading/4.png'); }
+  16% { background-image: url('../assets/img/loading/5.png'); }
+  21% { background-image: url('../assets/img/loading/6.png'); }
+  26% { background-image: url('../assets/img/loading/7.png'); }
+  31% { background-image: url('../assets/img/loading/8.png'); }
+  36% { background-image: url('../assets/img/loading/9.png'); }
+  41% { background-image: url('../assets/img/loading/10.png'); }
+  46% { background-image: url('../assets/img/loading/11.png'); }
+  51% { background-image: url('../assets/img/loading/12.png'); }
+  56% { background-image: url('../assets/img/loading/13.png'); }
+  61% { background-image: url('../assets/img/loading/14.png'); }
+  64% { background-image: url('../assets/img/loading/15.png'); }
+  68% { background-image: url('../assets/img/loading/16.png'); }
+  72% { background-image: url('../assets/img/loading/17.png'); }
+  76% { background-image: url('../assets/img/loading/18.png'); }
+  80% { background-image: url('../assets/img/loading/19.png'); }
+  84% { background-image: url('../assets/img/loading/20.png'); }
+  88% { background-image: url('../assets/img/loading/21.png'); }
+  92% { background-image: url('../assets/img/loading/22.png'); }
+  96% { background-image: url('../assets/img/loading/23.png'); }
+  100% { background-image: url('../assets/img/loading/24.png'); }
 }
 
 @-webkit-keyframes loading /* Safari and Chrome */
