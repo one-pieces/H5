@@ -37,7 +37,7 @@ button {
 }
 
 .block {
-  z-index: 9999;
+  z-index: 10001;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -70,12 +70,14 @@ button {
 .logo {
   position: absolute;
   top: 0;
-  left: 13px;
+  left: 0;
+  /*padding-left: 33px;*/
   z-index: 9997;
   width: 100%;
 }
 
 .logo img {
+  margin-left: 13px;
   width: 40%;
 }
 
@@ -89,6 +91,8 @@ button {
   height: 100%;
   left: 0;
   top: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .hCenter {
@@ -420,6 +424,32 @@ button {
 #info_page .city-input {
   background: url('../assets/img/h5/info/city.png');
   background-size: 100% 100%;
+  position: relative;
+}
+
+#info_page .citylistbg {
+  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  top: 95%;
+  left: 0;
+  width: 75vw;
+  background: url('../assets/img/h5/info/citylistbg.png');
+  background-size: 100% 100%;
+  padding: 10px;
+}
+
+#info_page .citylistbg span {
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 25%;
+  padding: 3px 6px;
+  marging: 1px 4px;
+}
+#info_page .citylistbg span.selected {
+  background: orange;
+  border-radius: 8px;
 }
 
 #info_page #btn_confirm img {
@@ -430,7 +460,7 @@ button {
   width: 75vw;
   margin-bottom: 3vh;
   box-sizing: border-box;
-  padding: 6px 15px 8px 15px;
+  padding: 8px 15px;
 }
 
 /*input::-webkit-input-placeholder { !* WebKit browsers *!*/
@@ -463,7 +493,23 @@ button {
   background: transparent;
 }
 
+#share_page #btn_share img {
+  width: 36vw;
+  position: absolute;
+  bottom: 5.5vh;
+  left: 33vw;
+}
+
+#share_page #sharetips img {
+  width: 60vw;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .toaster {
+  z-index: 10000;
   color: #ffffff;
   display: none;
   position: fixed;
@@ -492,7 +538,7 @@ button {
 
 .loading {
   display: none;
-  z-index: 2000;
+  z-index: 10000;
 }
 
 .loadEffect{

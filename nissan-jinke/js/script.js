@@ -40,7 +40,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     infoPage: '  <div id="info_page" class="fullscreen hidden">\n' +
     '    <img class="slogan hCenter" src="assets/img/h5/info/slogan.png">\n' +
     '  \n' +
-    '    <form method="post" id="user_info_form">\n' +
+    '    <form id="user_info_form">\n' +
     '      <div class="input name-input">\n' +
     '        <input class="input__field" name="name" id="name" value="">\n' +
     '      </div>\n' +
@@ -48,7 +48,15 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     '        <input class="input__field" name="telNo" id="telNo" value="">\n' +
     '      </div>\n' +
     '      <div class="input city-input">\n' +
-    '        <input class="input__field" name="memo" id="memo" value="">\n' +
+    '        <div class="citylistbg">' +
+    '           <div><span>合肥</span><span>广州</span><span>西安</span><span>沈阳</span></div>' +
+    '           <div><span>上海</span><span>东莞</span><span>重庆</span><span>长春</span></div>' +
+    '           <div><span>杭州</span><span>福州</span><span>武汉</span><span>哈尔滨</span></div>' +
+    '           <div><span>苏州</span><span>惠州</span><span>郑州</span><span>太原</span></div>' +
+    '           <div><span>济南</span><span>南昌</span><span>兰州</span><span>天津</span></div>' +
+    '           <div><span>青岛</span><span>长沙</span><span>成都</span><span>石家庄</span></div>' +
+    '        </div>\n' +
+    '        <input class="input__field" name="memo" id="memo" value="" disabled>\n' +
     '      </div>\n' +
     '      <button id="btn_confirm">\n' +
     '        <img src="assets/img/h5/info/btn_confirm.png">\n' +
@@ -145,14 +153,13 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
         self.gotoTaskPage();
       }
     });
+    // $('#loading').hide();
+    // self.gotoInfoPage();
+    // self.gotoSharePage();
   }
 
   self.playVideo = function(options) {
     $('#video_player').show();
-    // var canvas = document.getElementById(options.canvasId);
-    // var ctx = canvas.getContext('2d');
-    // canvas.setAttribute('width', canvas.clientWidth);
-    // canvas.setAttribute('height', canvas.clientHeight);
 
     if (options.url) {
       var video = document.createElement('video');
@@ -161,29 +168,6 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     if (options.videoId) {
       var video = document.getElementById(options.videoId);
     }
-
-    // video.addEventListener('play', function() {
-    //   // alert('play');
-    //   // ctx.drawImage(document.getElementById('logo'), 0, 0, canvas.clientWidth, canvas.clientHeight);
-    //   var $this = this; //cache
-    //   (function loop() {
-    //     // alert($this.paused);
-    //     if (!$this.paused && !$this.ended) {
-    //       ctx.drawImage($this, 0, 0, canvas.clientWidth, canvas.clientHeight);
-    //       setTimeout(loop, 1000 / 30); // drawing at 30fps
-    //     }
-    //     if ($this.ended && options.onComplete && typeof options.onComplete === 'function') {
-    //       options.onComplete();
-    //     }
-    //   })();
-    // }, false);
-
-    // video.addEventListener('ended', function () {
-    //   $(video).hide();
-    //   if (options.onComplete && typeof options.onComplete === 'function') {
-    //     options.onComplete();
-    //   }
-    // });
 
     video.addEventListener('timeupdate', function () {
       console.log('qqqqqq', this.duration, this.currentTime);
@@ -289,7 +273,32 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
   self.gotoInfoPage = function () {
     showPage('infoPage');
+    $('.city-input').on('click', function () {
+      console.log($('.citylistbg')[0].style.display);
+      if ($('.citylistbg')[0].style.display === 'none' || $('.citylistbg')[0].style.display === '') {
+        $('.citylistbg').show();
+        $('.citylistbg span').on('click', function (e) {
+          $('.citylistbg span').removeClass('selected');
+          $(e.target).addClass('selected');
+          $('.city-input .input__field')[0].value = $(e.target).text();
+        });
+      } else {
+        $('.citylistbg').hide();
+      }
+    });
     confirmUserInfo();
+  }
+
+  self.gotoSharePage = function () {
+    $('.logo').hide();
+    $('#share_page').show();
+
+    $('#share_page #btn_share').on('click', function () {
+      $('#sharetips').show();
+    });
+    $('#sharetips').on('click', function () {
+      $('#sharetips').hide();
+    })
   }
 
   self.share = function () {
@@ -398,8 +407,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
       msgMaker: false,
       fields: {
         'name': {rule: 'required;length(2~30)', msg: {required: '姓名不能为空', length: '姓名2-30字符'}},
-        'telNo': {rule: 'required;mobile', msg: {required: '手机不能为空', mobile: '手机错误'}}
-        // 'certNo': {rule: 'required;IDcard', msg: {required: '身份证号码不能为空', IDcard: '身份证号码格式错误'}}
+        'telNo': {rule: 'required;mobile', msg: {required: '手机不能为空', mobile: '手机错误'}},
+        'memo': {rule: 'required', msg: {required: '城市不能为空'}}
       },
       invalid: function (form, errors) {
         var msg = '';
@@ -427,7 +436,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
               showToaster(r.msg);
             }
             else {
-              window.location.href = r.msg;
+              alert('提交成功！\n 销售顾问将于您联系，准备去现场挑战吧！');
+              self.gotoSharePage();
               return;
             }
           });
