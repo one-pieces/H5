@@ -103,8 +103,8 @@ button {
 }
 
 #loading .loadingInfo {
-  width: 180px;
-  height: 120px;
+  width: 120px;
+  height: 80px;
   background: url('../assets/img/loading/0.png') no-repeat;
   background-size: 100% 100%;
   margin: 40vh auto 0 auto;

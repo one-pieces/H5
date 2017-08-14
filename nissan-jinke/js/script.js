@@ -72,7 +72,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   // 打开单页
   self.open = function () {
     var resources = [];
-    for (var i = 0; i < 24; i++) {
+    for (var i = 1; i <= 24; i++) {
       resources.push(i + '.png');
     }
     var loader = new resLoader({
@@ -144,7 +144,6 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
         self.gotoTaskPage();
       }
     });
-    // self.gotoTaskPage();
   }
 
   self.playVideo = function(options) {
