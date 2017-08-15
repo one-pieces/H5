@@ -269,6 +269,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           $('.citylistbg span').removeClass('selected');
           $(e.target).addClass('selected');
           $('.city-input .input__field')[0].value = $(e.target).text();
+          $('.citylistbg').hide();
         });
       } else {
         $('.citylistbg').hide();
