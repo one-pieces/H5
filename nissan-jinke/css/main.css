@@ -222,6 +222,7 @@ button {
   bottom: 24vh;
   left: 2vw;
   opacity: 0;
+  display: none;
 }
 
 #task_page .bgm {
@@ -238,6 +239,7 @@ button {
   bottom: 13.5vh;
   left: 27vw;
   opacity: 0;
+  display: none;
 }
 
 #task_page .lady {
@@ -254,6 +256,7 @@ button {
   bottom: 28.5vh;
   right: 3vw;
   opacity: 0;
+  display: none;
 }
 
 .fadeIn {
@@ -278,6 +281,46 @@ button {
   }
 }
 
+.fadeInOut {
+  -webkit-animation: fadeInOut 4s ease-in-out infinite;
+  -o-animation: fadeInOut 4s ease-in-out infinite;
+  animation: fadeInOut 4s ease-in-out infinite;
+}
+
+.fadeInOut-delay2s {
+  -webkit-animation: fadeInOut 4s ease-in-out 2s infinite;
+  -o-animation: fadeInOut 4s ease-in-out 2s infinite;
+  animation: fadeInOut 4s ease-in-out 2s infinite;
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+  }
+  25% {
+    opacity: 1; /*中间状态 透明度为1*/
+  }
+  50% {
+    opacity: 0; /*结尾状态 透明度为0*/
+  }
+  100% {
+    opacity: 0; /*结尾状态 透明度为0*/
+  }
+}
+@-webkit-keyframes fadeInOut {
+  0% {
+    opacity: 0; /*初始状态 透明度为0*/
+  }
+  25% {
+    opacity: 1; /*中间状态 透明度为1*/
+  }
+  50% {
+    opacity: 0; /*结尾状态 透明度为0*/
+  }
+  100% {
+    opacity: 0; /*结尾状态 透明度为0*/
+  }
+}
+
 .shake-rotate {
   -webkit-animation-name: shake-rotate;
   -ms-animation-name: shake-rotate;
@@ -294,6 +337,48 @@ button {
   -webkit-animation-delay: 0s;
   -ms-animation-delay: 0s;
   animation-delay: 0s;
+  -webkit-animation-play-state: running;
+  -ms-animation-play-state: running;
+  animation-play-state: running
+}
+
+.shake-rotate-delay1s {
+  -webkit-animation-name: shake-rotate;
+  -ms-animation-name: shake-rotate;
+  animation-name: shake-rotate;
+  -webkit-animation-duration: 5s;
+  -ms-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  -ms-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  -ms-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-delay: 1.5s;
+  -ms-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+  -webkit-animation-play-state: running;
+  -ms-animation-play-state: running;
+  animation-play-state: running
+}
+
+.shake-rotate-delay3s {
+  -webkit-animation-name: shake-rotate;
+  -ms-animation-name: shake-rotate;
+  animation-name: shake-rotate;
+  -webkit-animation-duration: 5s;
+  -ms-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  -ms-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  -ms-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-delay: 3s;
+  -ms-animation-delay: 3s;
+  animation-delay: 3s;
   -webkit-animation-play-state: running;
   -ms-animation-play-state: running;
   animation-play-state: running
@@ -368,6 +453,7 @@ button {
   bottom: 32vh;
   width: 25vw;
   left: 39vw;
+  opacity: 0;
 }
 
 #ending_page .dialog {
@@ -375,6 +461,7 @@ button {
   bottom: 32vh;
   width: 34vw;
   left: 1vw;
+  opacity: 0;
 }
 
 #ending_page #btn_goplay img {
@@ -392,6 +479,7 @@ button {
 }
 
 #info_page {
+  min-height: 100%;
   background: url('../assets/img/h5/info/bg.png') no-repeat;
   background-size: 100% 100%;
 }
@@ -414,11 +502,13 @@ button {
 #info_page .name-input {
   background: url('../assets/img/h5/info/name.png');
   background-size: 100% 100%;
+  z-index: 1000;
 }
 
 #info_page .tel-input {
   background: url('../assets/img/h5/info/tel.png');
   background-size: 100% 100%;
+  z-index: 1000;
 }
 
 #info_page .city-input {

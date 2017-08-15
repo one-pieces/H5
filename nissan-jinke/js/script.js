@@ -5,7 +5,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     pages: {
       taskPage: null,
       endingPage: null,
-      infoPage: null
+      infoPage: null,
+      sharePage: null
     }
   };
   // var taskPage, endingPage, infoPage;
@@ -28,8 +29,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     '  </div>',
     endingPage: '<div id="ending_page" class="fullscreen hidden">\n' +
     '    <img class="slogan hCenter" src="assets/img/h5/ending/slogan.png">\n' +
-    '    <img class="awesome" src="assets/img/h5/ending/666.png">\n' +
-    '    <img class="dialog" src="assets/img/h5/ending/dialog.png">\n' +
+    '    <img class="awesome fadeInOut" src="assets/img/h5/ending/666.png">\n' +
+    '    <img class="dialog fadeInOut-delay2s" src="assets/img/h5/ending/dialog.png">\n' +
     '    <button id="btn_replay">\n' +
     '      <img src="assets/img/h5/ending/replay.png">\n' +
     '    </button>\n' +
@@ -56,12 +57,22 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     '           <div><span>济南</span><span>南昌</span><span>兰州</span><span>天津</span></div>' +
     '           <div><span>青岛</span><span>长沙</span><span>成都</span><span>石家庄</span></div>' +
     '        </div>\n' +
-    '        <input class="input__field" name="memo" id="memo" value="" disabled>\n' +
+    '        <input class="input__field" name="memo" id="memo" value="">\n' +
     '      </div>\n' +
     '      <button id="btn_confirm">\n' +
     '        <img src="assets/img/h5/info/btn_confirm.png">\n' +
     '      </button>\n' +
     '    </form>\n' +
+    '  </div>',
+    sharePage: '<div id="share_page" class="fullscreen hidden">\n' +
+    '    <img src="assets/img/h5/share/bg.jpg" class="fullscreen">\n' +
+    '    <button id="btn_share">\n' +
+    '      <img src="assets/img/h5/share/sharebtn.png" class="shake-rotate">\n' +
+    '    </button>\n' +
+    '    <div id="sharetips" class="fullscreen hidden">\n' +
+    '      <div class="op__mask"></div>\n' +
+    '      <img src="assets/img/h5/share/tips.png">\n' +
+    '    </div>\n' +
     '  </div>'
   }
   // 设备简单判断
@@ -109,7 +120,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
             'img/h5/info/citylistbg.png',
             'img/h5/info/name.png',
             'img/h5/info/slogan.png',
-            'img/h5/info/Tel.png',
+            'img/h5/info/tel.png',
             // 结束页
             'img/h5/ending/666.png',
             'img/h5/ending/bg.jpg',
@@ -117,6 +128,10 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
             'img/h5/ending/goplay.png',
             'img/h5/ending/replay.png',
             'img/h5/ending/slogan.png',
+            // 分享页
+            'img/h5/share/bg.jpg',
+            'img/h5/share/sharebtn.png',
+            'img/h5/share/tips.png'
             // 视频
             // 在iphone上会出现onloadeddata没有被回调的情况，因此不建议load视频
             // 'video/start.mp4#start',
@@ -153,9 +168,6 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
         self.gotoTaskPage();
       }
     });
-    // $('#loading').hide();
-    // self.gotoInfoPage();
-    // self.gotoSharePage();
   }
 
   self.playVideo = function(options) {
@@ -198,56 +210,30 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     $('#task_page .bgm').addClass('fadeIn').on('webkitAnimationEnd', function() {
       $('#task_page .spiderman').addClass('fadeIn').on('webkitAnimationEnd', function() {
         $('#task_page .lady').addClass('fadeIn').on('webkitAnimationEnd', function() {
-          $('#task_page button img').addClass('fadeIn').on('webkitAnimationEnd', function() {
-            $('#task_page button img').css('opacity', 1).addClass('shake-rotate');
+          $('#task_page button img').show().addClass('fadeIn').on('webkitAnimationEnd', function() {
+            $('#task_page button img').css('opacity', 1)
+            $('#task_page #btn_bgm img').addClass('shake-rotate');
+            $('#task_page #btn_spiderman img').addClass('shake-rotate-delay1s');
+            $('#task_page #btn_lady img').addClass('shake-rotate-delay3s');
           });
         });
       });
     });
 
     $('#btn_spiderman').on('click', function () {
-      self.spidermanTask();
+      self.startTask('task1');
     });
     $('#btn_bgm').on('click', function () {
-      self.bgmTask();
+      self.startTask('task2');
     });
     $('#btn_lady').on('click', function () {
-      self.ladyTask();
+      self.startTask('task3');
     });
   }
 
-  self.spidermanTask = function () {
-    console.log('spiderman');
+  self.startTask = function (videoId) {
     self.playVideo({
-      videoId: 'task1',
-      onStart: function () {
-        hidePage('taskPage');
-      },
-      onComplete: function () {
-        $('#video_player').hide();
-        self.gotoEndingPage();
-      }
-    });
-  }
-
-  self.bgmTask = function () {
-    console.log('bgm');
-    self.playVideo({
-      videoId: 'task2',
-      onStart: function () {
-        hidePage('taskPage');
-      },
-      onComplete: function () {
-        $('#video_player').hide();
-        self.gotoEndingPage();
-      }
-    });
-  }
-
-  self.ladyTask = function () {
-    console.log('lady');
-    self.playVideo({
-      videoId: 'task3',
+      videoId: videoId,
       onStart: function () {
         hidePage('taskPage');
       },
@@ -260,6 +246,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
   self.gotoEndingPage = function () {
     showPage('endingPage');
+    $('#btn_replay img').addClass('shake-rotate');
+    $('#btn_goplay img').addClass('shake-rotate-delay1s');
 
     $('#btn_replay').on('click', function () {
       hidePage('endingPage');
@@ -273,11 +261,11 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
   self.gotoInfoPage = function () {
     showPage('infoPage');
-    $('.city-input').on('click', function () {
-      console.log($('.citylistbg')[0].style.display);
+    $('#info_page .city-input').on('touchend', function () {
       if ($('.citylistbg')[0].style.display === 'none' || $('.citylistbg')[0].style.display === '') {
         $('.citylistbg').show();
-        $('.citylistbg span').on('click', function (e) {
+        $('.citylistbg span').on('touchend', function (e) {
+          e.stopPropagation();
           $('.citylistbg span').removeClass('selected');
           $(e.target).addClass('selected');
           $('.city-input .input__field')[0].value = $(e.target).text();
@@ -291,7 +279,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
   self.gotoSharePage = function () {
     $('.logo').hide();
-    $('#share_page').show();
+    showPage('sharePage');
 
     $('#share_page #btn_share').on('click', function () {
       $('#sharetips').show();
@@ -304,7 +292,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   self.share = function () {
     $.ajax({
       type: 'post',
-      url: 'WeixinJSSDKServlet?type=getWxConfig',
+      // url: 'WeixinJSSDKServlet?type=getWxConfig',
+      url: 'http://www.tron-m.com/tron-api/jssdk/share.do',
       data: { url: window.location.href },
       dataType: 'json',
       success: function (args) {
@@ -398,7 +387,9 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   }
 
   function confirmUserInfo() {
-    $("#btn_confirm").on('click', function () {
+    $("#info_page #btn_confirm").on('touchend', function (e) {
+      // 禁止事件冒泡
+      e.stopImmediatePropagation();
       $('#user_info_form').submit();
     });
     $('#user_info_form').validator({
@@ -421,12 +412,24 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
         showLoading();
         var timeOut = setTimeout(function() {
           clearTimeout(timeOut);
+          $.fn.serializeObject = function (){
+            var unindexed_array = this.serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function(n, i){
+              indexed_array[n['name']] = n['value'];
+            });
+
+            indexed_array.activityId = 1;
+
+            return indexed_array;
+          }
           var ajax = $.ajax({
             url: 'http://www.tron-m.com/tron-api/api/addRecord.do',
-            data: $(form).serialize(),
+            data: JSON.stringify($(form).serializeObject()),
             type: 'post',
             dataType: 'json',
-            contentType: 'application/json',
+            contentType: 'application/json;charset=UTF-8',
             timeout: 8000,
             async: true
           });
@@ -437,13 +440,14 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
             }
             else {
               alert('提交成功！\n 销售顾问将于您联系，准备去现场挑战吧！');
+              hidePage('infoPage');
               self.gotoSharePage();
               return;
             }
           });
           ajax.fail(function (jqXHR, textStatus) {
             hideLoading();
-            showToaster('发生错误!');
+            showToaster('出错啦!可能是你的打开姿势不对~~');
           });
         }, 300);
       }
@@ -480,7 +484,9 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     self.pages[id].show();
   }
   function hidePage(id) {
-    self.pages[id].hide();
+    // console.log(id);
+    // self.pages[id].hide();
+    self.pages[id].remove();
   }
 
   self.share();
