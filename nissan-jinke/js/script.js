@@ -12,7 +12,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   // var taskPage, endingPage, infoPage;
   var htmlMap = {
     taskPage: '<div id="task_page" class="fullscreen hidden">\n' +
-    '    <img class="slogan hCenter" src="assets/img/h5/task/slogan.png">\n' +
+    '    <img class="start hCenter fadeOut" src="assets/img/h5/task/start.png">\n' +
+    '    <img class="slogan hCenter fadeIn-delay2s" src="assets/img/h5/task/slogan.png">\n' +
     '    <img class="spiderman" src="assets/img/h5/task/spiderman.png">\n' +
     '    <img class="lady" src="assets/img/h5/task/lady.png">\n' +
     '    <img class="bgm" src="assets/img/h5/task/bgm.png">\n' +
@@ -206,6 +207,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   },
 
   self.gotoTaskPage = function () {
+    $('.logo').hide();
     showPage('taskPage');
     $('#task_page .bgm').addClass('fadeIn').on('webkitAnimationEnd', function() {
       $('#task_page .spiderman').addClass('fadeIn').on('webkitAnimationEnd', function() {
@@ -245,6 +247,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   }
 
   self.gotoEndingPage = function () {
+    $('.logo').show();
     showPage('endingPage');
     $('#btn_replay img').addClass('shake-rotate');
     $('#btn_goplay img').addClass('shake-rotate-delay1s');

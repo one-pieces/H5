@@ -202,10 +202,14 @@ button {
   background-size: 100% 100%;
 }
 
-#task_page .slogan {
+#task_page .slogan, #task_page .start {
   position: absolute;
   top: 12vh;
   width: 70vw;
+}
+
+#task_page .slogan {
+  opacity: 0;
 }
 
 #task_page .spiderman {
@@ -264,6 +268,12 @@ button {
   -o-animation: fadeIn 1s ease-in-out forwards;
   animation: fadeIn 1s ease-in-out forwards;
 }
+
+.fadeIn-delay2s {
+  -webkit-animation: fadeIn 1s ease-in-out 2.5s forwards;
+  -o-animation: fadeIn 1s ease-in-out 2.5s forwards;
+  animation: fadeIn 1s ease-in-out 2.5s forwards;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0; /*初始状态 透明度为0*/
@@ -278,6 +288,33 @@ button {
   }
   100% {
     opacity: 1; /*结尾状态 透明度为1*/
+  }
+}
+.fadeOut {
+  -webkit-animation: fadeOut 2.5s ease-in-out forwards;
+  -o-animation: fadeOut 2.5s ease-in-out forwards;
+  animation: fadeOut 2.5s ease-in-out forwards;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1; /*初始状态 透明度为1*/
+  }
+  80% {
+    opacity: 1; /*初始状态 透明度为1*/
+  }
+  100% {
+    opacity: 0; /*结尾状态 透明度为0*/
+  }
+}
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1; /*初始状态 透明度为1*/
+  }
+  80% {
+    opacity: 1; /*初始状态 透明度为1*/
+  }
+  100% {
+    opacity: 0; /*结尾状态 透明度为0*/
   }
 }
 
