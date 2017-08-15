@@ -490,8 +490,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   function showPage(id) {
     if (!self.pages[id]) {
       self.pages[id] = $(htmlMap[id]);
-      $('body').append(self.pages[id]);
     }
+    $('body').append(self.pages[id]);
     self.pages[id].show();
   }
   function hidePage(id) {
