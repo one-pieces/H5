@@ -265,11 +265,14 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
       if ($('.citylistbg')[0].style.display === 'none' || $('.citylistbg')[0].style.display === '') {
         $('.citylistbg').show();
         $('.citylistbg span').on('touchend', function (e) {
-          e.stopPropagation();
           $('.citylistbg span').removeClass('selected');
           $(e.target).addClass('selected');
           $('.city-input .input__field')[0].value = $(e.target).text();
-          $('.citylistbg').hide();
+          setTimeout(function () {
+            $('.citylistbg').hide();
+          }, 0);
+          // 禁止事件冒泡
+          e.stopImmediatePropagation();
         });
       } else {
         $('.citylistbg').hide();
