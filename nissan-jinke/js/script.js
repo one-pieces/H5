@@ -220,10 +220,10 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
       });
     });
 
-    $('#btn_spiderman').on('click', function () {
+    $('#btn_bgm').on('click', function () {
       self.startTask('task1');
     });
-    $('#btn_bgm').on('click', function () {
+    $('#btn_spiderman').on('click', function () {
       self.startTask('task2');
     });
     $('#btn_lady').on('click', function () {
