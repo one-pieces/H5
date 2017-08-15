@@ -39,7 +39,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     '      <img src="assets/img/h5/ending/goplay.png">\n' +
     '    </button>\n' +
     '  </div>',
-    infoPage: '  <div id="info_page" class="fullscreen hidden">\n' +
+    infoPage: '  <div id="info_page" class="fullscreen hidden" style="height: 600px;">\n' +
     '    <img class="slogan hCenter" src="assets/img/h5/info/slogan.png">\n' +
     '  \n' +
     '    <form id="user_info_form">\n' +

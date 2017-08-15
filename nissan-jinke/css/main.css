@@ -523,13 +523,15 @@ button {
 
 #info_page .slogan {
   position: absolute;
-  top: 13vh;
+  /*top: 13vh;*/
+  top: 80px;
   width: 70vw;
   left: 52%;
 }
 
 #info_page form {
-  margin-top: 33vh;
+  /*margin-top: 33vh;*/
+  margin-top: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;
