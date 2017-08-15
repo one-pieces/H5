@@ -261,18 +261,20 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
   self.gotoInfoPage = function () {
     showPage('infoPage');
-    $('#info_page .city-input').on('touchend', function () {
+    $('#info_page .city-input').on('touchend', function (e) {
+      // 禁止事件冒泡
+      e.stopImmediatePropagation();
       if ($('.citylistbg')[0].style.display === 'none' || $('.citylistbg')[0].style.display === '') {
         $('.citylistbg').show();
         $('.citylistbg span').on('touchend', function (e) {
+          // 禁止事件冒泡
+          e.stopImmediatePropagation();
           $('.citylistbg span').removeClass('selected');
           $(e.target).addClass('selected');
           $('.city-input .input__field')[0].value = $(e.target).text();
           setTimeout(function () {
             $('.citylistbg').hide();
           }, 0);
-          // 禁止事件冒泡
-          e.stopImmediatePropagation();
         });
       } else {
         $('.citylistbg').hide();
