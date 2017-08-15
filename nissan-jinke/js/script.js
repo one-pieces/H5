@@ -12,8 +12,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   // var taskPage, endingPage, infoPage;
   var htmlMap = {
     taskPage: '<div id="task_page" class="fullscreen hidden">\n' +
-    '    <img class="start hCenter fadeOut" src="assets/img/h5/task/start.png">\n' +
-    '    <img class="slogan hCenter fadeIn-delay2s" src="assets/img/h5/task/slogan.png">\n' +
+    '    <img class="start hCenter" src="assets/img/h5/task/start.png">\n' +
+    '    <img class="slogan hCenter" src="assets/img/h5/task/slogan.png">\n' +
     '    <img class="spiderman" src="assets/img/h5/task/spiderman.png">\n' +
     '    <img class="lady" src="assets/img/h5/task/lady.png">\n' +
     '    <img class="bgm" src="assets/img/h5/task/bgm.png">\n' +
@@ -212,6 +212,9 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     $('#task_page .bgm').addClass('fadeIn').on('webkitAnimationEnd', function() {
       $('#task_page .spiderman').addClass('fadeIn').on('webkitAnimationEnd', function() {
         $('#task_page .lady').addClass('fadeIn').on('webkitAnimationEnd', function() {
+          $('#task_page .start').addClass('fadeOut');
+          $('#task_page .slogan').addClass('fadeIn-delay2s');
+
           $('#task_page button img').show().addClass('fadeIn').on('webkitAnimationEnd', function() {
             $('#task_page button img').css('opacity', 1)
             $('#task_page #btn_bgm img').addClass('shake-rotate');
