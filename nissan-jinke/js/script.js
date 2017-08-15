@@ -323,7 +323,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           var url = window.location.href,
             title = '打破次元壁，劲客任务之极限驾控营带劲开飚！',
             desc = '欢迎来战',
-            imgUrl = 'http://tron-m.com/long/assets/img/loading/0.png';
+            imgUrl = 'http://tron-m.com/long/assets/img/loading/1.png';
 
           wx.onMenuShareTimeline({
             title: '极限驾控营，全国24城 等你开飙', // 分享标题
