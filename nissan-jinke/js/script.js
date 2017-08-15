@@ -318,8 +318,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
         }
         wx.ready(function () {
           var url = window.location.href,
-            title = '极限驾控营',
-            desc = '全国24城 等你开飙',
+            title = '打破次元壁，劲客任务之极限驾控营带劲开飚！',
+            desc = '欢迎来战',
             imgUrl = 'http://tron-m.com/long/assets/img/loading/0.png';
 
           wx.onMenuShareTimeline({
