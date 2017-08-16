@@ -76,6 +76,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     '    </div>\n' +
     '  </div>'
   }
+  self.aduio = document.getElementById('myAudio')
   // 设备简单判断
   self.device = (function () {
     var ua = navigator.userAgent.toLowerCase(), device;
@@ -147,6 +148,15 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           },
           onComplete: function (total) {
             $('#btn_loaded').show().on('click', function () {
+              // 音乐播放暂停
+              $('#audioBtn').show().on("click" ,function() {
+                if (self.aduio.paused) {
+                  self.playAudio();
+                }
+                else{
+                  self.puaseAudio();
+                }
+              });
               self.start();
             });
           }
@@ -166,13 +176,25 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
       },
       onComplete: function () {
         $('#video_player').hide();
+        self.playAudio();
         self.gotoTaskPage();
       }
     });
-  }
+  },
+
+  self.playAudio = function() {
+    self.aduio.play();
+    $("#audioBtn").addClass("boF");
+  },
+
+  self.puaseAudio = function() {
+    self.aduio.pause();
+    $("#audioBtn").removeClass("boF");
+  },
 
   self.playVideo = function(options) {
     $('#video_player').show();
+    self.puaseAudio();
 
     if (options.url) {
       var video = document.createElement('video');
