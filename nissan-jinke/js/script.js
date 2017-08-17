@@ -61,12 +61,17 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     '           <div><span>济南</span><span>南昌</span><span>兰州</span><span>天津</span></div>' +
     '           <div><span>青岛</span><span>长沙</span><span>成都</span><span>石家庄</span></div>' +
     '        </div>\n' +
-    '        <input class="input__field" name="memo" id="memo" value="">\n' +
+    '        <input class="input__field" name="memo" id="memo" value="" style="display: none;">\n' +
+    '        <div class="input__field" id="memoDiv" style="height: 18px;"></div>\n' +
     '      </div>\n' +
     '      <button id="btn_confirm">\n' +
     '        <img src="assets/img/h5/info/btn_confirm.png">\n' +
     '      </button>\n' +
     '    </form>\n' +
+    '    <div id="popup" class="fullscreen hidden" style="z-index: 10010;">\n' +
+    '      <div class="op__mask"></div>\n' +
+    '      <img src="assets/img/h5/info/popup.jpg">\n' +
+    '    </div>\n' +
     '  </div>',
     sharePage: '<div id="share_page" class="fullscreen hidden">\n' +
     '    <img src="assets/img/h5/share/bg.jpg" class="fullscreen">\n' +
@@ -108,6 +113,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           baseUrl: 'assets/',
           resources: [
             'img/h5/logo.png',
+            'img/h5/muted.png',
+            'img/h5/play.png',
             // 任务页图片
             'img/h5/task/bg.jpg',
             'img/h5/task/bgm.png',
@@ -115,15 +122,18 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
             'img/h5/task/btn-lady.png',
             'img/h5/task/btn-spiderman.png',
             'img/h5/task/cloud.png',
+            'img/h5/task/finger.png',
             'img/h5/task/lady.png',
             'img/h5/task/slogan.png',
             'img/h5/task/spiderman.png',
+            'img/h5/task/start.png',
             // 留资页
             'img/h5/info/bg.png',
             'img/h5/info/btn_confirm.png',
             'img/h5/info/city.png',
             'img/h5/info/citylistbg.png',
             'img/h5/info/name.png',
+            'img/h5/info/popup.jpg',
             'img/h5/info/slogan.png',
             'img/h5/info/tel.png',
             // 结束页
@@ -151,8 +161,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           },
           onComplete: function (total) {
             $('#btn_loaded').show().on('click', function () {
-                self.aduio.play();
-                self.aduio.pause();
+              self.aduio.play();
+              self.aduio.pause();
               // 音乐播放暂停
               $('#audioBtn').show().on("click" ,function() {
                 if (self.aduio.paused) {
@@ -232,15 +242,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
     $(video).show()[0].play();
   },
-      
-  self.timer = [null, null, null];
 
   self.gotoTaskPage = function () {
-      // 用于replay清空
-//    clearInterval(self.timer[0]);
-//    clearTimeout(self.timer[1]);
-//    clearTimeout(self.timer[2]);
-      
     $('.logo').hide();
     showPage('taskPage');
     $('#task_page .spiderman').addClass('fadeIn').on('webkitAnimationEnd', function() {
@@ -250,43 +253,14 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           $('#task_page .slogan').addClass('fadeIn-delay2s');
 
           $('#task_page button img.person').show().addClass('fadeIn').on('webkitAnimationEnd', function() {
-              
-
             $('#task_page button img').css('opacity', 1)
             $('#task_page #btn_spiderman img.person').addClass('shake-rotate');
             $('#task_page #btn_bgm img.person').addClass('shake-rotate-delay1s');
             $('#task_page #btn_lady img.person').addClass('shake-rotate-delay3s');
-              
-//              $('#task_page img.hand').show();
-//              handle();
-//              self.timer[0] = setInterval(function(){
-//                  handle();
-//              }, 5000)
-              
           });
-            
-            
         });
       });
     });
-      
-    
-//      function handle() {
-//          $('#task_page #btn_lady img.hand').css('z-index', '-1');
-//          $('#task_page #btn_bgm img.hand').css('z-index', '-1');
-//          $('#task_page #btn_spiderman img.hand').css('z-index', '1');
-//          
-//          self.timer[1] = setTimeout(function(){
-//              $('#task_page #btn_spiderman img.hand').css('z-index', '-1');
-//              $('#task_page #btn_bgm img.hand').css('z-index', '1');
-//          }, 1500);
-//          
-//          self.timer[2] = setTimeout(function(){
-//              $('#task_page #btn_bgm img.hand').css('z-index', '-1');
-//              $('#task_page #btn_lady img.hand').css('z-index', '1');
-//          }, 3000);
-//      }
-      
 
     $('#btn_bgm').on('click', function () {
       self.startTask('task1');
@@ -339,8 +313,10 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           // 禁止事件冒泡
           e.stopImmediatePropagation();
           $('.citylistbg span').removeClass('selected');
-          $(e.target).addClass('selected');
-          $('.city-input .input__field')[0].value = $(e.target).text();
+          var target = $(e.target);
+          target.addClass('selected');
+          $('.city-input .input__field')[0].value = target.text();
+          $('#memoDiv').text(target.text());
           setTimeout(function () {
             $('.citylistbg').hide();
           }, 0);
@@ -470,7 +446,14 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     $("#info_page #btn_confirm").on('touchend', function (e) {
       // 禁止事件冒泡
       e.stopImmediatePropagation();
-      $('#user_info_form').submit();
+      // $('#user_info_form').submit();
+      $('#popup').show();
+      var timeout = setTimeout(function () {
+        $('#popup').hide();
+        hidePage('infoPage');
+        self.gotoSharePage();
+        clearTimeout(timeout);
+      }, 3000);
     });
     $('#user_info_form').validator({
       timely: 0,
@@ -500,6 +483,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
               indexed_array[n['name']] = n['value'];
             });
 
+            // 测试activityId为1或2，劲客任务的activityId为20170817
             indexed_array.activityId = 1;
 
             return indexed_array;

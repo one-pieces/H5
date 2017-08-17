@@ -594,22 +594,21 @@ button {
 
 #info_page .name-input {
   background: url('../assets/img/h5/info/name.png');
+  /*background-size: 100% 100%;*/
   background-size: 100% auto;
-    background-repeat: no-repeat;
-  z-index: 1000;
+  background-repeat: no-repeat;
 }
 
 #info_page .tel-input {
   background: url('../assets/img/h5/info/tel.png');
   background-size: 100% auto;
-    background-repeat: no-repeat;
-  z-index: 1000;
+  background-repeat: no-repeat;
 }
 
 #info_page .city-input {
   background: url('../assets/img/h5/info/city.png');
   background-size: 100% auto;
-    background-repeat: no-repeat;
+  background-repeat: no-repeat;
   position: relative;
 }
 
@@ -620,7 +619,7 @@ button {
   top: 80%;
   left: 0;
   width: 75vw;
-    max-width: 300px;
+  max-width: 300px;
   background: url('../assets/img/h5/info/citylistbg.png');
   background-size: 100% 100%;
   padding: 10px;
@@ -680,6 +679,14 @@ button {
   border: none;
   outline: none;
   background: transparent;
+}
+
+#info_page #popup img {
+  width: 60vw;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #share_page #btn_share img {
