@@ -648,11 +648,11 @@ button {
   display: flex;
   align-items: center;
   width: 75vw;
-  height: 5vh;
+  height: 5.5vh;
   max-width: 300px;
   margin-bottom: 18px;
   box-sizing: border-box;
-  padding: 0 15px;
+  padding: 4px 15px;
 }
 
 /*input::-webkit-input-placeholder { !* WebKit browsers *!*/
