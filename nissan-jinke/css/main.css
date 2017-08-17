@@ -13,9 +13,21 @@ html, body {
 
 @media screen and (orientation: portrait) {
   /*竖屏 css*/
-  .block .warning {
+  .warning {
     display: none;
   }
+    
+    .block {
+      z-index: 10001;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+/*      background: #333;*/
+      color: #fff;
+      text-align: center;
+      line-height: 100vh;
+        display: :none;
+    }
 }
 /*@media screen and (orientation: landscape) {*/
   /*!*横屏 css*!*/
@@ -36,16 +48,7 @@ button {
   background: transparent;
 }
 
-.block {
-  z-index: 10001;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #333;
-  color: #fff;
-  text-align: center;
-  line-height: 100vh;
-}
+
 
 #video_player {
   width: 100%;
@@ -230,14 +233,39 @@ button {
 }
 
 #task_page .spiderman {
-  width: 40vw;
+  width: 45vw;
   position: absolute;
-  bottom: 27vh;
-  left: 0.5vw;
+  bottom: 16vh;
+  left: 26vw;
   opacity: 0;
 }
 
-#task_page #btn_spiderman img {
+#task_page #btn_spiderman img.person {
+  width: 40vw;
+  position: absolute;
+  bottom: 13.5vh;
+  left: 27vw;
+  opacity: 0;
+  display: none;
+}
+
+#task_page #btn_spiderman img.hand {
+  width: 6vw;
+  position: absolute;
+  bottom: 20vh;
+  left: 46vw;
+    display: none;
+}
+
+#task_page .bgm {
+  width: 45vw;
+  position: absolute;
+  bottom: 16vh;
+  left: 0vw;
+  opacity: 0;
+}
+
+#task_page #btn_bgm img.person {
   width: 40vw;
   position: absolute;
   bottom: 24vh;
@@ -246,21 +274,12 @@ button {
   display: none;
 }
 
-#task_page .bgm {
-  width: 49vw;
+#task_page #btn_bgm img.hand {
+  width: 6vw;
   position: absolute;
-  bottom: 11.5vh;
-  left: 22vw;
-  opacity: 0;
-}
-
-#task_page #btn_bgm img {
-  width: 40vw;
-  position: absolute;
-  bottom: 13.5vh;
-  left: 27vw;
-  opacity: 0;
-  display: none;
+  bottom: 31vh;
+  left: 20vw;
+    display: none;
 }
 
 #task_page .lady {
@@ -271,13 +290,21 @@ button {
   opacity: 0;
 }
 
-#task_page #btn_lady img {
+#task_page #btn_lady img.person {
   width: 34vw;
   position: absolute;
   bottom: 28.5vh;
   right: 3vw;
   opacity: 0;
   display: none;
+}
+
+#task_page #btn_lady img.hand {
+  width: 6vw;
+  position: absolute;
+  bottom: 35vh;
+  left: 78vw;
+    display: none;
 }
 
 .fadeIn {
@@ -291,6 +318,16 @@ button {
   -o-animation: fadeIn 1s ease-in-out 2.5s forwards;
   animation: fadeIn 1s ease-in-out 2.5s forwards;
 }
+
+.handarrow {
+    animation: handarrow 0.5s ease-in-out infinite;
+}
+
+@keyframes handarrow {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0; /*初始状态 透明度为0*/
@@ -557,19 +594,22 @@ button {
 
 #info_page .name-input {
   background: url('../assets/img/h5/info/name.png');
-  background-size: 100% 100%;
+  background-size: 100% auto;
+    background-repeat: no-repeat;
   z-index: 1000;
 }
 
 #info_page .tel-input {
   background: url('../assets/img/h5/info/tel.png');
-  background-size: 100% 100%;
+  background-size: 100% auto;
+    background-repeat: no-repeat;
   z-index: 1000;
 }
 
 #info_page .city-input {
   background: url('../assets/img/h5/info/city.png');
-  background-size: 100% 100%;
+  background-size: 100% auto;
+    background-repeat: no-repeat;
   position: relative;
 }
 
@@ -577,9 +617,10 @@ button {
   box-sizing: border-box;
   display: none;
   position: absolute;
-  top: 95%;
+  top: 80%;
   left: 0;
   width: 75vw;
+    max-width: 300px;
   background: url('../assets/img/h5/info/citylistbg.png');
   background-size: 100% 100%;
   padding: 10px;
@@ -604,9 +645,10 @@ button {
 
 #info_page .input {
   width: 75vw;
-  margin-bottom: 20px;
+    max-width: 300px;
+  margin-bottom: 18px;
   box-sizing: border-box;
-  padding: 8px 15px;
+  padding: 12px 15px;
 }
 
 /*input::-webkit-input-placeholder { !* WebKit browsers *!*/
@@ -631,6 +673,7 @@ button {
   outline: none;
   background: transparent;
   margin-left: 45px;
+  margin-top: -8px;
 }
 
 #info_page .input__field:focus {
@@ -649,9 +692,8 @@ button {
 #share_page #sharetips img {
   width: 60vw;
   position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 5%;
+  right: 5%;
 }
 
 .toaster {

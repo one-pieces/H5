@@ -16,7 +16,8 @@ require.config({
     'jquery.validator': ['jquery'],
     'zhCN': ['jquery.validator']
   },
-  waitSeconds: 15
+  waitSeconds: 15,
+  urlArgs : '_=' + new Date().getTime()
 });
 
 require(['jquery', 'script', 'jquery.validator', 'zhCN'], function ($, script, validator, zhCN) {

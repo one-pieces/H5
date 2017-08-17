@@ -14,18 +14,21 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     taskPage: '<div id="task_page" class="fullscreen hidden">\n' +
     '    <img class="start hCenter" src="assets/img/h5/task/start.png">\n' +
     '    <img class="slogan hCenter" src="assets/img/h5/task/slogan.png">\n' +
-    '    <img class="spiderman" src="assets/img/h5/task/spiderman.png">\n' +
     '    <img class="lady" src="assets/img/h5/task/lady.png">\n' +
     '    <img class="bgm" src="assets/img/h5/task/bgm.png">\n' +
+    '    <img class="spiderman" src="assets/img/h5/task/spiderman.png">\n' +
     '    <div class="cloud fullscreen"></div>\n' +
     '    <button id="btn_spiderman">\n' +
-    '      <img src="assets/img/h5/task/btn-spiderman.png">\n' +
+    '      <img src="assets/img/h5/info/hand.png" class="hand handarrow">\n' +
+    '      <img src="assets/img/h5/task/btn-spiderman.png" class="person">\n' +
     '    </button>\n' +
     '    <button id="btn_lady">\n' +
-    '      <img src="assets/img/h5/task/btn-lady.png">\n' +
+    '      <img src="assets/img/h5/info/hand.png" class="hand handarrow">\n' +
+    '      <img src="assets/img/h5/task/btn-lady.png" class="person">\n' +
     '    </button>\n' +
     '    <button id="btn_bgm">\n' +
-    '      <img src="assets/img/h5/task/btn-bgm.png">\n' +
+    '      <img src="assets/img/h5/info/hand.png" class="hand handarrow">\n' +
+    '      <img src="assets/img/h5/task/btn-bgm.png" class="person">\n' +
     '    </button>\n' +
     '  </div>',
     endingPage: '<div id="ending_page" class="fullscreen hidden">\n' +
@@ -148,8 +151,10 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           },
           onComplete: function (total) {
             $('#btn_loaded').show().on('click', function () {
+                self.aduio.play();
+                self.aduio.pause();
               // 音乐播放暂停
-              $('#audioBtn').on("click" ,function() {
+              $('#audioBtn').show().on("click" ,function() {
                 if (self.aduio.paused) {
                   self.playAudio();
                 }
@@ -176,7 +181,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
       },
       onComplete: function () {
         $('#video_player').hide();
-        $('#audioBtn').show();
+        self.playAudio();
         self.gotoTaskPage();
       }
     });
@@ -227,26 +232,61 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
     $(video).show()[0].play();
   },
+      
+  self.timer = [null, null, null];
 
   self.gotoTaskPage = function () {
+      // 用于replay清空
+//    clearInterval(self.timer[0]);
+//    clearTimeout(self.timer[1]);
+//    clearTimeout(self.timer[2]);
+      
     $('.logo').hide();
-    self.playAudio();
     showPage('taskPage');
-    $('#task_page .bgm').addClass('fadeIn').on('webkitAnimationEnd', function() {
-      $('#task_page .spiderman').addClass('fadeIn').on('webkitAnimationEnd', function() {
+    $('#task_page .spiderman').addClass('fadeIn').on('webkitAnimationEnd', function() {
+      $('#task_page .bgm').addClass('fadeIn').on('webkitAnimationEnd', function() {
         $('#task_page .lady').addClass('fadeIn').on('webkitAnimationEnd', function() {
           $('#task_page .start').addClass('fadeOut');
           $('#task_page .slogan').addClass('fadeIn-delay2s');
 
-          $('#task_page button img').show().addClass('fadeIn').on('webkitAnimationEnd', function() {
+          $('#task_page button img.person').show().addClass('fadeIn').on('webkitAnimationEnd', function() {
+              
+
             $('#task_page button img').css('opacity', 1)
-            $('#task_page #btn_bgm img').addClass('shake-rotate');
-            $('#task_page #btn_spiderman img').addClass('shake-rotate-delay1s');
-            $('#task_page #btn_lady img').addClass('shake-rotate-delay3s');
+            $('#task_page #btn_spiderman img.person').addClass('shake-rotate');
+            $('#task_page #btn_bgm img.person').addClass('shake-rotate-delay1s');
+            $('#task_page #btn_lady img.person').addClass('shake-rotate-delay3s');
+              
+//              $('#task_page img.hand').show();
+//              handle();
+//              self.timer[0] = setInterval(function(){
+//                  handle();
+//              }, 5000)
+              
           });
+            
+            
         });
       });
     });
+      
+    
+//      function handle() {
+//          $('#task_page #btn_lady img.hand').css('z-index', '-1');
+//          $('#task_page #btn_bgm img.hand').css('z-index', '-1');
+//          $('#task_page #btn_spiderman img.hand').css('z-index', '1');
+//          
+//          self.timer[1] = setTimeout(function(){
+//              $('#task_page #btn_spiderman img.hand').css('z-index', '-1');
+//              $('#task_page #btn_bgm img.hand').css('z-index', '1');
+//          }, 1500);
+//          
+//          self.timer[2] = setTimeout(function(){
+//              $('#task_page #btn_bgm img.hand').css('z-index', '-1');
+//              $('#task_page #btn_lady img.hand').css('z-index', '1');
+//          }, 3000);
+//      }
+      
 
     $('#btn_bgm').on('click', function () {
       self.startTask('task1');
@@ -349,10 +389,10 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           var url = window.location.href,
             title = '打破次元壁，劲客任务之极限驾控营带劲开飚！',
             desc = '欢迎来战',
-            imgUrl = 'http://tron-m.com/long/assets/img/loading/1.png';
+            imgUrl = 'http://www.tron-m.com/long/assets/img/share.jpg';
 
           wx.onMenuShareTimeline({
-            title: '极限驾控营，全国24城 等你开飙', // 分享标题
+            title: title, // 分享标题
             desc: '', // 分享描述
             link: url, // 分享链接
             imgUrl: imgUrl, // 分享图标
@@ -479,7 +519,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
               showToaster(r.msg);
             }
             else {
-              alert('提交成功！\n 销售顾问将于您联系，准备去现场挑战吧！');
+              alert('提交成功！\n 销售顾问将与您联系，准备去现场挑战吧！');
               hidePage('infoPage');
               self.gotoSharePage();
               return;
@@ -529,6 +569,6 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     self.pages[id].remove();
   }
 
-  // self.share();
+  self.share();
   return self;
 });
