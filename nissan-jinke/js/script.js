@@ -19,15 +19,15 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     '    <img class="spiderman" src="assets/img/h5/task/spiderman.png">\n' +
     '    <div class="cloud fullscreen"></div>\n' +
     '    <button id="btn_spiderman">\n' +
-    '      <img src="assets/img/h5/info/hand.png" class="hand handarrow">\n' +
+    '      <img src="assets/img/h5/task/finger.png" class="hand handarrow">\n' +
     '      <img src="assets/img/h5/task/btn-spiderman.png" class="person">\n' +
     '    </button>\n' +
     '    <button id="btn_lady">\n' +
-    '      <img src="assets/img/h5/info/hand.png" class="hand handarrow">\n' +
+    '      <img src="assets/img/h5/task/finger.png" class="hand handarrow">\n' +
     '      <img src="assets/img/h5/task/btn-lady.png" class="person">\n' +
     '    </button>\n' +
     '    <button id="btn_bgm">\n' +
-    '      <img src="assets/img/h5/info/hand.png" class="hand handarrow">\n' +
+    '      <img src="assets/img/h5/task/finger.png" class="hand handarrow">\n' +
     '      <img src="assets/img/h5/task/btn-bgm.png" class="person">\n' +
     '    </button>\n' +
     '  </div>',
@@ -113,8 +113,8 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           baseUrl: 'assets/',
           resources: [
             'img/h5/logo.png',
-            'img/h5/muted.png',
-            'img/h5/play.png',
+            'img/h5/muted.jpg',
+            'img/h5/play.jpg',
             // 任务页图片
             'img/h5/task/bg.jpg',
             'img/h5/task/bgm.png',
@@ -251,12 +251,23 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
         $('#task_page .lady').addClass('fadeIn').on('webkitAnimationEnd', function() {
           $('#task_page .start').addClass('fadeOut');
           $('#task_page .slogan').addClass('fadeIn-delay2s');
-
           $('#task_page button img.person').show().addClass('fadeIn').on('webkitAnimationEnd', function() {
-            $('#task_page button img').css('opacity', 1)
-            $('#task_page #btn_spiderman img.person').addClass('shake-rotate');
-            $('#task_page #btn_bgm img.person').addClass('shake-rotate-delay1s');
-            $('#task_page #btn_lady img.person').addClass('shake-rotate-delay3s');
+            $('#task_page button img').css('opacity', 1);
+            $('#task_page #btn_spiderman img.person').addClass('shake-rotate')
+              .on('webkitAnimationStart webkitAnimationIteration', function () {
+                $('#task_page img.hand').hide();
+                $('#task_page #btn_spiderman img.hand').show();
+            });
+            $('#task_page #btn_bgm img.person').addClass('shake-rotate-delay1s')
+              .on('webkitAnimationStart webkitAnimationIteration', function () {
+                $('#task_page img.hand').hide();
+                $('#task_page #btn_bgm img.hand').show();
+            });
+            $('#task_page #btn_lady img.person').addClass('shake-rotate-delay3s')
+              .on('webkitAnimationStart webkitAnimationIteration', function () {
+                $('#task_page img.hand').hide();
+                $('#task_page #btn_lady img.hand').show();
+            });
           });
         });
       });
