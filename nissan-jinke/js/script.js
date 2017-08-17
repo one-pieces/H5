@@ -149,7 +149,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
           onComplete: function (total) {
             $('#btn_loaded').show().on('click', function () {
               // 音乐播放暂停
-              $('#audioBtn').show().on("click" ,function() {
+              $('#audioBtn').on("click" ,function() {
                 if (self.aduio.paused) {
                   self.playAudio();
                 }
@@ -176,7 +176,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
       },
       onComplete: function () {
         $('#video_player').hide();
-        self.playAudio();
+        $('#audioBtn').show();
         self.gotoTaskPage();
       }
     });
@@ -230,6 +230,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
 
   self.gotoTaskPage = function () {
     $('.logo').hide();
+    self.playAudio();
     showPage('taskPage');
     $('#task_page .bgm').addClass('fadeIn').on('webkitAnimationEnd', function() {
       $('#task_page .spiderman').addClass('fadeIn').on('webkitAnimationEnd', function() {
