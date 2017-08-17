@@ -564,6 +564,6 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     self.pages[id].remove();
   }
 
-  self.share();
+  // self.share();
   return self;
 });
