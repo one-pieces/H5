@@ -645,11 +645,14 @@ button {
 }
 
 #info_page .input {
+  display: flex;
+  align-items: center;
   width: 75vw;
-    max-width: 300px;
+  height: 5vh;
+  max-width: 300px;
   margin-bottom: 18px;
   box-sizing: border-box;
-  padding: 12px 15px;
+  padding: 0 15px;
 }
 
 /*input::-webkit-input-placeholder { !* WebKit browsers *!*/
@@ -674,7 +677,8 @@ button {
   outline: none;
   background: transparent;
   margin-left: 45px;
-  margin-top: -8px;
+  /*margin-top: -1vh;*/
+  line-height: 1;
 }
 
 #info_page .input__field:focus {
