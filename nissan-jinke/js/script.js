@@ -457,14 +457,7 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
     $("#info_page #btn_confirm").on('touchend', function (e) {
       // 禁止事件冒泡
       e.stopImmediatePropagation();
-      // $('#user_info_form').submit();
-      $('#popup').show();
-      var timeout = setTimeout(function () {
-        $('#popup').hide();
-        hidePage('infoPage');
-        self.gotoSharePage();
-        clearTimeout(timeout);
-      }, 3000);
+      $('#user_info_form').submit();
     });
     $('#user_info_form').validator({
       timely: 0,
@@ -514,9 +507,16 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
               showToaster(r.msg);
             }
             else {
-              alert('提交成功！\n 销售顾问将与您联系，准备去现场挑战吧！');
-              hidePage('infoPage');
-              self.gotoSharePage();
+              // alert('提交成功！\n 销售顾问将与您联系，准备去现场挑战吧！');
+              // hidePage('infoPage');
+              // self.gotoSharePage();
+              $('#popup').show();
+              var timeout = setTimeout(function () {
+                $('#popup').hide();
+                hidePage('infoPage');
+                self.gotoSharePage();
+                clearTimeout(timeout);
+              }, 3000);
               return;
             }
           });
