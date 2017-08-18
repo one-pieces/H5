@@ -183,20 +183,18 @@ define(['jquery', 'resLoader', 'weixin'], function ($, resLoader, wx) {
   },
 
   self.start = function () {
-    // self.playVideo({
-    //   videoId: 'start',
-    //   onStart: function () {
-    //     // 视频开始播放后才隐藏loading
-    //     $('#loading').hide();
-    //   },
-    //   onComplete: function () {
-    //     $('#video_player').hide();
-    //     self.playAudio();
-    //     self.gotoTaskPage();
-    //   }
-    // });
-    $('#loading').hide();
-    self.gotoInfoPage();
+    self.playVideo({
+      videoId: 'start',
+      onStart: function () {
+        // 视频开始播放后才隐藏loading
+        $('#loading').hide();
+      },
+      onComplete: function () {
+        $('#video_player').hide();
+        self.playAudio();
+        self.gotoTaskPage();
+      }
+    });
   },
 
   self.playAudio = function() {
