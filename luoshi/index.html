@@ -15,11 +15,23 @@
   <meta name="x5-fullscreen" content="true">
   <meta name="360-fullscreen" content="true">
   <script src="js/lib/create.min.js"></script>
+  <!--<script type="text/javascript" src="js/lib/swiper-3.3.1.jquery.min.js"></script>-->
+  <!--<script type="text/javascript" src="js/lib/swiper.animate1.0.2.min.js"></script>-->
   <script data-main="js/app.js" src="js/lib/require.js"></script>
   <link href="./css/main.css" rel="stylesheet"/>
-  <!--<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>-->
+  <link href="./css/swiper-3.3.1.min.css" rel="stylesheet"/>
 </head>
 <body>
-  <canvas id="mainView" width="750" height="1334"></canvas>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <canvas id="mainView" width="750" height="1334"></canvas>
+        <!--<div class="scrolltop"></div>-->
+      </div>
+      <div class="swiper-slide">
+        slider2
+      </div>
+    </div>
+  </div>
 </body>
 </html>
