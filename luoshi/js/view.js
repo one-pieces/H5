@@ -20,6 +20,29 @@
 
       var mc = new createjs.MovieClip();
 
+      // 兔子
+      var tuzi = new createjs.Bitmap(queue.getResult('page1_04-tuzi_03-body'));
+      tuzi.setTransform(250, 1005);
+      mc.timeline.addTween(createjs.Tween.get(tuzi));
+      var ear1 = new createjs.Bitmap(queue.getResult('page1_04-tuzi_01-ear'));
+      ear1.setTransform(347, 1030);
+      ear1.regX = 50;
+      ear1.regY = 30;
+      mc.timeline.addTween(createjs.Tween.get(ear1, {loop: true})
+        .to({rotation: 5}, 10)
+        .to({rotation: 0}, 10)
+        .to({rotation: -5}, 10)
+        .to({rotation: 0}, 10));
+      var ear2 = new createjs.Bitmap(queue.getResult('page1_04-tuzi_02-ear'));
+      ear2.setTransform(333, 1065);
+      ear2.regX = 50;
+      ear2.regY = 30;
+      mc.timeline.addTween(createjs.Tween.get(ear2, {loop: true})
+        .to({rotation: 5}, 10)
+        .to({rotation: 0}, 10)
+        .to({rotation: -5}, 10)
+        .to({rotation: 0}, 10));
+
       // 箭头
       var arrow = new createjs.Bitmap(queue.getResult('page1_arrow'));
       arrow.setTransform(430, 1250);
