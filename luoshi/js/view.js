@@ -162,7 +162,7 @@
 
       // 星星
       var stars = new createjs.Bitmap(queue.getResult('page1_07-stars'));
-      mc.timeline.addTween(createjs.Tween.get(stars));
+      mc.timeline.addTween(createjs.Tween.get(stars, {loop: true}).to({alpha: 0.2}, 20).to({alpha: 1}, 20));
 
       // 背景
       var background = new createjs.Bitmap(queue.getResult('page1_09-background'));
