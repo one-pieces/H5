@@ -15,8 +15,6 @@
   <meta name="x5-fullscreen" content="true">
   <meta name="360-fullscreen" content="true">
   <script src="js/lib/create.min.js"></script>
-  <!--<script type="text/javascript" src="js/lib/swiper-3.3.1.jquery.min.js"></script>-->
-  <!--<script type="text/javascript" src="js/lib/swiper.animate1.0.2.min.js"></script>-->
   <script data-main="js/app.js" src="js/lib/require.js"></script>
   <link href="./css/main.css" rel="stylesheet"/>
   <link href="./css/swiper-3.3.1.min.css" rel="stylesheet"/>
@@ -25,11 +23,14 @@
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <canvas id="mainView" width="750" height="1334"></canvas>
-        <!--<div class="scrolltop"></div>-->
+        <canvas id="homeView" width="750" height="1334"></canvas>
+        <div class="scrolltop">
+          向下滑动翻页
+          <div class="arrow"> >> </div>
+        </div>
       </div>
-      <div class="swiper-slide">
-        slider2
+      <div class="swiper-slide swiper-no-swiping">
+        <canvas id="mainView" width="750" height="1334"></canvas>
       </div>
     </div>
   </div>
