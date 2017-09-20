@@ -7,7 +7,8 @@ require.config({
   },
   paths: {
     'jquery': 'lib/jquery-3.1.0.min',
-    'Swiper': 'lib/swiper-3.3.1.jquery.min'
+    'Swiper': 'lib/swiper-3.3.1.jquery.min',
+    'View': 'view'
     // 'createjs': 'lib/create.min'
     // 'jquery.validator': 'lib/jquery.validator.min',
     // 'zhCN': 'lib/local/zh-CN',
