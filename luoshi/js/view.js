@@ -301,13 +301,15 @@
 
       var content = new createjs.Container();
       content.addChild(mc);
-      content.x = 1375;
+      var helf = content.getBounds().width/2;
+      content.x = helf - 100;
       content.y = 0;
-      cmc.timeline.addTween(createjs.Tween.get(content, {loop: false})
-        .to({x: -100})
-        .to({x: -1900}, 300, createjs.Ease.sineInOut).wait(20)
-        .to({x: -980}, 150, createjs.Ease.sineInOut).wait(20)
-        .to({regX: 980, regY: 0, scaleX: 5, scaleY: 5, alpha: 0}, 90)
+      content.regX = helf;
+      content.regY = 0;
+      cmc.timeline.addTween(createjs.Tween.get(content)
+        .to({x: -helf + 850}, 300, createjs.Ease.sineInOut).wait(20)
+        .to({x: 400}, 150, createjs.Ease.sineInOut).wait(20)
+        .to({scaleX: 15, scaleY: 15, alpha: 0.6}, 180)
         .call(complete).wait(1));
 
       function complete() {
@@ -345,11 +347,18 @@
       mc.timeline.addTween(createjs.Tween.get(background));
 
       var content = new createjs.Container();
-      var cmc = new createjs.MovieClip();
       content.addChild(mc);
+      var helf = content.getBounds().width/2;
+      var cmc = new createjs.MovieClip();
+      content.alpha = 0;
+      content.x = helf;
+      content.y = 0;
+      content.regX = helf;
+      content.regY = 0;
       cmc.timeline.addTween(createjs.Tween.get(content)
+        .to({alpha: 1}, 90)
         .wait(100)
-        .to({regX: 350, regY: 500, scaleX: 5, scaleY: 5, alpha: 0}, 90)
+        .to({scaleX: 5, scaleY: 5, alpha: 0.4}, 90)
         .call(complete).wait(1));
 
       function complete() {
@@ -419,11 +428,20 @@
       mc.timeline.addTween(createjs.Tween.get(background));
 
       var content = new createjs.Container();
-      var cmc = new createjs.MovieClip();
       content.addChild(mc);
+      var scale = 3.5;
+      content.scaleX = scale;
+      content.scaleY = scale;
+      // 750px 标准屏幕宽度
+      content.x = 750;
+      content.y = 0;
+      content.regX = 750;
+      content.regY = 0;
+      var cmc = new createjs.MovieClip();
       cmc.timeline.addTween(createjs.Tween.get(content)
+        .to({scaleX: 1, scaleY: 1}, 30)
         .wait(100)
-        .to({regX: 350, regY: 500, scaleX: 5, scaleY: 5, alpha: 0.5}, 90)
+        // .to({regX: 350, regY: 500, scaleX: 5, scaleY: 5, alpha: 0.5}, 90)
         .call(complete).wait(1));
 
       function complete() {
