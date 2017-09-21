@@ -46,15 +46,21 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       // {src: './assets/img/page2/11-stars.png', id: 'page2_11-stars'},
       // {src: './assets/img/page2/12-stars.png', id: 'page2_12-stars'},
       // {src: './assets/img/page2/13-stars.png', id: 'page2_13-stars'},
-      {src: './assets/img/page2/14-petal.png', id: 'page2_14-petal'},
-      {src: './assets/img/page2/15-petal.png', id: 'page2_15-petal'},
-      {src: './assets/img/page2/16-petal.png', id: 'page2_16-petal'},
-      {src: './assets/img/page2/17-petal.png', id: 'page2_17-petal'},
-      {src: './assets/img/page2/18-petal.png', id: 'page2_18-petal'},
-      {src: './assets/img/page2/19-petal.png', id: 'page2_19-petal'},
       {src: './assets/img/page2/20-wenzi1.png', id: 'page2_20-wenzi1'},
       {src: './assets/img/page2/21-wenzi2.png', id: 'page2_21-wenzi2'},
       {src: './assets/img/page2/22-wenzi3.png', id: 'page2_22-wenzi3'},
+      // page3
+      {src: './assets/img/page3/01-picture.png', id: 'page3_01-picture'},
+      {src: './assets/img/page3/02-background.jpg', id: 'page3_02-background'},
+      {src: './assets/img/page3/03-wenzi.png', id: 'page3_03-wenzi'},
+      {src: './assets/img/page3/14-petal.png', id: 'page3_14-petal'},
+      {src: './assets/img/page3/15-petal.png', id: 'page3_15-petal'},
+      {src: './assets/img/page3/16-petal.png', id: 'page3_16-petal'},
+      {src: './assets/img/page3/17-petal.png', id: 'page3_17-petal'},
+      {src: './assets/img/page3/18-petal.png', id: 'page3_18-petal'},
+      {src: './assets/img/page3/19-petal.png', id: 'page3_19-petal'},
+      // page4
+      {src: './assets/img/page4/10-background.png', id: 'page4_10-background'},
     ];
     window.queue = new createjs.LoadQueue();
     queue.on('progress', handleProgress);
@@ -81,6 +87,7 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
           self.initMainPage();
         }
       });
+      // $('#loading').hide();
       // self.initMainPage();
     }
     function handleProgress(event) {
@@ -118,7 +125,15 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     createjs.Ticker.addEventListener('tick', this.mainPage.stage);
     // createjs.Ticker.addEventListener("tick", stageBreakHandler);
 
-    var contentView2 = new View.ContentView2();
+    var contentView2 = new View.ContentView2(function() {
+      contentView2.parent.removeChild(contentView2);
+      var contentView3 = new View.ContentView3(function() {
+        contentView3.parent.removeChild(contentView3);
+        var contentView4 = new View.ContentView4();
+        self.mainPage.container.addChild(contentView4);
+      });
+      self.mainPage.container.addChild(contentView3);
+    });
     this.mainPage.container.addChild(contentView2);
     this.mainPage.stage.update();
   }
