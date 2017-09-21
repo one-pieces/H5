@@ -60,6 +60,8 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       {src: './assets/img/page3/18-petal.png', id: 'page3_18-petal'},
       {src: './assets/img/page3/19-petal.png', id: 'page3_19-petal'},
       // page4
+      {src: './assets/img/page4/03-yanhua.png', id: 'page4_03-yanhua'},
+      {src: './assets/img/page4/04-yanhua.png', id: 'page4_04-yanhua'},
       {src: './assets/img/page4/10-background.png', id: 'page4_10-background'},
     ];
     window.queue = new createjs.LoadQueue();

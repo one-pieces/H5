@@ -198,24 +198,6 @@
       this.Container_constructor();
       var mc = new createjs.MovieClip();
 
-      // 花瓣
-      // [
-      //   ['page2_14-petal', 2250, 1050],
-      //   ['page2_15-petal', 2150, 930],
-      //   ['page2_16-petal', 1920, 887],
-      //   ['page2_17-petal', 1800, 810],
-      //   ['page2_18-petal', 1740, 728],
-      //   ['page2_19-petal', 1640, 668]
-      // ].forEach(function(item) {
-      //   var kongmingdeng = new createjs.Bitmap(queue.getResult(item[0]));
-      //   kongmingdeng.setTransform(item[1], item[2]);
-      //   if (item[3]) {
-      //     kongmingdeng.scaleX = item[3];
-      //     kongmingdeng.scaleY = item[3];
-      //   }
-      //   mc.timeline.addTween(createjs.Tween.get(kongmingdeng));
-      // });
-
       // 孔明灯
       [
         ['page2_05-kongmingdeng', 2250, 250],
@@ -383,11 +365,42 @@
       // var picture = new createjs.Bitmap(queue.getResult('page3_01-picture'));
       // picture.setTransform(0, 250);
       // mc.timeline.addTween(createjs.Tween.get(picture));
-      //
-      // // 文字
-      // var wenzi = new createjs.Bitmap(queue.getResult('page3_03-wenzi'));
-      // wenzi.setTransform(100, 880);
-      // mc.timeline.addTween(createjs.Tween.get(wenzi));
+
+      // 烟花
+      var yanhua1 = new createjs.Bitmap(queue.getResult('page4_03-yanhua'));
+      yanhua1.setTransform(350, 180);
+      mc.timeline.addTween(createjs.Tween.get(yanhua1));
+      var yanhua2 = new createjs.Bitmap(queue.getResult('page4_04-yanhua'));
+      yanhua2.setTransform(480, 280);
+      mc.timeline.addTween(createjs.Tween.get(yanhua2));
+      var yanhua3 = new createjs.Bitmap(queue.getResult('page4_03-yanhua'));
+      yanhua3.setTransform(250, 340);
+      yanhua3.scaleX = 0.5;
+      yanhua3.scaleY = 0.5;
+      mc.timeline.addTween(createjs.Tween.get(yanhua3));
+      var yanhua4 = new createjs.Bitmap(queue.getResult('page4_04-yanhua'));
+      yanhua4.setTransform(300, 380);
+      yanhua4.scaleX = 0.5;
+      yanhua4.scaleY = 0.5;
+      mc.timeline.addTween(createjs.Tween.get(yanhua4));
+
+      // 孔明灯
+      [
+        ['page2_05-kongmingdeng', 150, 280, 0.8],
+        ['page2_05-kongmingdeng', 550, 400, 0.4],
+        ['page2_06-kongmingdeng', 520, 357, 0.25],
+        ['page2_07-kongmingdeng', 180, 60, 0.8],
+        ['page2_08-kongmingdeng', 240, 138],
+        ['page2_09-kongmingdeng', 140, 168, 0.6]
+      ].forEach(function(item) {
+        var kongmingdeng = new createjs.Bitmap(queue.getResult(item[0]));
+        kongmingdeng.setTransform(item[1], item[2]);
+        if (item[3]) {
+          kongmingdeng.scaleX = item[3];
+          kongmingdeng.scaleY = item[3];
+        }
+        mc.timeline.addTween(createjs.Tween.get(kongmingdeng));
+      });
 
       // 云2
       var cloud2 = new createjs.Bitmap(queue.getResult('page1_06-cloud'));
@@ -441,7 +454,8 @@
       cmc.timeline.addTween(createjs.Tween.get(content)
         .to({scaleX: 1, scaleY: 1}, 30)
         .wait(100)
-        // .to({regX: 350, regY: 500, scaleX: 5, scaleY: 5, alpha: 0.5}, 90)
+        .set({x: 348, y: 660, regX: 348, regY: 660})
+        .to({scaleX: 30, scaleY: 30, alpha: 0.8}, 90)
         .call(complete).wait(1));
 
       function complete() {
