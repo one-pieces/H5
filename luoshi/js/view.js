@@ -277,9 +277,9 @@
       var wenzi3 = new createjs.Bitmap(queue.getResult('page2_22-wenzi3'));
       wenzi3.setTransform(330, 200);
       wenzi3.alpha = 0;
-      cmc.timeline.addTween(createjs.Tween.get(wenzi1).to({alpha: 0}, 60));
-      cmc.timeline.addTween(createjs.Tween.get(wenzi2).wait(60).to({alpha: 1}, 60).to({alpha: 0}, 60));
-      cmc.timeline.addTween(createjs.Tween.get(wenzi3).wait(180).to({alpha: 1}, 60).to({alpha: 0}, 60));
+      cmc.timeline.addTween(createjs.Tween.get(wenzi1).to({alpha: 0}, 40));
+      cmc.timeline.addTween(createjs.Tween.get(wenzi2).wait(40).to({alpha: 1}, 40).to({alpha: 0}, 40));
+      cmc.timeline.addTween(createjs.Tween.get(wenzi3).wait(120).to({alpha: 1}, 40).to({alpha: 0}, 40));
 
       var content = new createjs.Container();
       content.addChild(mc);
@@ -289,10 +289,10 @@
       content.regX = helf;
       content.regY = 0;
       cmc.timeline.addTween(createjs.Tween.get(content)
-        .to({x: -helf + 850}, 300, createjs.Ease.sineInOut).wait(20)
-        .to({x: 400}, 150, createjs.Ease.sineInOut).wait(20)
-        .to({scaleX: 15, scaleY: 15, alpha: 0.6}, 180)
-        .call(complete).wait(1));
+        .to({x: -helf + 850}, 250, createjs.Ease.sineInOut).wait(5)
+        // .to({x: 400}, 90, createjs.Ease.sineInOut).wait(5)
+        .to({x: 400, scaleX: 7, scaleY: 7, alpha: 0.8}, 30, createjs.Ease.circIn)
+        .call(complete).wait(100));
 
       function complete() {
         console.log('container2 complete');
@@ -338,9 +338,10 @@
       content.regX = helf;
       content.regY = 0;
       cmc.timeline.addTween(createjs.Tween.get(content)
-        .to({alpha: 1}, 90)
+        .to({alpha: 1}, 30)
         .wait(100)
-        .to({scaleX: 5, scaleY: 5, alpha: 0.4}, 90)
+        .to({alpha: 0.5}, 10)
+        // .to({scaleX: 5, scaleY: 5, alpha: 0.4}, 90)
         .call(complete).wait(1));
 
       function complete() {
@@ -445,6 +446,7 @@
       var scale = 3.5;
       content.scaleX = scale;
       content.scaleY = scale;
+      content.alpha = 0;
       // 750px 标准屏幕宽度
       content.x = 750;
       content.y = 0;
@@ -452,10 +454,11 @@
       content.regY = 0;
       var cmc = new createjs.MovieClip();
       cmc.timeline.addTween(createjs.Tween.get(content)
-        .to({scaleX: 1, scaleY: 1}, 30)
+        // .to({alpha: 1}, 30)
+        .to({alpha: 1, scaleX: 1, scaleY: 1}, 30, createjs.Ease.circOut)
         .wait(100)
         .set({x: 348, y: 660, regX: 348, regY: 660})
-        .to({scaleX: 30, scaleY: 30, alpha: 0.8}, 90)
+        .to({scaleX: 20, scaleY: 20, alpha: 0.6}, 30, createjs.Ease.circIn)
         .call(complete).wait(1));
 
       function complete() {
@@ -468,6 +471,134 @@
     }
     createjs.extend(ContentView4, createjs.Container);
     return createjs.promote(ContentView4, 'Container');
+  }());
+
+  //ContentView5
+  View.ContentView5 = (function() {
+    function ContentView5(callback) {
+      this.Container_constructor();
+      var mc = new createjs.MovieClip();
+
+      // 月亮
+      var moon = new createjs.Bitmap(queue.getResult('page1_06-moon'));
+      moon.setTransform(580, -60);
+      var moonShadow = new createjs.Shadow('#FCF0BC', 0, 0, 16);
+      moon.shadow = moonShadow;
+      mc.timeline.addTween(createjs.Tween.get(moonShadow, {loop: true})
+        .to({offsetX: 0, offsetY: 0, blur: 100}, 90, createjs.Ease.quadInOut)
+        .to({offsetX: 0, offsetY: 0, blur: 16}, 90, createjs.Ease.quadInOut));
+      mc.timeline.addTween(createjs.Tween.get(moon));
+
+      // 孔明灯
+      [
+        ['page2_05-kongmingdeng', 370, 630],
+        ['page2_06-kongmingdeng', 340, 287, 0.4],
+        ['page2_07-kongmingdeng', 380, 380, 0.8],
+        ['page2_08-kongmingdeng', 440, 528],
+        ['page2_09-kongmingdeng', 340, 468, 0.8]
+      ].forEach(function(item) {
+        var kongmingdeng = new createjs.Bitmap(queue.getResult(item[0]));
+        kongmingdeng.setTransform(item[1], item[2]);
+        if (item[3]) {
+          kongmingdeng.scaleX = item[3];
+          kongmingdeng.scaleY = item[3];
+        }
+        mc.timeline.addTween(createjs.Tween.get(kongmingdeng));
+      });
+
+      // 星星
+      var stars = new createjs.Bitmap(queue.getResult('page5_10-stars'));
+      mc.timeline.addTween(createjs.Tween.get(stars, {loop: true}).to({alpha: 0}, 30));
+
+      // 背景
+      var background = new createjs.Bitmap(queue.getResult('page5_00-background'));
+      mc.timeline.addTween(createjs.Tween.get(background));
+
+      var content = new createjs.Container();
+      content.addChild(mc);
+      var scale = 1.5;
+      content.scaleX = scale;
+      content.scaleY = scale;
+      // 750px 标准屏幕宽度
+      content.x = 750;
+      content.y = 0;
+      content.regX = 750;
+      content.regY = 0;
+      // content.x = -180;
+      // content.y = -1160;
+      // content.regX = 180;
+      // content.regY = 1160;
+      var cmc = new createjs.MovieClip();
+      cmc.timeline.addTween(createjs.Tween.get(content)
+        .to({scaleX: 1, scaleY: 1}, 30, createjs.Ease.circOut)
+        .wait(100)
+        .set({x: 135, y: 1260, regX: 135, regY: 1260})
+        .to({scaleX: 5, scaleY: 5, alpha: 0}, 30, createjs.Ease.circOut)
+        .call(complete).wait(100));
+
+      function complete() {
+        console.log('container5 complete');
+        callback && callback();
+      }
+
+      this.content = cmc;
+      this.addChild(this.content);
+    }
+    createjs.extend(ContentView5, createjs.Container);
+    return createjs.promote(ContentView5, 'Container');
+  }());
+
+  //ContentView6
+  View.ContentView6 = (function() {
+    function ContentView6(callback) {
+      this.Container_constructor();
+      var mc = new createjs.MovieClip();
+
+      // 按钮
+      var button = new createjs.Bitmap(queue.getResult('page6_03-btn'));
+      button.setTransform(180, 1030);
+      button.addEventListener('click', function () {
+        button.alpha = 0.5;
+        var timeout = setTimeout(function() {
+          button.alpha = 1;
+          clearTimeout(timeout);
+        }, 300);
+        callback && callback();
+      });
+      mc.timeline.addTween(createjs.Tween.get(button));
+
+      // 云1
+      var cloud1 = new createjs.Bitmap(queue.getResult('page6_01-cloud'));
+      cloud1.setTransform(-50, 40);
+      mc.timeline.addTween(createjs.Tween.get(cloud1));
+
+      // 照片
+      var picture = new createjs.Bitmap(queue.getResult('page6_04-picture'));
+      picture.setTransform(40, 80);
+      mc.timeline.addTween(createjs.Tween.get(picture));
+
+      // 背景
+      var background = new createjs.Bitmap(queue.getResult('page6_05-background'));
+      mc.timeline.addTween(createjs.Tween.get(background));
+
+      var content = new createjs.Container();
+      content.addChild(mc);
+      content.alpha = 0;
+      var cmc = new createjs.MovieClip();
+      cmc.timeline.addTween(createjs.Tween.get(content)
+        .to({alpha: 1}, 30).wait(300)
+        .call(complete).wait(1));
+
+      function complete() {
+        console.log('container6 complete');
+        callback && callback();
+      }
+
+      this.content = cmc;
+      this.addChild(this.content);
+    }
+    createjs.extend(ContentView6, createjs.Container);
+    return createjs.promote(ContentView6, 'Container');
   }());
   return View;
 }));

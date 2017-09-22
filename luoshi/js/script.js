@@ -63,6 +63,22 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       {src: './assets/img/page4/03-yanhua.png', id: 'page4_03-yanhua'},
       {src: './assets/img/page4/04-yanhua.png', id: 'page4_04-yanhua'},
       {src: './assets/img/page4/10-background.png', id: 'page4_10-background'},
+      // page5
+      {src: './assets/img/page5/00-background.png', id: 'page5_00-background'},
+      // {src: './assets/img/page5/01-kongmingdeng.png', id: 'page5_01-kongmingdeng'},
+      // {src: './assets/img/page5/02-kongmingdeng.png', id: 'page5_02-kongmingdeng'},
+      // {src: './assets/img/page5/03-kongmingdeng.png', id: 'page5_03-kongmingdeng'},
+      // {src: './assets/img/page5/04-kongmingdeng.png', id: 'page5_04-kongmingdeng'},
+      {src: './assets/img/page5/10-stars.png', id: 'page5_10-stars'},
+      // {src: './assets/img/page5/11-stars.png', id: 'page5_11-stars'},
+      // {src: './assets/img/page5/12-stars.png', id: 'page5_12-stars'},
+      // {src: './assets/img/page5/13-stars.png', id: 'page5_13-stars'}
+      // page6
+      {src: './assets/img/page6/01-cloud.png', id: 'page6_01-cloud'},
+      {src: './assets/img/page6/02-cloud.png', id: 'page6_02-cloud'},
+      {src: './assets/img/page6/03-btn.png', id: 'page6_03-btn'},
+      {src: './assets/img/page6/04-picture.png', id: 'page6_04-picture'},
+      {src: './assets/img/page6/05-background.png', id: 'page6_05-background'}
     ];
     window.queue = new createjs.LoadQueue();
     queue.on('progress', handleProgress);
@@ -120,6 +136,7 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     this.mainPage.stage = new createjs.Stage(canvas);
     this.mainPage.container = new createjs.Container();
     this.mainPage.stage.addChild(this.mainPage.container);
+    // this.mainPage.stage.enableMouseOver(10);
     createjs.Touch.enable(this.mainPage.stage);
 
     createjs.Ticker.timingMode =  createjs.Ticker.RAF_SYNCHED;
@@ -128,15 +145,47 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     // createjs.Ticker.addEventListener("tick", stageBreakHandler);
 
     var contentView2 = new View.ContentView2(function() {
-      contentView2.parent.removeChild(contentView2);
+      setTimeout(function() {
+        contentView2.parent.removeChild(contentView2);
+      }, 2500);
       var contentView3 = new View.ContentView3(function() {
-        contentView3.parent.removeChild(contentView3);
-        var contentView4 = new View.ContentView4();
+        setTimeout(function() {
+          contentView3.parent.removeChild(contentView3);
+        });
+        var contentView4 = new View.ContentView4(function() {
+          setTimeout(function() {
+            contentView4.parent.removeChild(contentView4);
+          });
+          var contentView5 = new View.ContentView5(function() {
+            setTimeout(function() {
+              contentView5.parent.removeChild(contentView5);
+            });
+            var contentView6 = new View.ContentView6(function click() {
+              console.log('www');
+              $('.swiper-container').hide();
+              $('#inputContainer').show();
+            });
+            self.mainPage.container.addChild(contentView6);
+          });
+          self.mainPage.container.addChild(contentView5);
+        });
         self.mainPage.container.addChild(contentView4);
       });
       self.mainPage.container.addChild(contentView3);
     });
     this.mainPage.container.addChild(contentView2);
+
+    // var contentView5 = new View.ContentView5(function() {
+    //   setTimeout(function() {
+    //     contentView5.parent.removeChild(contentView5);
+    //   });
+    //   var contentView6 = new View.ContentView6(function click() {
+    //     console.log('www');
+    //     $('inputContainer').show();
+    //   });
+    //   self.mainPage.container.addChild(contentView6);
+    // });
+    // self.mainPage.container.addChild(contentView5);
     this.mainPage.stage.update();
   }
 
