@@ -524,10 +524,6 @@
       content.y = 0;
       content.regX = 750;
       content.regY = 0;
-      // content.x = -180;
-      // content.y = -1160;
-      // content.regX = 180;
-      // content.regY = 1160;
       var cmc = new createjs.MovieClip();
       cmc.timeline.addTween(createjs.Tween.get(content)
         .to({scaleX: 1, scaleY: 1}, 30, createjs.Ease.circOut)
