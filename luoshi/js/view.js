@@ -290,7 +290,6 @@
       content.regY = 0;
       cmc.timeline.addTween(createjs.Tween.get(content)
         .to({x: -helf + 850}, 250, createjs.Ease.sineInOut).wait(5)
-        // .to({x: 400}, 90, createjs.Ease.sineInOut).wait(5)
         .to({x: 400, scaleX: 7, scaleY: 7, alpha: 0.8}, 30, createjs.Ease.circIn)
         .call(complete).wait(100));
 
@@ -341,7 +340,6 @@
         .to({alpha: 1}, 30)
         .wait(100)
         .to({alpha: 0.5}, 10)
-        // .to({scaleX: 5, scaleY: 5, alpha: 0.4}, 90)
         .call(complete).wait(1));
 
       function complete() {
@@ -582,12 +580,12 @@
       content.alpha = 0;
       var cmc = new createjs.MovieClip();
       cmc.timeline.addTween(createjs.Tween.get(content)
-        .to({alpha: 1}, 30).wait(300)
+        .to({alpha: 1}, 30).wait(2000)
         .call(complete).wait(1));
 
       function complete() {
         console.log('container6 complete');
-        callback && callback();
+        // callback && callback();
       }
 
       this.content = cmc;
@@ -595,6 +593,134 @@
     }
     createjs.extend(ContentView6, createjs.Container);
     return createjs.promote(ContentView6, 'Container');
+  }());
+
+  //ContentView7
+  View.ContentView7 = (function() {
+    function ContentView7(callback) {
+      this.Container_constructor();
+      var mc = new createjs.MovieClip();
+
+      // 云1
+      var cloud1 = new createjs.Bitmap(queue.getResult('page6_01-cloud'));
+      cloud1.setTransform(-50, 40);
+      mc.timeline.addTween(createjs.Tween.get(cloud1));
+
+      // 云2
+      var cloud2 = new createjs.Bitmap(queue.getResult('page6_02-cloud'));
+      cloud2.setTransform(620, 340);
+      mc.timeline.addTween(createjs.Tween.get(cloud2));
+
+      // 照片框
+      var photoContainer = new createjs.Container();
+      var photoInput = new createjs.Bitmap(queue.getResult('page7_zhaopiankuang'));
+      photoInput.setTransform(25, 65);
+      photoInput.scaleY = 0.9;
+      photoContainer.addChild(photoInput);
+      mc.timeline.addTween(createjs.Tween.get(photoContainer));
+
+      // 文字框
+      var wordContainer = new createjs.Container();
+      var wordInput = new createjs.Bitmap(queue.getResult('page7_wenzikuang'));
+      wordInput.setTransform(25, 675);
+      wordInput.scaleY = 0.9;
+      wordContainer.addChild(wordInput);
+      // 文字输入框
+      var textInput = new createjs.DOMElement('textInput');
+      $(textInput.htmlElement).show();
+      textInput.setTransform(0, 110);
+      var inputText = '';
+      textInput.htmlElement.addEventListener('input', function(e) {
+        console.log('input', e.target.value);
+        inputText = e.target.value;
+      });
+      wordContainer.addChild(textInput);
+      mc.timeline.addTween(createjs.Tween.get(wordContainer));
+
+      // 上传照片
+      var photoBtn = new createjs.Bitmap(queue.getResult('page7_photo-btn'));
+      photoBtn.setTransform(205, 525);
+      photoBtn.addEventListener('click', function() {
+        var inputEle = $('<input name="pic" type="file"/> ');
+        inputEle.click();
+        inputEle.on('change', function(e) {
+          var img = new Image();
+          img.onload = () => {
+            var photo = new createjs.Bitmap(img);
+            photo.setTransform(25, 65);
+            //遮罩图形
+            var scale = photoContainer.getBounds().width /photo.getBounds().width;
+            photo.scaleX = scale;
+            photo.scaleY = scale;
+            var mask = new createjs.Shape();
+            var maskX = 48;
+            var maskY = 83;
+            var maskWidth = 655;
+            var maskHeight = 415;
+            mask.graphics.beginFill('#000').drawRect(0, 0, maskWidth, maskHeight);
+            mask.x = maskX;
+            mask.y = maskY;
+            photo.mask = mask;     //给图片bg添加遮罩
+
+            var oldX, oldY, resultX, resultY, maxX, maxY;
+            photo.addEventListener('mousedown', function(e) {
+              oldX = e.stageX;
+              oldY = e.stageY;
+            });
+            photo.addEventListener('touchdown', function(e) {
+              oldX = e.stageX;
+              oldY = e.stageY;
+            });
+            photo.addEventListener('pressmove', function (e) {
+              resultX = e.target.x + e.stageX - oldX;
+              resultY = e.target.y + e.stageY - oldY;
+              maxX = maskWidth + maskX - e.target.getBounds().width * scale;
+              maxY = maskHeight + maskY - e.target.getBounds().height * scale;
+              if (resultX < maskX && resultX > maxX) {
+                e.target.x = resultX;
+              }
+              if (resultY < maskY && resultY > maxY) {
+                e.target.y = resultY;
+              }
+              oldX = e.stageX;
+              oldY = e.stageY;
+            });
+            photoContainer.addChild(photo);
+          }
+          img.src = URL.createObjectURL(e.target.files[0]);
+        });
+      });
+      mc.timeline.addTween(createjs.Tween.get(photoBtn));
+
+      // 确认按钮
+      var confirmBtn = new createjs.Bitmap(queue.getResult('page7_confirm-btn'));
+      confirmBtn.setTransform(205, 1135);
+      confirmBtn.addEventListener('click', function(e) {
+        console.log('xxxx');
+
+      });
+      mc.timeline.addTween(createjs.Tween.get(confirmBtn));
+
+      // 背景
+      var background = new createjs.Bitmap(queue.getResult('page7_background'));
+      mc.timeline.addTween(createjs.Tween.get(background));
+
+      var content = new createjs.Container();
+      content.addChild(mc);
+      var cmc = new createjs.MovieClip();
+      cmc.timeline.addTween(createjs.Tween.get(content)
+        .call(complete).wait(1));
+
+      function complete() {
+        console.log('container7 complete');
+        callback && callback();
+      }
+
+      this.content = cmc;
+      this.addChild(this.content);
+    }
+    createjs.extend(ContentView7, createjs.Container);
+    return createjs.promote(ContentView7, 'Container');
   }());
   return View;
 }));

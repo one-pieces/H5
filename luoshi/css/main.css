@@ -56,8 +56,17 @@ html, body {
   height: 100%;
 }
 
-#inputContainer {
+#textInput {
   display: none;
+  background: transparent;
+  width: 80%;
+  height: 160px;
+  outline: none;
+  resize: none;
+  border: none;
+  font-size: 20px;
+  color: #FFFFFF;
+  z-index: 9900;
 }
 
 .scrolltop {
@@ -78,8 +87,6 @@ html, body {
   -webkit-animation: down 1s infinite linear;
 }
 
-
-
 @-webkit-keyframes down {
   0% {
     transform: rotate(90deg) translateX(0%);
@@ -95,4 +102,17 @@ html, body {
   100% {
     transform: rotate(90deg) translateX(20%);
   }
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { /* WebKit browsers */
+  color: #c5c5c5;
+}
+input:-moz-placeholder, textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #c5c5c5;
+}
+input::-moz-placeholder, textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #c5c5c5;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #c5c5c5;
 }

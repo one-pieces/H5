@@ -78,7 +78,13 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       {src: './assets/img/page6/02-cloud.png', id: 'page6_02-cloud'},
       {src: './assets/img/page6/03-btn.png', id: 'page6_03-btn'},
       {src: './assets/img/page6/04-picture.png', id: 'page6_04-picture'},
-      {src: './assets/img/page6/05-background.png', id: 'page6_05-background'}
+      {src: './assets/img/page6/05-background.png', id: 'page6_05-background'},
+      // page7
+      {src: './assets/img/page7/background.jpg', id: 'page7_background'},
+      {src: './assets/img/page7/zhaopiankuang.png', id: 'page7_zhaopiankuang'},
+      {src: './assets/img/page7/wenzikuang.png', id: 'page7_wenzikuang'},
+      {src: './assets/img/page7/photo-btn.png', id: 'page7_photo-btn'},
+      {src: './assets/img/page7/confirm-btn.png', id: 'page7_confirm-btn'},
     ];
     window.queue = new createjs.LoadQueue();
     queue.on('progress', handleProgress);
@@ -105,7 +111,6 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
           self.initMainPage();
         }
       });
-      // $('#loading').hide();
       // self.initMainPage();
     }
     function handleProgress(event) {
@@ -136,7 +141,6 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     this.mainPage.stage = new createjs.Stage(canvas);
     this.mainPage.container = new createjs.Container();
     this.mainPage.stage.addChild(this.mainPage.container);
-    // this.mainPage.stage.enableMouseOver(10);
     createjs.Touch.enable(this.mainPage.stage);
 
     createjs.Ticker.timingMode =  createjs.Ticker.RAF_SYNCHED;
@@ -161,9 +165,9 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
               contentView5.parent.removeChild(contentView5);
             });
             var contentView6 = new View.ContentView6(function click() {
-              console.log('www');
-              $('.swiper-container').hide();
-              $('#inputContainer').show();
+              contentView6.parent.removeChild(contentView6);
+              var contentView7 = new View.ContentView7();
+              self.mainPage.container.addChild(contentView7);
             });
             self.mainPage.container.addChild(contentView6);
           });
@@ -175,17 +179,8 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     });
     this.mainPage.container.addChild(contentView2);
 
-    // var contentView5 = new View.ContentView5(function() {
-    //   setTimeout(function() {
-    //     contentView5.parent.removeChild(contentView5);
-    //   });
-    //   var contentView6 = new View.ContentView6(function click() {
-    //     console.log('www');
-    //     $('inputContainer').show();
-    //   });
-    //   self.mainPage.container.addChild(contentView6);
-    // });
-    // self.mainPage.container.addChild(contentView5);
+    // var contentView7 = new View.ContentView7();
+    // self.mainPage.container.addChild(contentView7);
     this.mainPage.stage.update();
   }
 
