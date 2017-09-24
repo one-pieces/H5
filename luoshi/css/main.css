@@ -80,17 +80,41 @@ html, body {
   height: 100%;
 }
 
+.input-container {
+}
+
 #textInput {
-  display: none;
   background: transparent;
   width: 80%;
-  height: 160px;
+  height: 23%;
   outline: none;
   resize: none;
   border: none;
   font-size: 20px;
   color: #FFFFFF;
   z-index: 9900;
+
+  display: none;
+  position: absolute;
+  top: 53%;
+  /*background: red;*/
+}
+
+#nameInput {
+  background: transparent;
+  width: 80%;
+  outline: none;
+  resize: none;
+  border: none;
+  font-size: 20px;
+  color: #FFFFFF;
+  z-index: 9900;
+
+  display: none;
+  position: absolute;
+  top: 78%;
+  /*background: green;*/
+  border-top: 2px solid #FFFFFF;
 }
 
 .scrolltop {
@@ -153,7 +177,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
 
 #page8 .footer {
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   left: 0;
   display: flex;
   justify-content: center;
@@ -199,5 +223,24 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
   position: absolute;
   top: 510px;
   background: url("../assets/img/page9/xiayibu.png") no-repeat;
+  background-size: contain;
+}
+
+#share {
+  display: none;
+}
+
+.mask {
+  background: #000000;
+  opacity: 0.8;
+}
+
+#share .sharing {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: url("../assets/img/share/sharing.png") no-repeat;
   background-size: contain;
 }

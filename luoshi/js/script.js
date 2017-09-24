@@ -74,12 +74,20 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       // {src: './assets/img/page5/12-stars.png', id: 'page5_12-stars'},
       // {src: './assets/img/page5/13-stars.png', id: 'page5_13-stars'}
       // page6
-      {src: './assets/img/page6/01-cloud.png', id: 'page6_01-cloud'},
-      {src: './assets/img/page6/02-cloud.png', id: 'page6_02-cloud'},
+      // {src: './assets/img/page6/01-cloud.png', id: 'page6_01-cloud'},
+      // {src: './assets/img/page6/02-cloud.png', id: 'page6_02-cloud'},
+      {src: './assets/img/page6/moon.png', id: 'page6_moon'},
+      {src: './assets/img/page6/biaoqian2.png', id: 'page6_biaoqian2'},
+      {src: './assets/img/page6/biaoqian3.png', id: 'page6_biaoqian3'},
+      {src: './assets/img/page6/biaoqian4.png', id: 'page6_biaoqian4'},
+      {src: './assets/img/page6/zhaopiankuang.png', id: 'page6_zhaopiankuang'},
+      {src: './assets/img/page6/dikuang.jpg', id: 'page6_dikuang'},
       {src: './assets/img/page6/03-btn.png', id: 'page6_03-btn'},
-      {src: './assets/img/page6/04-picture.png', id: 'page6_04-picture'},
+      // {src: './assets/img/page6/04-picture.png', id: 'page6_04-picture'},
       {src: './assets/img/page6/05-background.png', id: 'page6_05-background'},
       // page7
+      {src: './assets/img/page7/yun1.png', id: 'page7_yun1'},
+      {src: './assets/img/page7/yun2.png', id: 'page7_yun2'},
       {src: './assets/img/page7/background.jpg', id: 'page7_background'},
       {src: './assets/img/page7/zhaopiankuang.png', id: 'page7_zhaopiankuang'},
       {src: './assets/img/page7/wenzikuang.png', id: 'page7_wenzikuang'},
@@ -87,7 +95,7 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       {src: './assets/img/page7/confirm-btn.png', id: 'page7_confirm-btn'},
       // page8
       {src: './assets/img/page8/background.png', id: 'page8_background'},
-      {src: './assets/img/page8/bg2.png', id: 'page8_bg2'}
+      // {src: './assets/img/page8/bg2.png', id: 'page8_bg2'}
     ];
     window.queue = new createjs.LoadQueue();
     queue.on('progress', handleProgress);
@@ -196,16 +204,20 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     $('#page8').show();
     $('.swiper-container').hide();
     $('#textInput').hide();
+    $('#nameInput').hide();
 
     $('#page8 .redo-btn').on('click', function() {
       $('#page8').hide();
       $('.swiper-container').show();
       $('#textInput').val('').show();
+      $('#nameInput').val('').show();
     });
 
     $('#page8 .share-btn').on('click', function() {
-      // $('#page9').show();
-      console.log('弹出分享蒙版');
+      $('#share').show();
+      $('#share').on('click', function() {
+        $('#share').hide();
+      });
     });
 
     $('#page8 .staff-share-btn').on('click', function() {

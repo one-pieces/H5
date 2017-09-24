@@ -319,9 +319,52 @@
       mc.timeline.addTween(createjs.Tween.get(picture));
 
       // 文字
-      var wenzi = new createjs.Bitmap(queue.getResult('page3_03-wenzi'));
-      wenzi.setTransform(100, 880);
-      mc.timeline.addTween(createjs.Tween.get(wenzi));
+      var wenzi1 = new createjs.Text('来自罗氏制药总经理', '30px Arial', '#ffffff');
+      wenzi1.setTransform(235, 45);
+      mc.timeline.addTween(createjs.Tween.get(wenzi1));
+      var wenzi2 = new createjs.Text('周虹的祝福', '40px Arial', '#ffffff');
+      wenzi2.setTransform(270, 85);
+      mc.timeline.addTween(createjs.Tween.get(wenzi2));
+
+      [
+        {
+          text: '日复一日，我们怀揣梦想',
+          position: [210, 900],
+          startWait: 10
+        },
+        {
+          text: '在“先患者之需而行”的道路上勇敢前行',
+          position: [130, 950],
+          startWait: 50
+        },
+        {
+          text: '而“家”是港湾，始终给我们温暖和力量',
+          position: [130, 1000],
+          startWait: 90
+        },
+        {
+          text: '中秋将至',
+          position: [310, 1050],
+          startWait: 130
+        },
+        {
+          text: '周虹总经理携全家恭祝',
+          position: [225, 1100],
+          startWait: 170
+        },
+        {
+          text: '中秋快乐，阖家幸福！',
+          position: [235, 1150],
+          startWait: 210,
+          endWait: 10
+        }
+      ].forEach(function(item) {
+        var wenziItem = new createjs.Text(item.text, '30px Arial', '#ffffff');
+        wenziItem.setTransform(item.position[0], item.position[1]);
+        wenziItem.alpha = 0;
+        mc.timeline.addTween(createjs.Tween.get(wenziItem)
+          .wait(item.startWait).to({alpha: 1}, 40).wait(item.endWait));
+      });
 
       // 背景
       var background = new createjs.Bitmap(queue.getResult('page3_02-background'));
@@ -338,7 +381,7 @@
       content.regY = 0;
       cmc.timeline.addTween(createjs.Tween.get(content)
         .to({alpha: 1}, 30)
-        .wait(100)
+        .wait(220)
         .to({alpha: 0.5}, 10)
         .call(complete).wait(1));
 
@@ -550,7 +593,7 @@
 
       // 按钮
       var button = new createjs.Bitmap(queue.getResult('page6_03-btn'));
-      button.setTransform(180, 1030);
+      button.setTransform(180, 1050);
       button.addEventListener('click', function () {
         button.alpha = 0.5;
         var timeout = setTimeout(function() {
@@ -561,15 +604,65 @@
       });
       mc.timeline.addTween(createjs.Tween.get(button));
 
-      // 云1
-      var cloud1 = new createjs.Bitmap(queue.getResult('page6_01-cloud'));
-      cloud1.setTransform(-50, 40);
-      mc.timeline.addTween(createjs.Tween.get(cloud1));
+      [
+        {
+          text: '丹桂飘香，皓月当空',
+          position: [255, 580]
+        },
+        {
+          text: '心中有爱，便是团圆',
+          position: [255, 630]
+        },
+        {
+          text: '2017中秋佳节',
+          position: [290, 680]
+        },
+        {
+          text: '罗氏邀您上传全家福并许下心愿',
+          position: [200, 730]
+        },
+        {
+          text: '记录和家人在一起的温馨时刻',
+          position: [215, 780]
+        }
+      ].forEach(function(item) {
+        var wenziItem = new createjs.Text(item.text, '26px Arial', '#000000');
+        wenziItem.setTransform(item.position[0], item.position[1]);
+        mc.timeline.addTween(createjs.Tween.get(wenziItem));
+      });
+
+      // 月亮
+      var moon = new createjs.Bitmap(queue.getResult('page6_moon'));
+      moon.setTransform(530, -140);
+      mc.timeline.addTween(createjs.Tween.get(moon));
+
+      // 标签
+      var biaoqian2 = new createjs.Bitmap(queue.getResult('page6_biaoqian2'));
+      biaoqian2.setTransform(630, 740);
+      mc.timeline.addTween(createjs.Tween.get(biaoqian2));
+      var biaoqian3 = new createjs.Bitmap(queue.getResult('page6_biaoqian3'));
+      biaoqian3.setTransform(0, 50);
+      mc.timeline.addTween(createjs.Tween.get(biaoqian3));
+      var biaoqian4 = new createjs.Bitmap(queue.getResult('page6_biaoqian4'));
+      biaoqian4.setTransform(-25, 720);
+      mc.timeline.addTween(createjs.Tween.get(biaoqian4));
 
       // 照片
-      var picture = new createjs.Bitmap(queue.getResult('page6_04-picture'));
-      picture.setTransform(40, 80);
+      var picture = new createjs.Bitmap(queue.getResult('page3_01-picture'));
+      picture.setTransform(40, 105);
+      picture.scaleX = 0.85;
+      picture.scaleY = 0.85;
       mc.timeline.addTween(createjs.Tween.get(picture));
+
+      // 照片框
+      var zhaopiankuang = new createjs.Bitmap(queue.getResult('page6_zhaopiankuang'));
+      zhaopiankuang.setTransform(78, 105);
+      mc.timeline.addTween(createjs.Tween.get(zhaopiankuang));
+
+      // 底框
+      var dikuang = new createjs.Bitmap(queue.getResult('page6_dikuang'));
+      dikuang.setTransform(55, 80);
+      mc.timeline.addTween(createjs.Tween.get(dikuang));
 
       // 背景
       var background = new createjs.Bitmap(queue.getResult('page6_05-background'));
@@ -601,46 +694,53 @@
       this.Container_constructor();
       var mc = new createjs.MovieClip();
 
+      // 月亮
+      var moon = new createjs.Bitmap(queue.getResult('page6_moon'));
+      moon.setTransform(530, -140);
+      mc.timeline.addTween(createjs.Tween.get(moon));
+
       // 云1
-      var cloud1 = new createjs.Bitmap(queue.getResult('page6_01-cloud'));
+      var cloud1 = new createjs.Bitmap(queue.getResult('page7_yun1'));
       cloud1.setTransform(-50, 40);
       mc.timeline.addTween(createjs.Tween.get(cloud1));
 
       // 云2
-      var cloud2 = new createjs.Bitmap(queue.getResult('page6_02-cloud'));
+      var cloud2 = new createjs.Bitmap(queue.getResult('page7_yun2'));
       cloud2.setTransform(620, 340);
       mc.timeline.addTween(createjs.Tween.get(cloud2));
 
       // 照片框
       var photoContainer = new createjs.Container();
       var photoInput = new createjs.Bitmap(queue.getResult('page7_zhaopiankuang'));
-      photoInput.setTransform(25, 65);
-      photoInput.scaleY = 0.9;
+      photoInput.setTransform(35, 65);
       photoContainer.addChild(photoInput);
       mc.timeline.addTween(createjs.Tween.get(photoContainer));
 
       // 文字框
-      var wordContainer = new createjs.Container();
       var wordInput = new createjs.Bitmap(queue.getResult('page7_wenzikuang'));
       wordInput.setTransform(25, 675);
       wordInput.scaleY = 0.9;
-      wordContainer.addChild(wordInput);
+      mc.timeline.addTween(createjs.Tween.get(wordInput));
+
       // 文字输入框
-      var textInput = new createjs.DOMElement('textInput');
-      $(textInput.htmlElement).show();
-      textInput.setTransform(0, 110);
+      $('#textInput').show();
       var inputText = '';
-      textInput.htmlElement.addEventListener('input', function(e) {
-        console.log('input', e.target.value);
+      $('#textInput').on('input', function(e) {
+        // console.log('input', e.target.value);
         inputText = e.target.value;
       });
-      wordContainer.addChild(textInput);
-      mc.timeline.addTween(createjs.Tween.get(wordContainer));
+      // 名字输入框
+      $('#nameInput').show();
+      var nameText = '';
+      $('#nameInput').on('input', function(e) {
+        // console.log('input', e.target.value);
+        nameText = e.target.value;
+      });
 
       // 上传照片
-      var photo;
+      var photo, photoScale;
       var photoBtn = new createjs.Bitmap(queue.getResult('page7_photo-btn'));
-      photoBtn.setTransform(205, 525);
+      photoBtn.setTransform(205, 570);
       photoBtn.addEventListener('click', function() {
         var inputEle = $('<input name="pic" type="file"/> ');
         inputEle.click();
@@ -650,14 +750,14 @@
             photo = new createjs.Bitmap(img);
             photo.setTransform(25, 65);
             //遮罩图形
-            var scale = photoContainer.getBounds().width /photo.getBounds().width;
-            photo.scaleX = scale;
-            photo.scaleY = scale;
+            photoScale = photoContainer.getBounds().width /photo.getBounds().width;
+            photo.scaleX = photoScale;
+            photo.scaleY = photoScale;
             var mask = new createjs.Shape();
             var maskX = 48;
             var maskY = 83;
-            var maskWidth = 655;
-            var maskHeight = 415;
+            var maskWidth = 650;
+            var maskHeight = 450;
             mask.graphics.beginFill('#000').drawRect(0, 0, maskWidth, maskHeight);
             mask.x = maskX;
             mask.y = maskY;
@@ -675,8 +775,8 @@
             photo.addEventListener('pressmove', function (e) {
               resultX = e.target.x + e.stageX - oldX;
               resultY = e.target.y + e.stageY - oldY;
-              maxX = maskWidth + maskX - e.target.getBounds().width * scale;
-              maxY = maskHeight + maskY - e.target.getBounds().height * scale;
+              maxX = maskWidth + maskX - e.target.getBounds().width * photoScale;
+              maxY = maskHeight + maskY - e.target.getBounds().height * photoScale;
               if (resultX < maskX && resultX > maxX) {
                 e.target.x = resultX;
               }
@@ -687,6 +787,7 @@
               oldY = e.stageY;
             });
             photoContainer.addChild(photo);
+            photoContainer.addChild(photoInput);
           }
           img.src = URL.createObjectURL(e.target.files[0]);
         });
@@ -698,21 +799,73 @@
       confirmBtn.setTransform(205, 1135);
       confirmBtn.addEventListener('click', function(e) {
         console.log('xxxx');
+        if (!photo) {
+          alert('你忘了上传照片噢~');
+          return;
+        }
         if (!inputText) {
-          alert('请输入祝福语！');
+          alert('你还没有写心愿噢~');
+          return;
+        }
+        if (!nameText) {
+          alert('你还没有写你的名字噢~');
           return;
         }
         // 生成祝福图片
         var cont = new createjs.Container();
         var page8Background = new createjs.Bitmap(queue.getResult('page8_background'));
-        var page8Bg2 = new createjs.Bitmap(queue.getResult('page8_bg2'));
-        page8Bg2.x = 50;
-        page8Bg2.y = 50;
-        page8Bg2.scaleX = 0.95;
-        page8Bg2.scaleY = 0.95;
         cont.addChild(page8Background);
-        cont.addChild(page8Bg2);
+
+        // 底框
+        var dikuang = new createjs.Bitmap(queue.getResult('page6_dikuang'));
+        dikuang.setTransform(55, 80);
+        cont.addChild(dikuang);
+
+        // 上一页截图
+        photo.mask.setTransform(78, 115);
+        photo.mask.scaleX = 0.9;
+        photo.mask.scaleY = 0.9;
         cont.addChild(photo);
+
+        // 祝福语
+        inputText = inputText.split('').reduce(function(preResult, item, index) {
+          if (index && index % 15 == 0) {
+            preResult.push(' ');
+          }
+          preResult.push(item);
+          return preResult;
+        }, []).join('');
+        var zhufuyu = new createjs.Text(inputText, '30px Arial', '#000000');
+        zhufuyu.setTransform(150, 580);
+        zhufuyu.lineWidth = 200;
+        zhufuyu.lineHeight = 40;
+        cont.addChild(zhufuyu);
+
+        // 祝福人名字
+        var zhufuname = new createjs.Text('落款：' + nameText, '30px Arial', '#000000');
+        zhufuname.setTransform(350, 780);
+        cont.addChild(zhufuname);
+
+        // 照片框
+        var zhaopiankuang = new createjs.Bitmap(queue.getResult('page6_zhaopiankuang'));
+        zhaopiankuang.setTransform(78, 105);
+        cont.addChild(zhaopiankuang);
+
+        // 月亮
+        var moon = new createjs.Bitmap(queue.getResult('page6_moon'));
+        moon.setTransform(530, -140);
+        cont.addChild(moon);
+
+        // 标签
+        var biaoqian2 = new createjs.Bitmap(queue.getResult('page6_biaoqian2'));
+        biaoqian2.setTransform(630, 740);
+        cont.addChild(biaoqian2);
+        var biaoqian3 = new createjs.Bitmap(queue.getResult('page6_biaoqian3'));
+        biaoqian3.setTransform(0, 50);
+        cont.addChild(biaoqian3);
+        var biaoqian4 = new createjs.Bitmap(queue.getResult('page6_biaoqian4'));
+        biaoqian4.setTransform(-25, 720);
+        cont.addChild(biaoqian4);
 
         cont.cache(0, 0, 750, 1334);
         callback && callback(cont.cacheCanvas.toDataURL());
