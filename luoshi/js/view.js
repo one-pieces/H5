@@ -638,6 +638,7 @@
       mc.timeline.addTween(createjs.Tween.get(wordContainer));
 
       // 上传照片
+      var photo;
       var photoBtn = new createjs.Bitmap(queue.getResult('page7_photo-btn'));
       photoBtn.setTransform(205, 525);
       photoBtn.addEventListener('click', function() {
@@ -646,7 +647,7 @@
         inputEle.on('change', function(e) {
           var img = new Image();
           img.onload = () => {
-            var photo = new createjs.Bitmap(img);
+            photo = new createjs.Bitmap(img);
             photo.setTransform(25, 65);
             //遮罩图形
             var scale = photoContainer.getBounds().width /photo.getBounds().width;
@@ -697,7 +698,24 @@
       confirmBtn.setTransform(205, 1135);
       confirmBtn.addEventListener('click', function(e) {
         console.log('xxxx');
+        if (!inputText) {
+          alert('请输入祝福语！');
+          return;
+        }
+        // 生成祝福图片
+        var cont = new createjs.Container();
+        var page8Background = new createjs.Bitmap(queue.getResult('page8_background'));
+        var page8Bg2 = new createjs.Bitmap(queue.getResult('page8_bg2'));
+        page8Bg2.x = 50;
+        page8Bg2.y = 50;
+        page8Bg2.scaleX = 0.95;
+        page8Bg2.scaleY = 0.95;
+        cont.addChild(page8Background);
+        cont.addChild(page8Bg2);
+        cont.addChild(photo);
 
+        cont.cache(0, 0, 750, 1334);
+        callback && callback(cont.cacheCanvas.toDataURL());
       });
       mc.timeline.addTween(createjs.Tween.get(confirmBtn));
 
@@ -713,7 +731,7 @@
 
       function complete() {
         console.log('container7 complete');
-        callback && callback();
+        // callback && callback();
       }
 
       this.content = cmc;

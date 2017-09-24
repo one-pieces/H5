@@ -85,6 +85,9 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       {src: './assets/img/page7/wenzikuang.png', id: 'page7_wenzikuang'},
       {src: './assets/img/page7/photo-btn.png', id: 'page7_photo-btn'},
       {src: './assets/img/page7/confirm-btn.png', id: 'page7_confirm-btn'},
+      // page8
+      {src: './assets/img/page8/background.png', id: 'page8_background'},
+      {src: './assets/img/page8/bg2.png', id: 'page8_bg2'}
     ];
     window.queue = new createjs.LoadQueue();
     queue.on('progress', handleProgress);
@@ -117,7 +120,7 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       $('#loading').text((queue.progress*100|0) + '%');
       console.log((queue.progress*100|0) + '%');
     }
-  }
+  };
 
   self.initHomePage = function() {
     var canvas = document.getElementById('homeView');
@@ -129,12 +132,11 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     createjs.Ticker.timingMode =  createjs.Ticker.RAF_SYNCHED;
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', this.homePage.stage);
-    // createjs.Ticker.addEventListener("tick", stageBreakHandler);
 
     var contentView1 = new View.ContentView1();
     this.homePage.container.addChild(contentView1);
     this.homePage.stage.update();
-  }
+  };
 
   self.initMainPage = function() {
     var canvas = document.getElementById('mainView');
@@ -146,7 +148,6 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     createjs.Ticker.timingMode =  createjs.Ticker.RAF_SYNCHED;
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', this.mainPage.stage);
-    // createjs.Ticker.addEventListener("tick", stageBreakHandler);
 
     var contentView2 = new View.ContentView2(function() {
       setTimeout(function() {
@@ -166,7 +167,9 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
             });
             var contentView6 = new View.ContentView6(function click() {
               contentView6.parent.removeChild(contentView6);
-              var contentView7 = new View.ContentView7();
+              var contentView7 = new View.ContentView7(function(imgDataURL) {
+                self.htmlPage(imgDataURL);
+              });
               self.mainPage.container.addChild(contentView7);
             });
             self.mainPage.container.addChild(contentView6);
@@ -179,10 +182,37 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     });
     this.mainPage.container.addChild(contentView2);
 
-    // var contentView7 = new View.ContentView7();
+    // var contentView7 = new View.ContentView7(function(imgDataURL) {
+    //   self.htmlPage(imgDataURL);
+    // });
     // self.mainPage.container.addChild(contentView7);
     this.mainPage.stage.update();
-  }
+  };
+
+  self.htmlPage = function(imgDataURL) {
+    var img = document.createElement('img');
+    img.src = imgDataURL;
+    $(img).css({width: '100%', height: '100%', position: 'absolute'}).appendTo('#page8 .content');
+    $('#page8').show();
+    $('.swiper-container').hide();
+    $('#textInput').hide();
+
+    $('#page8 .redo-btn').on('click', function() {
+      $('#page8').hide();
+      $('.swiper-container').show();
+      $('#textInput').val('').show();
+    });
+
+    $('#page8 .share-btn').on('click', function() {
+      // $('#page9').show();
+      console.log('弹出分享蒙版');
+    });
+
+    $('#page8 .staff-share-btn').on('click', function() {
+      $('#page8').hide();
+      $('#page9').show();
+    });
+  };
 
   return self;
 });

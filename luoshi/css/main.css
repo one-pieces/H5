@@ -51,6 +51,12 @@ html, body {
   align-items: center;
 }
 
+#loading .loadinggif {
+  width
+  background: url("../assets/img/loading/loading.gif") no-repeat;
+  background-size: contain;
+}
+
 #homeView, #mainView {
   width: 100%;
   height: 100%;
@@ -115,4 +121,65 @@ input::-moz-placeholder, textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
 }
 input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
   color: #c5c5c5;
+}
+
+.fullscreen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+#page8 {
+  display: none;
+}
+
+#page8 .footer {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#page8 .redo-btn {
+  width: 120px;
+  height: 40px;
+  background: url("../assets/img/page8/chongxinzhizuo.png") no-repeat;
+  background-size: contain;
+}
+
+#page8 .share-btn {
+  width: 89px;
+  height: 40px;
+  background: url("../assets/img/page8/fenxiang.png") no-repeat;
+  background-size: contain;
+}
+
+#page8 .staff-share-btn {
+  width: 120px;
+  height: 40px;
+  background: url("../assets/img/page8/yuangongzhuanxiang.png") no-repeat;
+  background-size: contain;
+}
+
+#page9 {
+  display: none;
+  background: url("../assets/img/page9/bg4.jpg") no-repeat;
+  background-size: contain;
+}
+
+#page9 .content {
+  display: flex;
+  justify-content: center;
+}
+
+#page9 .next-btn {
+  width: 195px;
+  height: 55px;
+  position: absolute;
+  top: 510px;
+  background: url("../assets/img/page9/xiayibu.png") no-repeat;
+  background-size: contain;
 }
