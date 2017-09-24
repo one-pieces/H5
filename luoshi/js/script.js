@@ -117,7 +117,7 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       // self.initMainPage();
     }
     function handleProgress(event) {
-      $('#loading').text((queue.progress*100|0) + '%');
+      $('#loading .text').text((queue.progress*100|0) + '%');
       console.log((queue.progress*100|0) + '%');
     }
   };
