@@ -44,14 +44,14 @@ html, body {
   justify-content: center;
   align-items: center;
   background: url("../assets/img/loading/background.jpg") no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 #loading .loadinggif {
   width: 50px;
   height: 50px;
   background: url("../assets/img/loading/loading.gif") no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,7 +61,7 @@ html, body {
   width: 30px;
   height: 30px;
   background: url("../assets/img/loading/longtuzi.png") no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 #loading .text {
@@ -186,27 +186,27 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
   width: 120px;
   height: 40px;
   background: url("../assets/img/page8/chongxinzhizuo.png") no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 #page8 .share-btn {
   width: 89px;
   height: 40px;
   background: url("../assets/img/page8/fenxiang.png") no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 #page8 .staff-share-btn {
   width: 120px;
   height: 40px;
   background: url("../assets/img/page8/yuangongzhuanxiang.png") no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 #page9 {
   display: none;
   background: url("../assets/img/page9/bg4.jpg") no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 #page9 .content {
@@ -220,7 +220,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
   position: absolute;
   top: 510px;
   background: url("../assets/img/page9/xiayibu.png") no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 #share {
@@ -239,5 +239,5 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
   width: 300px;
   height: 100%;
   background: url("../assets/img/share/sharing.png") no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 }
