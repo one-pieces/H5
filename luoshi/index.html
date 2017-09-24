@@ -22,6 +22,8 @@
 <body>
   <!--<canvas id="mainView" width="750" height="1334"></canvas>-->
 
+  <input id="fileLoader" name="pic" type="file" style="position: absolute;"/>
+  
   <div id="loading" class="fullscreen">
     <div class="loadinggif">
       <div class="loadingtuzi"></div>
@@ -45,21 +47,28 @@
   
   <textarea id="textInput" type="text" maxlength="50" placeholder="2017我的中秋心愿（50 字以内）"></textarea>
   <textarea id="nameInput" rows="1" type="text" maxlength="5" placeholder="请输入名字"></textarea>
+  <input id="page10_nameInput" class="input" />
+  <input id="page10_staffInput" class="input" />
+  <input id="page10_phoneInput" class="input" />
+  
   <div id="page8" class="fullscreen">
     <div class="content"></div>
+    <div class="tips1">长按图片，可保存至手机相册</div>
+    <div class="tips2">还可转发朋友圈噢</div>
+    <div class="tips3">扫码定制你的心愿</div>
     <div class="footer">
       <div class="btn redo-btn"></div>
       <div class="btn share-btn"></div>
       <div class="btn staff-share-btn"></div>
     </div>
   </div>
-  <div id="page9" class="fullscreen">
-    <div class="content">
-      <div class="btn next-btn"></div>
-    </div>
-  </div>
   <div id="share" class="fullscreen mask">
     <div class="sharing"></div>
+  </div>
+  <div id="confirmSuccess" class="fullscreen mask">
+    <div class="succecs-dialog">
+      <div class="success-btn"></div>
+    </div>
   </div>
 </body>
 </html>

@@ -48,7 +48,7 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       // {src: './assets/img/page2/13-stars.png', id: 'page2_13-stars'},
       {src: './assets/img/page2/20-wenzi1.png', id: 'page2_20-wenzi1'},
       {src: './assets/img/page2/21-wenzi2.png', id: 'page2_21-wenzi2'},
-      {src: './assets/img/page2/22-wenzi3.png', id: 'page2_22-wenzi3'},
+      // {src: './assets/img/page2/22-wenzi3.png', id: 'page2_22-wenzi3'},
       // page3
       {src: './assets/img/page3/01-picture.png', id: 'page3_01-picture'},
       {src: './assets/img/page3/02-background.jpg', id: 'page3_02-background'},
@@ -95,7 +95,24 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       {src: './assets/img/page7/confirm-btn.png', id: 'page7_confirm-btn'},
       // page8
       {src: './assets/img/page8/background.png', id: 'page8_background'},
-      // {src: './assets/img/page8/bg2.png', id: 'page8_bg2'}
+      // page8 css
+      {src: './assets/img/page8/chongxinzhizuo.png', id: 'page8_chongxinzhizuo'},
+      {src: './assets/img/page8/fenxiang.png', id: 'page8_fenxiang'},
+      {src: './assets/img/page8/yuangongzhuanxiang.png', id: 'page8_yuangongzhuanxiang'},
+      // page9
+      {src: './assets/img/page9/biaoti.png', id: 'page9_biaoti'},
+      {src: './assets/img/page9/yun.png', id: 'page9_yun'},
+      {src: './assets/img/page9/xiayibu.png', id: 'page9_xiayibu'},
+      // page10
+      {src: './assets/img/page10/biaoti.png', id: 'page10_biaoti'},
+      {src: './assets/img/page10/mingzi.png', id: 'page10_mingzi'},
+      {src: './assets/img/page10/shoujihao.png', id: 'page10_shoujihao'},
+      {src: './assets/img/page10/yuangonghao.png', id: 'page10_yuangonghao'},
+      {src: './assets/img/page10/tijiao.png', id: 'page10_tijiao'},
+      // share
+      {src: './assets/img/share/erweima.png', id: 'share_erweima'},
+      // share css
+      {src: './assets/img/share/sharing.png', id: 'share_sharing'}
     ];
     window.queue = new createjs.LoadQueue();
     queue.on('progress', handleProgress);
@@ -192,6 +209,9 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
 
     // var contentView7 = new View.ContentView7(function(imgDataURL) {
     //   self.htmlPage(imgDataURL);
+    //   // contentView9.parent.removeChild(contentView9);
+    //   // var contentView10 = new View.ContentView10();
+    //   // self.mainPage.container.addChild(contentView10);
     // });
     // self.mainPage.container.addChild(contentView7);
     this.mainPage.stage.update();
@@ -221,8 +241,17 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     });
 
     $('#page8 .staff-share-btn').on('click', function() {
-      $('#page8').hide();
-      $('#page9').show();
+      self.mainPage.container.removeAllChildren();
+      var contentView9 = new View.ContentView9(function() {
+        contentView9.parent.removeChild(contentView9);
+        var contentView10 = new View.ContentView10();
+        self.mainPage.container.addChild(contentView10);
+      });
+      self.mainPage.container.addChild(contentView9);
+      $('.swiper-container').show();
+      setTimeout(function() {
+        $('#page8').hide();
+      }, 800);
     });
   };
 

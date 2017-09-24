@@ -274,12 +274,12 @@
       var wenzi2 = new createjs.Bitmap(queue.getResult('page2_21-wenzi2'));
       wenzi2.setTransform(250, 200);
       wenzi2.alpha = 0;
-      var wenzi3 = new createjs.Bitmap(queue.getResult('page2_22-wenzi3'));
-      wenzi3.setTransform(330, 200);
-      wenzi3.alpha = 0;
+      // var wenzi3 = new createjs.Bitmap(queue.getResult('page2_22-wenzi3'));
+      // wenzi3.setTransform(330, 200);
+      // wenzi3.alpha = 0;
       cmc.timeline.addTween(createjs.Tween.get(wenzi1).to({alpha: 0}, 40));
       cmc.timeline.addTween(createjs.Tween.get(wenzi2).wait(40).to({alpha: 1}, 40).to({alpha: 0}, 40));
-      cmc.timeline.addTween(createjs.Tween.get(wenzi3).wait(120).to({alpha: 1}, 40).to({alpha: 0}, 40));
+      // cmc.timeline.addTween(createjs.Tween.get(wenzi3).wait(120).to({alpha: 1}, 40).to({alpha: 0}, 40));
 
       var content = new createjs.Container();
       content.addChild(mc);
@@ -742,7 +742,8 @@
       var photoBtn = new createjs.Bitmap(queue.getResult('page7_photo-btn'));
       photoBtn.setTransform(205, 570);
       photoBtn.addEventListener('click', function() {
-        var inputEle = $('<input name="pic" type="file"/> ');
+        // var inputEle = $('<input name="pic" type="file"/> ');
+        var inputEle = $('#fileLoader');
         inputEle.click();
         inputEle.on('change', function(e) {
           var img = new Image();
@@ -867,6 +868,13 @@
         biaoqian4.setTransform(-25, 720);
         cont.addChild(biaoqian4);
 
+        // 二维码
+        var erweima = new createjs.Bitmap(queue.getResult('share_erweima'));
+        erweima.setTransform(290, 980);
+        erweima.scaleX = 0.6;
+        erweima.scaleY = 0.6;
+        cont.addChild(erweima);
+
         cont.cache(0, 0, 750, 1334);
         callback && callback(cont.cacheCanvas.toDataURL());
       });
@@ -892,6 +900,212 @@
     }
     createjs.extend(ContentView7, createjs.Container);
     return createjs.promote(ContentView7, 'Container');
+  }());
+
+  //ContentView9
+  View.ContentView9 = (function() {
+    function ContentView9(callback) {
+      this.Container_constructor();
+      var mc = new createjs.MovieClip();
+
+      // 按钮
+      var button = new createjs.Bitmap(queue.getResult('page9_xiayibu'));
+      button.setTransform(180, 1050);
+      button.addEventListener('click', function () {
+        button.alpha = 0.5;
+        var timeout = setTimeout(function() {
+          button.alpha = 1;
+          clearTimeout(timeout);
+        }, 300);
+        console.log('ssss', callback);
+        callback && callback();
+      });
+      mc.timeline.addTween(createjs.Tween.get(button));
+
+      [
+        {
+          text: '抽奖规则：',
+          position: [305, 400]
+        },
+        {
+          text: '1. 仅对罗氏制药员工有效；',
+          position: [200, 480]
+        },
+        {
+          text: '2. 参与时间：9月30日至10月8日',
+          position: [150, 520]
+        },
+        {
+          text: '3. 后台将随机抽取幸运儿，惊喜多多！',
+          position: [130, 560]
+        },
+        {
+          text: '* 中奖名单请关注"罗氏头条"',
+          position: [185, 680]
+        }
+      ].forEach(function(item) {
+        var wenziItem = new createjs.Text(item.text, '30px Arial', '#1A5078');
+        wenziItem.setTransform(item.position[0], item.position[1]);
+        mc.timeline.addTween(createjs.Tween.get(wenziItem));
+      });
+
+      // 月亮
+      var moon = new createjs.Bitmap(queue.getResult('page6_moon'));
+      moon.setTransform(530, -140);
+      mc.timeline.addTween(createjs.Tween.get(moon));
+
+      // 标签
+      var yun = new createjs.Bitmap(queue.getResult('page9_yun'));
+      yun.setTransform(580, 780);
+      mc.timeline.addTween(createjs.Tween.get(yun));
+      var biaoqian3 = new createjs.Bitmap(queue.getResult('page6_biaoqian3'));
+      biaoqian3.setTransform(0, 50);
+      mc.timeline.addTween(createjs.Tween.get(biaoqian3));
+      var biaoqian4 = new createjs.Bitmap(queue.getResult('page6_biaoqian4'));
+      biaoqian4.setTransform(-25, 720);
+      mc.timeline.addTween(createjs.Tween.get(biaoqian4));
+
+      // 标题
+      var biaoti = new createjs.Bitmap(queue.getResult('page9_biaoti'));
+      biaoti.setTransform(210, 205);
+      mc.timeline.addTween(createjs.Tween.get(biaoti));
+
+      // 底框
+      var dikuang = new createjs.Bitmap(queue.getResult('page6_dikuang'));
+      dikuang.setTransform(55, 80);
+      mc.timeline.addTween(createjs.Tween.get(dikuang));
+
+      // 背景
+      var background = new createjs.Bitmap(queue.getResult('page6_05-background'));
+      mc.timeline.addTween(createjs.Tween.get(background));
+
+      var content = new createjs.Container();
+      content.addChild(mc);
+      content.alpha = 0;
+      var cmc = new createjs.MovieClip();
+      cmc.timeline.addTween(createjs.Tween.get(content)
+        .to({alpha: 1}, 10).wait(2000)
+        .call(complete).wait(1));
+
+      function complete() {
+        console.log('container9 complete');
+        // callback && callback();
+      }
+
+      this.content = cmc;
+      this.addChild(this.content);
+    }
+    createjs.extend(ContentView9, createjs.Container);
+    return createjs.promote(ContentView9, 'Container');
+  }());
+
+  //ContentView10
+  View.ContentView10 = (function() {
+    function ContentView10(callback) {
+      this.Container_constructor();
+      var mc = new createjs.MovieClip();
+
+      // 月亮
+      var moon = new createjs.Bitmap(queue.getResult('page6_moon'));
+      moon.setTransform(530, -140);
+      mc.timeline.addTween(createjs.Tween.get(moon));
+
+      // 云1
+      var cloud1 = new createjs.Bitmap(queue.getResult('page7_yun1'));
+      cloud1.setTransform(-50, 40);
+      mc.timeline.addTween(createjs.Tween.get(cloud1));
+
+      // 云2
+      var cloud2 = new createjs.Bitmap(queue.getResult('page7_yun2'));
+      cloud2.setTransform(620, 340);
+      mc.timeline.addTween(createjs.Tween.get(cloud2));
+
+      // 标题
+      var biaoti = new createjs.Bitmap(queue.getResult('page10_biaoti'));
+      biaoti.setTransform(220, 180);
+      mc.timeline.addTween(createjs.Tween.get(biaoti));
+
+      // 姓名输入框
+      var nameInput = new createjs.Bitmap(queue.getResult('page10_mingzi'));
+      nameInput.setTransform(40, 300);
+      mc.timeline.addTween(createjs.Tween.get(nameInput));
+
+      // 员工号输入框
+      var staffInput = new createjs.Bitmap(queue.getResult('page10_yuangonghao'));
+      staffInput.setTransform(40, 480);
+      mc.timeline.addTween(createjs.Tween.get(staffInput));
+
+      // 手机号输入框
+      var phoneInput = new createjs.Bitmap(queue.getResult('page10_shoujihao'));
+      phoneInput.setTransform(40, 660);
+      mc.timeline.addTween(createjs.Tween.get(phoneInput));
+
+      // 提示语
+      var tips = new createjs.Text('* 以上信息填写完整，即可参与抽奖', '30px Arial', '#ffffff');
+      tips.setTransform(40, 820);
+      mc.timeline.addTween(createjs.Tween.get(tips));
+
+      // 姓名输入框
+      $('#page10_nameInput').show();
+      var nameText = '';
+      $('#page10_nameInput').on('input', function(e) {
+        // console.log('input', e.target.value);
+        nameText = e.target.value;
+      });
+      // 员工号输入框
+      $('#page10_staffInput').show();
+      var staffText = '';
+      $('#page10_staffInput').on('input', function(e) {
+        // console.log('input', e.target.value);
+        staffText = e.target.value;
+      });
+      // 手机号输入框
+      $('#page10_phoneInput').show();
+      var phoneText = '';
+      $('#page10_phoneInput').on('input', function(e) {
+        // console.log('input', e.target.value);
+        phoneText = e.target.value;
+      });
+
+      // 确认按钮
+      var confirmBtn = new createjs.Bitmap(queue.getResult('page10_tijiao'));
+      confirmBtn.setTransform(180, 935);
+      confirmBtn.addEventListener('click', function(e) {
+        console.log('dsds');
+        $('#confirmSuccess').show();
+        $('#confirmSuccess').on('click', function() {
+          $('#confirmSuccess').hide();
+        });
+        $('#confirmSuccess .success-btn').on('click', function() {
+          console.log('ddddd');
+          $('#share').show();
+          $('#share').on('click', function() {
+            $('#share').hide();
+          });
+        });
+      });
+      mc.timeline.addTween(createjs.Tween.get(confirmBtn));
+
+      // 背景
+      var background = new createjs.Bitmap(queue.getResult('page7_background'));
+      mc.timeline.addTween(createjs.Tween.get(background));
+
+      var content = new createjs.Container();
+      content.addChild(mc);
+      var cmc = new createjs.MovieClip();
+      cmc.timeline.addTween(createjs.Tween.get(content)
+        .call(complete).wait(1));
+
+      function complete() {
+        console.log('container10 complete');
+        // callback && callback();
+      }
+
+      this.content = cmc;
+      this.addChild(this.content);
+    }
+    createjs.extend(ContentView10, createjs.Container);
+    return createjs.promote(ContentView10, 'Container');
   }());
   return View;
 }));
