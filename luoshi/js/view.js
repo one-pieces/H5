@@ -647,17 +647,15 @@
       biaoqian4.setTransform(-25, 720);
       mc.timeline.addTween(createjs.Tween.get(biaoqian4));
 
-      // 照片
-      var picture = new createjs.Bitmap(queue.getResult('page3_01-picture'));
-      picture.setTransform(40, 105);
-      picture.scaleX = 0.85;
-      picture.scaleY = 0.85;
-      mc.timeline.addTween(createjs.Tween.get(picture));
-
       // 照片框
       var zhaopiankuang = new createjs.Bitmap(queue.getResult('page6_zhaopiankuang'));
       zhaopiankuang.setTransform(78, 105);
       mc.timeline.addTween(createjs.Tween.get(zhaopiankuang));
+
+      // 照片
+      var picture = new createjs.Bitmap(queue.getResult('page6_01-picture'));
+      picture.setTransform(78, 105);
+      mc.timeline.addTween(createjs.Tween.get(picture));
 
       // 底框
       var dikuang = new createjs.Bitmap(queue.getResult('page6_dikuang'));
@@ -841,6 +839,10 @@
         zhufuyu.lineWidth = 200;
         zhufuyu.lineHeight = 40;
         cont.addChild(zhufuyu);
+        // 提示语
+        var tips = new createjs.Text('扫码定制你的心愿', '25px Arial', '#ffffff');
+        tips.setTransform(273, 1165);
+        cont.addChild(tips);
 
         // 祝福人名字
         var zhufuname = new createjs.Text('落款：' + nameText, '30px Arial', '#000000');

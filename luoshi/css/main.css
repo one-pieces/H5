@@ -92,6 +92,7 @@ html, body {
   position: absolute;
   top: 53%;
   /*background: red;*/
+  line-height: 200%;
 }
 
 #nameInput {
@@ -106,8 +107,9 @@ html, body {
 
   display: none;
   position: absolute;
-  top: 78%;
+  bottom: 17.5%;
   /*background: green;*/
+  text-align: right;
   border-top: 2px solid #FFFFFF;
 }
 

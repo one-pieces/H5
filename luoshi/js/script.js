@@ -89,7 +89,7 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       {src: './assets/img/page4/04-yanhua.png', id: 'page4_04-yanhua'},
       {src: './assets/img/page4/10-background.png', id: 'page4_10-background'},
       // page5
-      {src: './assets/img/page5/00-background.png', id: 'page5_00-background'},
+      {src: './assets/img/page5/00-background.jpg', id: 'page5_00-background'},
       // {src: './assets/img/page5/01-kongmingdeng.png', id: 'page5_01-kongmingdeng'},
       // {src: './assets/img/page5/02-kongmingdeng.png', id: 'page5_02-kongmingdeng'},
       // {src: './assets/img/page5/03-kongmingdeng.png', id: 'page5_03-kongmingdeng'},
@@ -107,6 +107,7 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       {src: './assets/img/page6/biaoqian4.png', id: 'page6_biaoqian4'},
       {src: './assets/img/page6/zhaopiankuang.png', id: 'page6_zhaopiankuang'},
       {src: './assets/img/page6/dikuang.jpg', id: 'page6_dikuang'},
+      {src: './assets/img/page6/01-picture.jpg', id: 'page6_01-picture'},
       {src: './assets/img/page6/03-btn.png', id: 'page6_03-btn'},
       // {src: './assets/img/page6/04-picture.png', id: 'page6_04-picture'},
       {src: './assets/img/page6/05-background.png', id: 'page6_05-background'},
@@ -215,46 +216,46 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       self.mainPage.container.addChild(contentView6);
     } else {
       // 没有pictureId，则从第二页开始显示
-      var contentView2 = new View.ContentView2(function() {
-        setTimeout(function() {
-          contentView2.parent.removeChild(contentView2);
-        }, 2500);
-        var contentView3 = new View.ContentView3(function() {
-          setTimeout(function() {
-            contentView3.parent.removeChild(contentView3);
-          });
-          var contentView4 = new View.ContentView4(function() {
-            setTimeout(function() {
-              contentView4.parent.removeChild(contentView4);
-            });
-            var contentView5 = new View.ContentView5(function() {
-              setTimeout(function() {
-                contentView5.parent.removeChild(contentView5);
-              });
-              var contentView6 = new View.ContentView6(function click() {
-                contentView6.parent.removeChild(contentView6);
-                var contentView7 = new View.ContentView7(function(imgDataURL) {
-                  self.htmlPage(imgDataURL);
-                });
-                self.mainPage.container.addChild(contentView7);
-              });
-              self.mainPage.container.addChild(contentView6);
-            });
-            self.mainPage.container.addChild(contentView5);
-          });
-          self.mainPage.container.addChild(contentView4);
-        });
-        self.mainPage.container.addChild(contentView3);
-      });
-      this.mainPage.container.addChild(contentView2);
-
-      // var contentView7 = new View.ContentView7(function(imgDataURL) {
-      //   self.htmlPage(imgDataURL);
-      //   // contentView9.parent.removeChild(contentView9);
-      //   // var contentView10 = new View.ContentView10();
-      //   // self.mainPage.container.addChild(contentView10);
+      // var contentView2 = new View.ContentView2(function() {
+      //   setTimeout(function() {
+      //     contentView2.parent.removeChild(contentView2);
+      //   }, 2500);
+      //   var contentView3 = new View.ContentView3(function() {
+      //     setTimeout(function() {
+      //       contentView3.parent.removeChild(contentView3);
+      //     });
+      //     var contentView4 = new View.ContentView4(function() {
+      //       setTimeout(function() {
+      //         contentView4.parent.removeChild(contentView4);
+      //       });
+      //       var contentView5 = new View.ContentView5(function() {
+      //         setTimeout(function() {
+      //           contentView5.parent.removeChild(contentView5);
+      //         });
+      //         var contentView6 = new View.ContentView6(function click() {
+      //           contentView6.parent.removeChild(contentView6);
+      //           var contentView7 = new View.ContentView7(function(imgDataURL) {
+      //             self.htmlPage(imgDataURL);
+      //           });
+      //           self.mainPage.container.addChild(contentView7);
+      //         });
+      //         self.mainPage.container.addChild(contentView6);
+      //       });
+      //       self.mainPage.container.addChild(contentView5);
+      //     });
+      //     self.mainPage.container.addChild(contentView4);
+      //   });
+      //   self.mainPage.container.addChild(contentView3);
       // });
-      // self.mainPage.container.addChild(contentView7);
+      // this.mainPage.container.addChild(contentView2);
+
+      var contentView7 = new View.ContentView7(function(imgDataURL) {
+        self.htmlPage(imgDataURL);
+        // contentView9.parent.removeChild(contentView9);
+        // var contentView10 = new View.ContentView10();
+        // self.mainPage.container.addChild(contentView10);
+      });
+      self.mainPage.container.addChild(contentView7);
       this.mainPage.stage.update();
     }
   };
