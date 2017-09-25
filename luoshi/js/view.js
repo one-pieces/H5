@@ -1069,23 +1069,82 @@
         // console.log('input', e.target.value);
         phoneText = e.target.value;
       });
+      $('#staffForm').validator({
+        timely: 0,
+        stopOnError: false,
+        msgMaker: false,
+        fields: {
+          'name': {rule: 'required;length(2~30)', msg: {required: '姓名不能为空', length: '姓名2-30字符'}},
+          'number': {rule: 'required', msg: {required: '请填写员工号'}},
+          'mobile': {rule: 'required;mobile', msg: {required: '手机号不能为空', mobile: '手机号格式错误'}}
+        },
+        invalid: function (form, errors) {
+          var msg = '';
+          for (var r in errors) {
+            msg = msg + errors[r] + '<br/>';
+          }
+          // showToaster(msg);
+          console.log(msg);
+        },
+        valid: function (form) {
+          $('#loading1').show();
+          console.log('cccc');
+          var timeOut = setTimeout(function() {
+            clearTimeout(timeOut);
+            var ajax = $.ajax({
+              'url': 'http://zq.guiyuanshiye.com/user/add',
+              'data': $(form).serialize(),
+              'type': 'post',
+              'dataType': 'json',
+              'async': true
+            });
+            ajax.done(function (r) {
+              $('#loading1').hide();
+              (function() {
+                $('#confirmSuccess').show();
+                $('#confirmSuccess').on('click', function() {
+                  $('#confirmSuccess').hide();
+                });
+                $('#confirmSuccess .success-btn').on('click', function() {
+                  $('#share').show();
+                  $('#share').on('click', function() {
+                    $('#share').hide();
+                  });
+                });
+              })();
+              // if (r.error) {
+                // showToaster(r.msg);
+              // }
+              // else {
+              //   window.location.href = r.msg;
+              //   return;
+              // }
+            });
+            ajax.fail(function (jqXHR, textStatus) {
+              // hideLoading();
+              $('#loading1').hide();
+              // showToaster('发生错误!');
+            });
+          }, 300);
+        }
+      });
 
       // 确认按钮
       var confirmBtn = new createjs.Bitmap(queue.getResult('page10_tijiao'));
       confirmBtn.setTransform(180, 935);
       confirmBtn.addEventListener('click', function(e) {
-        console.log('dsds');
-        $('#confirmSuccess').show();
-        $('#confirmSuccess').on('click', function() {
-          $('#confirmSuccess').hide();
-        });
-        $('#confirmSuccess .success-btn').on('click', function() {
-          console.log('ddddd');
-          $('#share').show();
-          $('#share').on('click', function() {
-            $('#share').hide();
-          });
-        });
+        $('#staffForm').submit();
+        // $('#confirmSuccess').show();
+        // $('#confirmSuccess').on('click', function() {
+        //   $('#confirmSuccess').hide();
+        // });
+        // $('#confirmSuccess .success-btn').on('click', function() {
+        //   console.log('ddddd');
+        //   $('#share').show();
+        //   $('#share').on('click', function() {
+        //     $('#share').hide();
+        //   });
+        // });
       });
       mc.timeline.addTween(createjs.Tween.get(confirmBtn));
 
