@@ -846,7 +846,7 @@
 
         // 祝福人名字
         var zhufuname = new createjs.Text('落款：' + nameText, '30px Arial', '#000000');
-        zhufuname.setTransform(350, 780);
+        zhufuname.setTransform(380, 780);
         cont.addChild(zhufuname);
 
         // 照片框
