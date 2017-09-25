@@ -747,16 +747,17 @@
           var img = new Image();
           img.onload = () => {
             photo = new createjs.Bitmap(img);
-            photo.setTransform(25, 65);
+            photo.setTransform(35, 65);
             //遮罩图形
-            photoScale = photoContainer.getBounds().width /photo.getBounds().width;
+            var maskX = 35;
+            var maskY = 65;
+            var maskWidth = 676;
+            var maskHeight = 484;
+            var key = photo.getBounds().width/photo.getBounds().height > maskWidth/maskHeight ? 'height' : 'width';
+            photoScale = (key === 'height' ? maskHeight : maskWidth) / photo.getBounds()[key];
             photo.scaleX = photoScale;
             photo.scaleY = photoScale;
             var mask = new createjs.Shape();
-            var maskX = 48;
-            var maskY = 83;
-            var maskWidth = 650;
-            var maskHeight = 450;
             mask.graphics.beginFill('#000').drawRect(0, 0, maskWidth, maskHeight);
             mask.x = maskX;
             mask.y = maskY;
@@ -821,9 +822,9 @@
         cont.addChild(dikuang);
 
         // 上一页截图
-        photo.mask.setTransform(78, 115);
-        photo.mask.scaleX = 0.9;
-        photo.mask.scaleY = 0.9;
+        photo.mask.setTransform(78, 105);
+        photo.mask.scaleX = 0.87;
+        photo.mask.scaleY = 0.87;
         cont.addChild(photo);
 
         // 祝福语
