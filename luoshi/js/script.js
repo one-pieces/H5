@@ -1,4 +1,4 @@
-define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs, View, Swiper, wx) {
+define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Swiper) {
   var self = {
     homePage: {
       stage: null,
@@ -7,11 +7,36 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     mainPage: {
       stage: null,
       container: null
-    }
+    },
+    pictureId: null
   };
 
   self.open = function() {
-    console.log('start', createjs);
+    console.log('start', createjs, window.location.search.split('&'));
+    this.pictureId = (function() {
+      let qs = location.href.split('?').pop();
+      if (!qs) return {};
+      let params = {};
+      qs.split('&').forEach(pairs => {
+        let [key, value] = pairs.split('=');
+        key = key.replace('[]', '');
+        key = decodeURIComponent(key);
+        value = decodeURIComponent(value);
+        if (value) {
+          if (params[key]) {
+            if (Array.isArray(params[key])) {
+              params[key].push(value);
+            } else {
+              params[key] = [params[key], value];
+            }
+          } else {
+            params[key] = value;
+          }
+        }
+      });
+      return params;
+    })()['pictureId'];
+    console.log('pictureId', this.pictureId);
     //放置静态资源的数组
     var manifest = [
       // page1
@@ -131,15 +156,19 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
         onInit: function(swiper) {
           // swiperAnimateCache(swiper);
           // swiperAnimate(swiper);
+          if (self.pictureId) {
+            swiper.removeSlide(0);
+            self.initMainPage();
+          } else {
+            self.initHomePage();
+          }
           $('#loading').hide();
-          self.initHomePage();
         },
         onSlideChangeEnd: function(swiper) {
           // swiperAnimate(swiper);
           self.initMainPage();
         }
       });
-      // self.initMainPage();
     }
     function handleProgress(event) {
       $('#loading .text').text((queue.progress*100|0) + '%');
@@ -174,47 +203,60 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', this.mainPage.stage);
 
-    var contentView2 = new View.ContentView2(function() {
-      setTimeout(function() {
-        contentView2.parent.removeChild(contentView2);
-      }, 2500);
-      var contentView3 = new View.ContentView3(function() {
-        setTimeout(function() {
-          contentView3.parent.removeChild(contentView3);
+    if (this.pictureId) {
+      // 有pictureId，则从第六页开始显示
+      var contentView6 = new View.ContentView6(function click() {
+        contentView6.parent.removeChild(contentView6);
+        var contentView7 = new View.ContentView7(function(imgDataURL) {
+          self.htmlPage(imgDataURL);
         });
-        var contentView4 = new View.ContentView4(function() {
-          setTimeout(function() {
-            contentView4.parent.removeChild(contentView4);
-          });
-          var contentView5 = new View.ContentView5(function() {
-            setTimeout(function() {
-              contentView5.parent.removeChild(contentView5);
-            });
-            var contentView6 = new View.ContentView6(function click() {
-              contentView6.parent.removeChild(contentView6);
-              var contentView7 = new View.ContentView7(function(imgDataURL) {
-                self.htmlPage(imgDataURL);
-              });
-              self.mainPage.container.addChild(contentView7);
-            });
-            self.mainPage.container.addChild(contentView6);
-          });
-          self.mainPage.container.addChild(contentView5);
-        });
-        self.mainPage.container.addChild(contentView4);
+        self.mainPage.container.addChild(contentView7);
       });
-      self.mainPage.container.addChild(contentView3);
-    });
-    this.mainPage.container.addChild(contentView2);
+      self.mainPage.container.addChild(contentView6);
+    } else {
+      // 没有pictureId，则从第二页开始显示
+      var contentView2 = new View.ContentView2(function() {
+        setTimeout(function() {
+          contentView2.parent.removeChild(contentView2);
+        }, 2500);
+        var contentView3 = new View.ContentView3(function() {
+          setTimeout(function() {
+            contentView3.parent.removeChild(contentView3);
+          });
+          var contentView4 = new View.ContentView4(function() {
+            setTimeout(function() {
+              contentView4.parent.removeChild(contentView4);
+            });
+            var contentView5 = new View.ContentView5(function() {
+              setTimeout(function() {
+                contentView5.parent.removeChild(contentView5);
+              });
+              var contentView6 = new View.ContentView6(function click() {
+                contentView6.parent.removeChild(contentView6);
+                var contentView7 = new View.ContentView7(function(imgDataURL) {
+                  self.htmlPage(imgDataURL);
+                });
+                self.mainPage.container.addChild(contentView7);
+              });
+              self.mainPage.container.addChild(contentView6);
+            });
+            self.mainPage.container.addChild(contentView5);
+          });
+          self.mainPage.container.addChild(contentView4);
+        });
+        self.mainPage.container.addChild(contentView3);
+      });
+      this.mainPage.container.addChild(contentView2);
 
-    // var contentView7 = new View.ContentView7(function(imgDataURL) {
-    //   self.htmlPage(imgDataURL);
-    //   // contentView9.parent.removeChild(contentView9);
-    //   // var contentView10 = new View.ContentView10();
-    //   // self.mainPage.container.addChild(contentView10);
-    // });
-    // self.mainPage.container.addChild(contentView7);
-    this.mainPage.stage.update();
+      // var contentView7 = new View.ContentView7(function(imgDataURL) {
+      //   self.htmlPage(imgDataURL);
+      //   // contentView9.parent.removeChild(contentView9);
+      //   // var contentView10 = new View.ContentView10();
+      //   // self.mainPage.container.addChild(contentView10);
+      // });
+      // self.mainPage.container.addChild(contentView7);
+      this.mainPage.stage.update();
+    }
   };
 
   self.htmlPage = function(imgDataURL) {
@@ -299,7 +341,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
           wx.onMenuShareAppMessage({
             title: ' ', // 分享标题
             desc: 'xxx的中秋心愿只说给你听！快来打开看看吧！', // 分享描述
-            link: url + '?picture=long', // 分享链接
+            link: url + '?pictureId=long', // 分享链接
             imgUrl: imgUrl, // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
             dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
