@@ -256,209 +256,109 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
   };
 
   self.share = function () {
-    // $.ajax({
-    //   type: 'post',
-    //   // url: 'WeixinJSSDKServlet?type=getWxConfig',
-    //   url: 'http://www.tron-m.com/tron-api/jssdk/share.do',
-    //   data: { url: window.location.href },
-    //   dataType: 'json',
-    //   success: function (json) {
-    //     if (json.code == 1) {
-    //       var result = json.result;
-    //       wx.config({
-    //         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    //         appId: result.appId, // 必填，公众号的唯一标识
-    //         timestamp: result.timestamp, // 必填，生成签名的时间戳
-    //         nonceStr: result.nonceStr, // 必填，生成签名的随机串
-    //         signature: result.signature,// 必填，签名，见附录1
-    //         jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone', 'scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-    //       });
-    //     } else {
-    //       console.log("getWXConfig has error:" + json.msg);
-    //     }
-    //     wx.ready(function () {
-    //       var url = window.location.href,
-    //         title = '打破次元壁，劲客任务之极限驾控营带劲开飚！',
-    //         desc = '欢迎来战',
-    //         imgUrl = 'http://www.tron-m.com/long/assets/img/share.jpg';
-    //
-    //       wx.onMenuShareTimeline({
-    //         title: title, // 分享标题
-    //         desc: '', // 分享描述
-    //         link: url, // 分享链接
-    //         imgUrl: imgUrl, // 分享图标
-    //         success: function () {
-    //           // 用户确认分享后执行的回调函数
-    //         },
-    //         cancel: function () {
-    //           // 用户取消分享后执行的回调函数
-    //         }
-    //       });
-    //
-    //       wx.onMenuShareAppMessage({
-    //         title: title, // 分享标题
-    //         desc: desc, // 分享描述
-    //         link: url, // 分享链接
-    //         imgUrl: imgUrl, // 分享图标
-    //         type: '', // 分享类型,music、video或link，不填默认为link
-    //         dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-    //         success: function () {
-    //           // 用户确认分享后执行的回调函数
-    //         },
-    //         cancel: function () {
-    //           // 用户取消分享后执行的回调函数
-    //         }
-    //       });
-    //
-    //       wx.onMenuShareQQ({
-    //         title: title, // 分享标题
-    //         desc: desc, // 分享描述
-    //         link: url, // 分享链接
-    //         imgUrl: imgUrl, // 分享图标
-    //         success: function () {
-    //           // 用户确认分享后执行的回调函数
-    //         },
-    //         cancel: function () {
-    //           // 用户取消分享后执行的回调函数
-    //         }
-    //       });
-    //
-    //       wx.onMenuShareWeibo({
-    //         title: title, // 分享标题
-    //         desc: desc, // 分享描述
-    //         link: url, // 分享链接
-    //         imgUrl: imgUrl, // 分享图标
-    //         success: function () {
-    //           // 用户确认分享后执行的回调函数
-    //         },
-    //         cancel: function () {
-    //           // 用户取消分享后执行的回调函数
-    //         }
-    //       });
-    //
-    //       wx.onMenuShareQZone({
-    //         title: title, // 分享标题
-    //         desc: desc, // 分享描述
-    //         link: url, // 分享链接
-    //         imgUrl: imgUrl, // 分享图标
-    //         success: function () {
-    //           // 用户确认分享后执行的回调函数
-    //         },
-    //         cancel: function () {
-    //           // 用户取消分享后执行的回调函数
-    //         }
-    //       });
-    //     });
-    //
-    //     wx.error(function (res) {
-    //       console.log("wx has error:" + res);
-    //     });
-    //   }
-    // });
-
-
-    // if (json.code == 1) {
-    //   var result = json.result;
-    //   wx.config({
-    //     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    //     appId: result.appId, // 必填，公众号的唯一标识
-    //     timestamp: result.timestamp, // 必填，生成签名的时间戳
-    //     nonceStr: result.nonceStr, // 必填，生成签名的随机串
-    //     signature: result.signature,// 必填，签名，见附录1
-    //     jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone', 'scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-    //   });
-    // } else {
-    //   console.log("getWXConfig has error:" + json.msg);
-    // }
-    wx.config({
-      debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-      appId: 'wx9c52c1ab1061abfe', // 必填，公众号的唯一标识
-      timestamp: '1506314695', // 必填，生成签名的时间戳
-      nonceStr: '285567fb-f3dc-4cce-82a7-dbf6222b9270', // 必填，生成签名的随机串
-      signature: 'a4dc0b49d4747468efa0910ec8ba5509d265bb99',// 必填，签名，见附录1
-      jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone', 'scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-    });
-
-    wx.ready(function () {
-      var url = window.location.href,
-        title = '打破次元壁，劲客任务之极限驾控营带劲开飚！',
-        desc = '欢迎来战',
-        imgUrl = 'http://www.tron-m.com/long/assets/img/share.jpg';
-
-      wx.onMenuShareTimeline({
-        title: title, // 分享标题
-        desc: '', // 分享描述
-        link: url, // 分享链接
-        imgUrl: imgUrl, // 分享图标
-        success: function () {
-          // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-          // 用户取消分享后执行的回调函数
+    $.ajax({
+      type: 'post',
+      // url: 'WeixinJSSDKServlet?type=getWxConfig',
+      url: 'http://www.tron-m.com/tron-api/jssdk/share.do',
+      data: { url: window.location.href },
+      dataType: 'json',
+      success: function (json) {
+        if (json.code == 1) {
+          var result = json.result;
+          wx.config({
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: result.appId, // 必填，公众号的唯一标识
+            timestamp: result.timestamp, // 必填，生成签名的时间戳
+            nonceStr: result.nonceStr, // 必填，生成签名的随机串
+            signature: result.signature,// 必填，签名，见附录1
+            jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone', 'scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+          });
+        } else {
+          console.log("getWXConfig has error:" + json.msg);
         }
-      });
+        wx.ready(function () {
+          var url = window.location.href,
+            title = '罗氏祝您全家团圆美满，万事如意！',
+            desc = '月圆夜，全家福，在这个中秋，写下你的心愿，定个幸福时刻！',
+            // imgUrl = 'http://www.tron-m.com/long/assets/img/share.jpg';
+            imgUrl = 'http://www.tron-m.com/xiaolong/test/assets/img/share/wechat.jpg';
 
-      wx.onMenuShareAppMessage({
-        title: title, // 分享标题
-        desc: desc, // 分享描述
-        link: url, // 分享链接
-        imgUrl: imgUrl, // 分享图标
-        type: '', // 分享类型,music、video或link，不填默认为link
-        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-        success: function () {
-          // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-          // 用户取消分享后执行的回调函数
-        }
-      });
+          wx.onMenuShareTimeline({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: url, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
 
-      wx.onMenuShareQQ({
-        title: title, // 分享标题
-        desc: desc, // 分享描述
-        link: url, // 分享链接
-        imgUrl: imgUrl, // 分享图标
-        success: function () {
-          // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-          // 用户取消分享后执行的回调函数
-        }
-      });
+          wx.onMenuShareAppMessage({
+            title: '', // 分享标题
+            desc: 'xxx的中秋心愿只说给你听！快来打开看看吧！', // 分享描述
+            link: url + '?picture=long', // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+              // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
 
-      wx.onMenuShareWeibo({
-        title: title, // 分享标题
-        desc: desc, // 分享描述
-        link: url, // 分享链接
-        imgUrl: imgUrl, // 分享图标
-        success: function () {
-          // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-          // 用户取消分享后执行的回调函数
-        }
-      });
+          wx.onMenuShareQQ({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: url, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
 
-      wx.onMenuShareQZone({
-        title: title, // 分享标题
-        desc: desc, // 分享描述
-        link: url, // 分享链接
-        imgUrl: imgUrl, // 分享图标
-        success: function () {
-          // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-          // 用户取消分享后执行的回调函数
-        }
-      });
-    });
+          wx.onMenuShareWeibo({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: url, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
 
-    wx.error(function (res) {
-      console.log("wx has error:" + res);
+          wx.onMenuShareQZone({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: url, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
+        });
+
+        wx.error(function (res) {
+          console.log("wx has error:" + res);
+        });
+      }
     });
   }
 
-  self.share();
+  // self.share();
 
   return self;
 });
