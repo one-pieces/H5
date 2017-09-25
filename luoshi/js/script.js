@@ -266,7 +266,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
         if (json.code == 1) {
           var result = json.result;
           wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: result.appId, // 必填，公众号的唯一标识
             timestamp: result.timestamp, // 必填，生成签名的时间戳
             nonceStr: result.nonceStr, // 必填，生成签名的随机串
@@ -297,7 +297,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
           });
 
           wx.onMenuShareAppMessage({
-            title: '', // 分享标题
+            title: ' ', // 分享标题
             desc: 'xxx的中秋心愿只说给你听！快来打开看看吧！', // 分享描述
             link: url + '?picture=long', // 分享链接
             imgUrl: imgUrl, // 分享图标
