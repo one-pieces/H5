@@ -30,5 +30,9 @@ require(['jquery', 'script'], function ($, script) {
     e.preventDefault();
   });
 
+  $(document).ready(function () {
+    $('body').height($('body')[0].clientHeight);
+  });
+
   script.open();
 })
