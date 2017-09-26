@@ -796,7 +796,7 @@
 
       // 确认按钮
       var confirmBtn = new createjs.Bitmap(queue.getResult('page7_confirm-btn'));
-      confirmBtn.setTransform(205, 1135);
+      confirmBtn.setTransform(215, 1135);
       confirmBtn.addEventListener('click', function(e) {
         console.log('xxxx');
         if (!photo) {
