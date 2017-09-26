@@ -12,6 +12,25 @@ html, body {
   font-family: "Source Sans Pro", "Hiragino Sans GB", Lucida, Helvetica, Tahoma, "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif;
 }
 
+.toaster {
+  z-index: 10000;
+  color: #ffffff;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  width: 50%;
+  border-radius: 2.5px;
+  padding: 10px 12px;
+  text-align: center;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
 .swiper-container {
   width: 100%;
   height: 100%;
@@ -257,29 +276,45 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
   background-size: 100% 100%;
 }
 
-#confirmSuccess {
+#confirmSuccess, #confirmFail {
   display: none;
 }
 
-#confirmSuccess .succecs-dialog {
+#confirmSuccess .succecs-dialog, #confirmFail .fail-dialog {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 331px;
   height: 224px;
+}
+
+#confirmSuccess .succecs-dialog {
   background: url("../assets/img/page10/success-dialog.png") no-repeat;
   background-size: 100% 100%;
 }
 
-#confirmSuccess .succecs-dialog .success-btn {
+#confirmFail .fail-dialog {
+  background: url("../assets/img/page10/fail-dialog.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+#confirmSuccess .succecs-dialog .success-btn, #confirmFail .fail-dialog .fail-btn {
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: 159px;
   height: 40px;
+}
+
+#confirmSuccess .succecs-dialog .success-btn {
   background: url("../assets/img/page10/share-btn.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+#confirmFail .fail-dialog .fail-btn {
+  background: url("../assets/img/page10/confirm-btn.png") no-repeat;
   background-size: 100% 100%;
 }
 
