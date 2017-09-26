@@ -917,8 +917,10 @@
       mc.timeline.addTween(createjs.Tween.get(photoBtn));
 
       // 确认按钮
-      var confirmBtn = new createjs.Bitmap(queue.getResult('page7_confirm-btn'));
-      confirmBtn.setTransform(215, 1135);
+      var confirmBtn = new createjs.Bitmap(queue.getResult('page10_tijiao'));
+      confirmBtn.setTransform(195, 1135);
+      confirmBtn.scaleX = 0.9;
+      confirmBtn.scaleY = 0.9;
       confirmBtn.addEventListener('click', function(e) {
         console.log('xxxx');
         if (!photo) {
