@@ -722,14 +722,13 @@
       mc.timeline.addTween(createjs.Tween.get(wordInput));
 
       // 文字输入框
-      $('#textInput').show();
+      $('#page7InputContainer').show();
       var inputText = '';
       $('#textInput').on('input', function(e) {
         // console.log('input', e.target.value);
         inputText = e.target.value;
       });
       // 名字输入框
-      $('#nameInput').show();
       var nameText = '';
       $('#nameInput').on('input', function(e) {
         // console.log('input', e.target.value);

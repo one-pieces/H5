@@ -263,14 +263,14 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     $(img).css({width: '100%', height: '100%', position: 'absolute'}).appendTo('#page8 .content');
     $('#page8').show();
     $('.swiper-container').hide();
-    $('#textInput').hide();
-    $('#nameInput').hide();
+    $('#page7InputContainer').hide();
 
     $('#page8 .redo-btn').on('click', function() {
       $('#page8').hide();
       $('.swiper-container').show();
-      $('#textInput').val('').show();
-      $('#nameInput').val('').show();
+      $('#page7InputContainer').show();
+      $('#textInput').val('');
+      $('#nameInput').val('');
     });
 
     $('#page8 .share-btn').on('click', function() {
