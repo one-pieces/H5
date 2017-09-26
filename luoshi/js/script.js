@@ -149,6 +149,30 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       event.currentTarget.removeEventListener("progress", handleProgress);
       event.currentTarget.removeEventListener("complete", handleComplete);
 
+      // 音频播放逻辑
+      (function() {
+        createjs.Sound.alternateExtensions = ['mp3'];	// 源格式不支持时，用此格式替换
+        createjs.Sound.addEventListener('fileload', playSound); // 加载完回调
+        createjs.Sound.registerSound('assets/audio/music.mp3');  // 注册
+        function playSound(event) {
+          var soundInstance = createjs.Sound.play(event.src);  // 播放实例
+          soundInstance.loop = true;
+          $('#audioBtn').show();
+          var isSoundPlaying = true;
+          $('#audioBtn').click(function() {
+            if (isSoundPlaying) {
+              soundInstance.stop();
+              $('#audioBtn').addClass('muted');
+              isSoundPlaying = false;
+            } else {
+              soundInstance.play();
+              $('#audioBtn').removeClass('muted');
+              isSoundPlaying = true;
+            }
+          });
+        }
+      })();
+
       var swiper = new Swiper('.swiper-container', {
         pagination: false,
         speed: 400,
