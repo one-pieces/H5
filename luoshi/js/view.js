@@ -277,8 +277,8 @@
       // var wenzi3 = new createjs.Bitmap(queue.getResult('page2_22-wenzi3'));
       // wenzi3.setTransform(330, 200);
       // wenzi3.alpha = 0;
-      cmc.timeline.addTween(createjs.Tween.get(wenzi1).to({alpha: 0}, 40));
-      cmc.timeline.addTween(createjs.Tween.get(wenzi2).wait(40).to({alpha: 1}, 40).to({alpha: 0}, 40));
+      cmc.timeline.addTween(createjs.Tween.get(wenzi1).to({alpha: 0}, 70));
+      cmc.timeline.addTween(createjs.Tween.get(wenzi2).wait(70).to({alpha: 1}, 70).to({alpha: 0}, 70));
       // cmc.timeline.addTween(createjs.Tween.get(wenzi3).wait(120).to({alpha: 1}, 40).to({alpha: 0}, 40));
 
       var content = new createjs.Container();
@@ -289,7 +289,8 @@
       content.regX = helf;
       content.regY = 0;
       cmc.timeline.addTween(createjs.Tween.get(content)
-        .to({x: -helf + 850}, 250, createjs.Ease.sineInOut).wait(5)
+        // .to({x: -helf + 850}, 250, createjs.Ease.sineInOut).wait(5)
+        .to({x: -helf + 1650}, 250, createjs.Ease.sineInOut).wait(5)
         .to({x: 400, scaleX: 7, scaleY: 7, alpha: 0.8}, 30, createjs.Ease.circIn)
         .call(complete).wait(100));
 
