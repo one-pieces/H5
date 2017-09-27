@@ -22,9 +22,8 @@
   <link href="./css/swiper-3.3.1.min.css" rel="stylesheet"/>
 </head>
 <body>
-  <!--<canvas id="photoView" width="750" height="1334"></canvas>-->
 
-  <input id="fileLoader" name="pic" type="file" style="position: absolute;"/>
+  <input id="fileLoader" name="pic" type="file" style="position: absolute; top: -100px;"/>
   
   <div id="loading" class="fullscreen">
     <div class="loadinggif">
@@ -33,6 +32,8 @@
     <div class="text"></div>
   </div>
   <div id="audioBtn"></div>
+  <canvas id="photoView" width="750" height="1334" style="display: none;"></canvas>
+  
   <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">

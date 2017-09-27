@@ -8,6 +8,10 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
       stage: null,
       container: null
     },
+    photoPage: {
+      stage: null,
+      container: null
+    },
     cardId: null
   };
 
@@ -149,56 +153,93 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
       event.currentTarget.removeEventListener("progress", handleProgress);
       event.currentTarget.removeEventListener("complete", handleComplete);
 
-      // 音频播放逻辑
-      (function() {
-        createjs.Sound.alternateExtensions = ['mp3'];	// 源格式不支持时，用此格式替换
-        createjs.Sound.addEventListener('fileload', playSound); // 加载完回调
-        createjs.Sound.registerSound('assets/audio/music.mp3');  // 注册
-        function playSound(event) {
-          var soundInstance = createjs.Sound.play(event.src);  // 播放实例
-          soundInstance.loop = true;
-          $('#audioBtn').show();
-          var isSoundPlaying = true;
-          $('#audioBtn').click(function() {
-            if (isSoundPlaying) {
-              soundInstance.stop();
-              $('#audioBtn').addClass('muted');
-              isSoundPlaying = false;
-            } else {
-              soundInstance.play();
-              $('#audioBtn').removeClass('muted');
-              isSoundPlaying = true;
-            }
-          });
-        }
-      })();
-
-      var swiper = new Swiper('.swiper-container', {
-        pagination: false,
-        speed: 400,
-        paginationClickable: true,
-        direction: 'vertical',
-        onInit: function(swiper) {
-          // swiperAnimateCache(swiper);
-          // swiperAnimate(swiper);
-          if (self.cardId) {
-            swiper.removeSlide(0);
-            self.initMainPage();
-          } else {
-            self.initHomePage();
-          }
-          $('#loading').hide();
-        },
-        onSlideChangeEnd: function(swiper) {
-          // swiperAnimate(swiper);
-          self.initMainPage();
-        }
-      });
+      if (this.cardId) {
+        $('#loading').hide();
+        $('#photoView').show();
+        self.initPhotoPage();
+      }
+      self.init();
     }
     function handleProgress(event) {
       $('#loading .text').text((queue.progress*100|0) + '%');
       console.log((queue.progress*100|0) + '%');
     }
+  };
+
+  self.init = function() {
+    // 音频播放逻辑
+    (function() {
+      createjs.Sound.alternateExtensions = ['mp3'];	// 源格式不支持时，用此格式替换
+      createjs.Sound.addEventListener('fileload', playSound); // 加载完回调
+      createjs.Sound.registerSound('assets/audio/music.mp3');  // 注册
+      function playSound(event) {
+        var soundInstance = createjs.Sound.play(event.src);  // 播放实例
+        soundInstance.loop = true;
+        $('#audioBtn').show();
+        var isSoundPlaying = true;
+        $('#audioBtn').click(function() {
+          if (isSoundPlaying) {
+            soundInstance.stop();
+            $('#audioBtn').addClass('muted');
+            isSoundPlaying = false;
+          } else {
+            soundInstance.play();
+            $('#audioBtn').removeClass('muted');
+            isSoundPlaying = true;
+          }
+        });
+      }
+    })();
+
+    var swiper = new Swiper('.swiper-container', {
+      pagination: false,
+      speed: 400,
+      paginationClickable: true,
+      direction: 'vertical',
+      onInit: function(swiper) {
+        // swiperAnimateCache(swiper);
+        // swiperAnimate(swiper);
+        $('#loading').hide();
+        self.initHomePage();
+      },
+      onSlideChangeEnd: function(swiper) {
+        // swiperAnimate(swiper);
+        self.initMainPage();
+      }
+    });
+  };
+
+  self.initPhotoPage = function() {
+    var canvas = document.getElementById('photoView');
+    this.photoPage.stage = new createjs.Stage(canvas);
+    this.photoPage.container = new createjs.Container();
+    this.photoPage.stage.addChild(this.photoPage.container);
+    createjs.Touch.enable(this.photoPage.stage);
+
+    createjs.Ticker.timingMode =  createjs.Ticker.RAF_SYNCHED;
+    createjs.Ticker.setFPS(30);
+    createjs.Ticker.addEventListener('tick', this.photoPage.stage);
+
+
+    // 获取用户祝福卡信息
+    $('#loading1').show();
+    $.ajax({
+      type: 'post',
+      url: 'http://zq.guiyuanshiye.com/card/detail',
+      data: {id: this.cardId},
+      dataType: 'json',
+      async: false,
+      success: function (json) {
+        $('#loading1').hide();
+        // 有cardId，则从第六页开始显示
+        var contentView6 = new View.ContentView6(function click() {
+          contentView6.parent.removeChild(contentView6);
+          $('#photoView').hide();
+        }, json.data && {name: json.data.name, image: 'http://zq.guiyuanshiye.com/' + json.data.image, content: json.data.content} || null);
+        self.photoPage.container.addChild(contentView6);
+      }
+    });
+    this.photoPage.stage.update();
   };
 
   self.initHomePage = function() {
@@ -227,80 +268,46 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     createjs.Ticker.timingMode =  createjs.Ticker.RAF_SYNCHED;
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', this.mainPage.stage);
-
-    if (this.cardId) {
-      // 获取用户祝福卡信息
-      $('#loading1').show();
-      $.ajax({
-        type: 'post',
-        url: 'http://zq.guiyuanshiye.com/card/detail',
-        data: {id: this.cardId},
-        dataType: 'json',
-        async: false,
-        success: function (json) {
-          $('#loading1').hide();
-
-          // 有cardId，则从第六页开始显示
-          var contentView6 = new View.ContentView6(function click() {
-            contentView6.parent.removeChild(contentView6);
-            var contentView7 = new View.ContentView7(function(imgDataURL) {
-              self.htmlPage(imgDataURL);
-            });
-            self.mainPage.container.addChild(contentView7);
-          }, json.data && {name: json.data.name, image: 'http://zq.guiyuanshiye.com/' + json.data.image, content: json.data.content} || null);
-          self.mainPage.container.addChild(contentView6);
-        }
-      });
-
-      // var contentView6 = new View.ContentView6(function click() {
-      //   contentView6.parent.removeChild(contentView6);
-      //   var contentView7 = new View.ContentView7(function(imgDataURL) {
-      //     self.htmlPage(imgDataURL);
-      //   });
-      //   self.mainPage.container.addChild(contentView7);
-      // }, {});
-      // self.mainPage.container.addChild(contentView6);
-    } else {
-      // 没有cardId，则从第二页开始显示
-      var contentView2 = new View.ContentView2(function() {
+    
+    // 没有cardId，则从第二页开始显示
+    var contentView2 = new View.ContentView2(function() {
+      setTimeout(function() {
+        contentView2.parent.removeChild(contentView2);
+      }, 2500);
+      var contentView3 = new View.ContentView3(function() {
         setTimeout(function() {
-          contentView2.parent.removeChild(contentView2);
-        }, 2500);
-        var contentView3 = new View.ContentView3(function() {
-          setTimeout(function() {
-            contentView3.parent.removeChild(contentView3);
-          });
-          var contentView4 = new View.ContentView4(function() {
-            setTimeout(function() {
-              contentView4.parent.removeChild(contentView4);
-            });
-            var contentView5 = new View.ContentView5(function() {
-              setTimeout(function() {
-                contentView5.parent.removeChild(contentView5);
-              });
-              var contentView6 = new View.ContentView6(function click() {
-                contentView6.parent.removeChild(contentView6);
-                var contentView7 = new View.ContentView7(function(imgDataURL) {
-                  self.htmlPage(imgDataURL);
-                });
-                self.mainPage.container.addChild(contentView7);
-              });
-              self.mainPage.container.addChild(contentView6);
-            });
-            self.mainPage.container.addChild(contentView5);
-          });
-          self.mainPage.container.addChild(contentView4);
+          contentView3.parent.removeChild(contentView3);
         });
-        self.mainPage.container.addChild(contentView3);
+        var contentView4 = new View.ContentView4(function() {
+          setTimeout(function() {
+            contentView4.parent.removeChild(contentView4);
+          });
+          var contentView5 = new View.ContentView5(function() {
+            setTimeout(function() {
+              contentView5.parent.removeChild(contentView5);
+            });
+            var contentView6 = new View.ContentView6(function click() {
+              contentView6.parent.removeChild(contentView6);
+              var contentView7 = new View.ContentView7(function(imgDataURL) {
+                self.htmlPage(imgDataURL);
+              });
+              self.mainPage.container.addChild(contentView7);
+            });
+            self.mainPage.container.addChild(contentView6);
+          });
+          self.mainPage.container.addChild(contentView5);
+        });
+        self.mainPage.container.addChild(contentView4);
       });
-      this.mainPage.container.addChild(contentView2);
+      self.mainPage.container.addChild(contentView3);
+    });
+    this.mainPage.container.addChild(contentView2);
 
-      // var contentView7 = new View.ContentView7(function(imgDataURL) {
-      //   self.htmlPage(imgDataURL);
-      // });
-      // self.mainPage.container.addChild(contentView7);
-      this.mainPage.stage.update();
-    }
+    // var contentView7 = new View.ContentView7(function(imgDataURL) {
+    //   self.htmlPage(imgDataURL);
+    // });
+    // self.mainPage.container.addChild(contentView7);
+    this.mainPage.stage.update();
   };
 
   self.htmlPage = function(imgDataURL) {

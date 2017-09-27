@@ -117,7 +117,7 @@ html, body {
   background-size: 100% 100%;
 }
 
-#homeView, #mainView {
+#homeView, #mainView, #photoView {
   width: 100%;
   height: 100%;
 }
