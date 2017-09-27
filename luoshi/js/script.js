@@ -240,43 +240,43 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
       self.mainPage.container.addChild(contentView6);
     } else {
       // 没有pictureId，则从第二页开始显示
-      // var contentView2 = new View.ContentView2(function() {
-      //   setTimeout(function() {
-      //     contentView2.parent.removeChild(contentView2);
-      //   }, 2500);
-      //   var contentView3 = new View.ContentView3(function() {
-      //     setTimeout(function() {
-      //       contentView3.parent.removeChild(contentView3);
-      //     });
-      //     var contentView4 = new View.ContentView4(function() {
-      //       setTimeout(function() {
-      //         contentView4.parent.removeChild(contentView4);
-      //       });
-      //       var contentView5 = new View.ContentView5(function() {
-      //         setTimeout(function() {
-      //           contentView5.parent.removeChild(contentView5);
-      //         });
-      //         var contentView6 = new View.ContentView6(function click() {
-      //           contentView6.parent.removeChild(contentView6);
-      //           var contentView7 = new View.ContentView7(function(imgDataURL) {
-      //             self.htmlPage(imgDataURL);
-      //           });
-      //           self.mainPage.container.addChild(contentView7);
-      //         });
-      //         self.mainPage.container.addChild(contentView6);
-      //       });
-      //       self.mainPage.container.addChild(contentView5);
-      //     });
-      //     self.mainPage.container.addChild(contentView4);
-      //   });
-      //   self.mainPage.container.addChild(contentView3);
-      // });
-      // this.mainPage.container.addChild(contentView2);
-
-      var contentView7 = new View.ContentView7(function(imgDataURL) {
-        self.htmlPage(imgDataURL);
+      var contentView2 = new View.ContentView2(function() {
+        setTimeout(function() {
+          contentView2.parent.removeChild(contentView2);
+        }, 2500);
+        var contentView3 = new View.ContentView3(function() {
+          setTimeout(function() {
+            contentView3.parent.removeChild(contentView3);
+          });
+          var contentView4 = new View.ContentView4(function() {
+            setTimeout(function() {
+              contentView4.parent.removeChild(contentView4);
+            });
+            var contentView5 = new View.ContentView5(function() {
+              setTimeout(function() {
+                contentView5.parent.removeChild(contentView5);
+              });
+              var contentView6 = new View.ContentView6(function click() {
+                contentView6.parent.removeChild(contentView6);
+                var contentView7 = new View.ContentView7(function(imgDataURL) {
+                  self.htmlPage(imgDataURL);
+                });
+                self.mainPage.container.addChild(contentView7);
+              });
+              self.mainPage.container.addChild(contentView6);
+            });
+            self.mainPage.container.addChild(contentView5);
+          });
+          self.mainPage.container.addChild(contentView4);
+        });
+        self.mainPage.container.addChild(contentView3);
       });
-      self.mainPage.container.addChild(contentView7);
+      this.mainPage.container.addChild(contentView2);
+
+      // var contentView7 = new View.ContentView7(function(imgDataURL) {
+      //   self.htmlPage(imgDataURL);
+      // });
+      // self.mainPage.container.addChild(contentView7);
       this.mainPage.stage.update();
     }
   };
@@ -323,12 +323,13 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     $.ajax({
       type: 'post',
       // url: 'WeixinJSSDKServlet?type=getWxConfig',
-      url: 'http://www.tron-m.com/tron-api/jssdk/share.do',
+      // url: 'http://www.tron-m.com/tron-api/jssdk/share.do',
+      url: 'http://zq.guiyuanshiye.com/weixin/GetJsSign',
       data: { url: window.location.href },
       dataType: 'json',
       success: function (json) {
-        if (json.code == 1) {
-          var result = json.result;
+        if (json.code == 0) {
+          var result = json.data;
           wx.config({
             debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: result.appId, // 必填，公众号的唯一标识
@@ -422,7 +423,7 @@ define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Sw
     });
   }
 
-  // self.share();
+  self.share();
 
   return self;
 });

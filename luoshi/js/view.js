@@ -357,7 +357,7 @@
           text: '中秋快乐，阖家幸福！',
           position: [235, 1150],
           startWait: 210,
-          endWait: 10
+          endWait: 50
         }
       ].forEach(function(item) {
         var wenziItem = new createjs.Text(item.text, '30px Arial', '#ffffff');
@@ -382,7 +382,7 @@
       content.regY = 0;
       cmc.timeline.addTween(createjs.Tween.get(content)
         .to({alpha: 1}, 30)
-        .wait(220)
+        .wait(260)
         .to({alpha: 0.5}, 10)
         .call(complete).wait(1));
 
@@ -743,54 +743,6 @@
         var inputEle = $('#fileLoader');
         inputEle.click();
         inputEle.on('change', function(e) {
-          // var img = new Image();
-          // img.onload = () => {
-          //   photo = new createjs.Bitmap(img);
-          //   photo.setTransform(35, 65);
-          //   //遮罩图形
-          //   var maskX = 35;
-          //   var maskY = 65;
-          //   var maskWidth = 676;
-          //   var maskHeight = 484;
-          //   var key = photo.getBounds().width/photo.getBounds().height > maskWidth/maskHeight ? 'height' : 'width';
-          //   photoScale = (key === 'height' ? maskHeight : maskWidth) / photo.getBounds()[key];
-          //   photo.scaleX = photoScale;
-          //   photo.scaleY = photoScale;
-          //   var mask = new createjs.Shape();
-          //   mask.graphics.beginFill('#000').drawRect(0, 0, maskWidth, maskHeight);
-          //   mask.x = maskX;
-          //   mask.y = maskY;
-          //   photo.mask = mask;     //给图片bg添加遮罩
-          //
-          //   var oldX, oldY, resultX, resultY, maxX, maxY;
-          //   photo.addEventListener('mousedown', function(e) {
-          //     oldX = e.stageX;
-          //     oldY = e.stageY;
-          //   });
-          //   photo.addEventListener('touchdown', function(e) {
-          //     oldX = e.stageX;
-          //     oldY = e.stageY;
-          //   });
-          //   photo.addEventListener('pressmove', function (e) {
-          //     resultX = e.target.x + e.stageX - oldX;
-          //     resultY = e.target.y + e.stageY - oldY;
-          //     maxX = maskWidth + maskX - e.target.getBounds().width * photoScale;
-          //     maxY = maskHeight + maskY - e.target.getBounds().height * photoScale;
-          //     if (resultX < maskX && resultX > maxX) {
-          //       e.target.x = resultX;
-          //     }
-          //     if (resultY < maskY && resultY > maxY) {
-          //       e.target.y = resultY;
-          //     }
-          //     oldX = e.stageX;
-          //     oldY = e.stageY;
-          //   });
-          //   photoContainer.addChild(photo);
-          //   photoContainer.addChild(photoInput);
-          // }
-          // img.src = URL.createObjectURL(e.target.files[0]);
-
-
           var file = this.files[0];
           var orientation;
           //EXIF js 可以读取图片的元信息 https://github.com/exif-js/exif-js
@@ -862,6 +814,7 @@
           var degree=0,drawWidth,drawHeight,width,height;
           drawWidth=this.naturalWidth;
           drawHeight=this.naturalHeight;
+          console.log('drwa', drawWidth, drawHeight);
           //以下改变一下图片大小
           var maxSide = Math.max(drawWidth, drawHeight);
           if (maxSide > 1024) {
@@ -876,6 +829,7 @@
               drawHeight = maxSide;
             }
           }
+          console.log('drwawwww', drawWidth, drawHeight);
           var canvas=document.createElement('canvas');
           canvas.width=width=drawWidth;
           canvas.height=height=drawHeight;
