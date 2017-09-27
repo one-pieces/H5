@@ -168,6 +168,32 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
 
   self.init = function() {
     // 音频播放逻辑
+
+    document.addEventListener("WeixinJSBridgeReady", function () {
+      (function() {
+        createjs.Sound.alternateExtensions = ['mp3'];	// 源格式不支持时，用此格式替换
+        createjs.Sound.addEventListener('fileload', playSound); // 加载完回调
+        createjs.Sound.registerSound('assets/audio/music.mp3');  // 注册
+        function playSound(event) {
+          var soundInstance = createjs.Sound.play(event.src);  // 播放实例
+          soundInstance.loop = true;
+          $('#audioBtn').show();
+          var isSoundPlaying = true;
+          $('#audioBtn').click(function() {
+            if (isSoundPlaying) {
+              soundInstance.stop();
+              $('#audioBtn').addClass('muted');
+              isSoundPlaying = false;
+            } else {
+              soundInstance.play();
+              $('#audioBtn').removeClass('muted');
+              isSoundPlaying = true;
+            }
+          });
+        }
+      })();
+    }, false);
+
     (function() {
       createjs.Sound.alternateExtensions = ['mp3'];	// 源格式不支持时，用此格式替换
       createjs.Sound.addEventListener('fileload', playSound); // 加载完回调
@@ -390,20 +416,20 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
             }
           });
 
-          // wx.onMenuShareAppMessage({
-          //   title: ' ', // 分享标题
-          //   desc: 'xxx的中秋心愿只说给你听！快来打开看看吧！', // 分享描述
-          //   link: url + '?cardId=long', // 分享链接
-          //   imgUrl: imgUrl, // 分享图标
-          //   type: '', // 分享类型,music、video或link，不填默认为link
-          //   dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-          //   success: function () {
-          //     // 用户确认分享后执行的回调函数
-          //   },
-          //   cancel: function () {
-          //     // 用户取消分享后执行的回调函数
-          //   }
-          // });
+          wx.onMenuShareAppMessage({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: url, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+              // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
 
           wx.onMenuShareQQ({
             title: title, // 分享标题
