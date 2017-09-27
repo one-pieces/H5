@@ -9,7 +9,8 @@ require.config({
     'jquery': 'lib/jquery-3.1.0.min',
     'Swiper': 'lib/swiper-3.3.1.jquery.min',
     'View': 'view',
-    'weixin': '//res.wx.qq.com/open/js/jweixin-1.0.0',
+    // 'weixin': '//res.wx.qq.com/open/js/jweixin-1.0.0',
+    'weixin': 'lib/jweixin-1.0.0',
     'jquery.validator': 'lib/jquery.validator.min',
     'zhCN': 'lib/local/zh-CN',
     // 'createjs': 'lib/create.min'
