@@ -172,8 +172,9 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     // 音频播放逻辑
     (function() {
       self.aduio.play();
+      self.aduio.pause();
       $('#audioBtn').show();
-      $('#audioBtn').click(function() {
+      $('#audioBtn').on('click', function() {
         if (!self.aduio.paused) {
           self.aduio.pause();
           $('#audioBtn').addClass('muted');
@@ -182,32 +183,33 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
           $('#audioBtn').removeClass('muted');
         }
       });
+      $('#audioBtn').click();
     })();
 
-    wx.config({
-      // 配置信息, 即使不正确也能使用 wx.ready
-      debug: false,
-      appId: '',
-      timestamp: 1,
-      nonceStr: '',
-      signature: '',
-      jsApiList: []
-    });
-    wx.ready(function() {
-      (function() {
-        self.aduio.play();
-        $('#audioBtn').show();
-        $('#audioBtn').click(function() {
-          if (!self.aduio.paused) {
-            self.aduio.pause();
-            $('#audioBtn').addClass('muted');
-          } else {
-            self.aduio.play();
-            $('#audioBtn').removeClass('muted');
-          }
-        });
-      })();
-    });
+    // wx.config({
+    //   // 配置信息, 即使不正确也能使用 wx.ready
+    //   debug: false,
+    //   appId: '',
+    //   timestamp: 1,
+    //   nonceStr: '',
+    //   signature: '',
+    //   jsApiList: []
+    // });
+    // wx.ready(function() {
+    //   (function() {
+    //     self.aduio.play();
+    //     $('#audioBtn').show();
+    //     $('#audioBtn').click(function() {
+    //       if (!self.aduio.paused) {
+    //         self.aduio.pause();
+    //         $('#audioBtn').addClass('muted');
+    //       } else {
+    //         self.aduio.play();
+    //         $('#audioBtn').removeClass('muted');
+    //       }
+    //     });
+    //   })();
+    // });
 
     var swiper = new Swiper('.swiper-container', {
       pagination: false,
