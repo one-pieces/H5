@@ -271,8 +271,12 @@
       // 文字
       var wenzi1 = new createjs.Bitmap(queue.getResult('page2_20-wenzi1'));
       wenzi1.setTransform(200, 200);
+      wenzi1.scaleX = 1.2;
+      wenzi1.scaleY = 1.2;
       var wenzi2 = new createjs.Bitmap(queue.getResult('page2_21-wenzi2'));
       wenzi2.setTransform(250, 200);
+      wenzi2.scaleX = 1.2;
+      wenzi2.scaleY = 1.2;
       wenzi2.alpha = 0;
       // var wenzi3 = new createjs.Bitmap(queue.getResult('page2_22-wenzi3'));
       // wenzi3.setTransform(330, 200);
@@ -498,7 +502,7 @@
       cmc.timeline.addTween(createjs.Tween.get(content)
         // .to({alpha: 1}, 30)
         .to({alpha: 1, scaleX: 1, scaleY: 1}, 30, createjs.Ease.circOut)
-        .wait(100)
+        .wait(60)
         .set({x: 348, y: 660, regX: 348, regY: 660})
         .to({scaleX: 20, scaleY: 20, alpha: 0.6}, 30, createjs.Ease.circIn)
         .call(complete).wait(1));
@@ -569,7 +573,7 @@
       var cmc = new createjs.MovieClip();
       cmc.timeline.addTween(createjs.Tween.get(content)
         .to({scaleX: 1, scaleY: 1}, 30, createjs.Ease.circOut)
-        .wait(100)
+        .wait(60)
         .set({x: 135, y: 1260, regX: 135, regY: 1260})
         .to({scaleX: 5, scaleY: 5, alpha: 0}, 30, createjs.Ease.circOut)
         .call(complete).wait(100));
