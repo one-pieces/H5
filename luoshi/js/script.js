@@ -8,12 +8,12 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
       stage: null,
       container: null
     },
-    pictureId: null
+    cardId: null
   };
 
   self.open = function() {
     console.log('start', createjs, window.location.search.split('&'));
-    this.pictureId = (function() {
+    this.cardId = (function() {
       let qs = location.href.split('?').pop();
       if (!qs) return {};
       let params = {};
@@ -35,8 +35,8 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
         }
       });
       return params;
-    })()['pictureId'];
-    console.log('pictureId', this.pictureId);
+    })()['cardId'];
+    console.log('cardId', this.cardId);
     //放置静态资源的数组
     var manifest = [
       // page1
@@ -181,7 +181,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
         onInit: function(swiper) {
           // swiperAnimateCache(swiper);
           // swiperAnimate(swiper);
-          if (self.pictureId) {
+          if (self.cardId) {
             swiper.removeSlide(0);
             self.initMainPage();
           } else {
@@ -228,55 +228,77 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', this.mainPage.stage);
 
-    if (this.pictureId) {
-      // 有pictureId，则从第六页开始显示
-      var contentView6 = new View.ContentView6(function click() {
-        contentView6.parent.removeChild(contentView6);
-        var contentView7 = new View.ContentView7(function(imgDataURL) {
-          self.htmlPage(imgDataURL);
-        });
-        self.mainPage.container.addChild(contentView7);
-      });
-      self.mainPage.container.addChild(contentView6);
-    } else {
-      // 没有pictureId，则从第二页开始显示
-      var contentView2 = new View.ContentView2(function() {
-        setTimeout(function() {
-          contentView2.parent.removeChild(contentView2);
-        }, 2500);
-        var contentView3 = new View.ContentView3(function() {
-          setTimeout(function() {
-            contentView3.parent.removeChild(contentView3);
-          });
-          var contentView4 = new View.ContentView4(function() {
-            setTimeout(function() {
-              contentView4.parent.removeChild(contentView4);
-            });
-            var contentView5 = new View.ContentView5(function() {
-              setTimeout(function() {
-                contentView5.parent.removeChild(contentView5);
-              });
-              var contentView6 = new View.ContentView6(function click() {
-                contentView6.parent.removeChild(contentView6);
-                var contentView7 = new View.ContentView7(function(imgDataURL) {
-                  self.htmlPage(imgDataURL);
-                });
-                self.mainPage.container.addChild(contentView7);
-              });
-              self.mainPage.container.addChild(contentView6);
-            });
-            self.mainPage.container.addChild(contentView5);
-          });
-          self.mainPage.container.addChild(contentView4);
-        });
-        self.mainPage.container.addChild(contentView3);
-      });
-      this.mainPage.container.addChild(contentView2);
+    if (this.cardId) {
+      // 获取用户祝福卡信息
+      $('#loading1').show();
+      $.ajax({
+        type: 'get',
+        url: 'http://zq.guiyuanshiye.com/card/detail',
+        data: {id: this.cardId},
+        dataType: 'json',
+        async: false,
+        success: function (json) {
+          $('#loading1').hide();
 
-      // var contentView7 = new View.ContentView7(function(imgDataURL) {
-      //   self.htmlPage(imgDataURL);
+          // 有cardId，则从第六页开始显示
+          var contentView6 = new View.ContentView6(function click() {
+            contentView6.parent.removeChild(contentView6);
+            var contentView7 = new View.ContentView7(function(imgDataURL) {
+              self.htmlPage(imgDataURL);
+            });
+            self.mainPage.container.addChild(contentView7);
+          }, json.data && {name: json.data.name, image: 'http://zq.guiyuanshiye.com/' + json.data.image, content: json.data.content} || null);
+          self.mainPage.container.addChild(contentView6);
+        }
+      });
+
+      // var contentView6 = new View.ContentView6(function click() {
+      //   contentView6.parent.removeChild(contentView6);
+      //   var contentView7 = new View.ContentView7(function(imgDataURL) {
+      //     self.htmlPage(imgDataURL);
+      //   });
+      //   self.mainPage.container.addChild(contentView7);
+      // }, {});
+      // self.mainPage.container.addChild(contentView6);
+    } else {
+      // 没有cardId，则从第二页开始显示
+      // var contentView2 = new View.ContentView2(function() {
+      //   setTimeout(function() {
+      //     contentView2.parent.removeChild(contentView2);
+      //   }, 2500);
+      //   var contentView3 = new View.ContentView3(function() {
+      //     setTimeout(function() {
+      //       contentView3.parent.removeChild(contentView3);
+      //     });
+      //     var contentView4 = new View.ContentView4(function() {
+      //       setTimeout(function() {
+      //         contentView4.parent.removeChild(contentView4);
+      //       });
+      //       var contentView5 = new View.ContentView5(function() {
+      //         setTimeout(function() {
+      //           contentView5.parent.removeChild(contentView5);
+      //         });
+      //         var contentView6 = new View.ContentView6(function click() {
+      //           contentView6.parent.removeChild(contentView6);
+      //           var contentView7 = new View.ContentView7(function(imgDataURL) {
+      //             self.htmlPage(imgDataURL);
+      //           });
+      //           self.mainPage.container.addChild(contentView7);
+      //         });
+      //         self.mainPage.container.addChild(contentView6);
+      //       });
+      //       self.mainPage.container.addChild(contentView5);
+      //     });
+      //     self.mainPage.container.addChild(contentView4);
+      //   });
+      //   self.mainPage.container.addChild(contentView3);
       // });
-      // self.mainPage.container.addChild(contentView7);
+      // this.mainPage.container.addChild(contentView2);
+
+      var contentView7 = new View.ContentView7(function(imgDataURL) {
+        self.htmlPage(imgDataURL);
+      });
+      self.mainPage.container.addChild(contentView7);
       this.mainPage.stage.update();
     }
   };
@@ -346,7 +368,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
             title = '罗氏祝您全家团圆美满，万事如意！',
             desc = '月圆夜，全家福，在这个中秋，写下你的心愿，定个幸福时刻！',
             // imgUrl = 'http://www.tron-m.com/long/assets/img/share.jpg';
-            imgUrl = 'http://www.tron-m.com/xiaolong/test/assets/img/share/wechat.jpg';
+            imgUrl = 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg';
 
           wx.onMenuShareTimeline({
             title: title, // 分享标题
@@ -361,20 +383,20 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
             }
           });
 
-          wx.onMenuShareAppMessage({
-            title: ' ', // 分享标题
-            desc: 'xxx的中秋心愿只说给你听！快来打开看看吧！', // 分享描述
-            link: url + '?pictureId=long', // 分享链接
-            imgUrl: imgUrl, // 分享图标
-            type: '', // 分享类型,music、video或link，不填默认为link
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            success: function () {
-              // 用户确认分享后执行的回调函数
-            },
-            cancel: function () {
-              // 用户取消分享后执行的回调函数
-            }
-          });
+          // wx.onMenuShareAppMessage({
+          //   title: ' ', // 分享标题
+          //   desc: 'xxx的中秋心愿只说给你听！快来打开看看吧！', // 分享描述
+          //   link: url + '?cardId=long', // 分享链接
+          //   imgUrl: imgUrl, // 分享图标
+          //   type: '', // 分享类型,music、video或link，不填默认为link
+          //   dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          //   success: function () {
+          //     // 用户确认分享后执行的回调函数
+          //   },
+          //   cancel: function () {
+          //     // 用户取消分享后执行的回调函数
+          //   }
+          // });
 
           wx.onMenuShareQQ({
             title: title, // 分享标题

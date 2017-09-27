@@ -86,7 +86,7 @@ html, body {
 
 #loading1 {
   display: none;
-  z-index: 1000;
+  z-index: 9000;
 }
 
 #loading .text {
@@ -124,6 +124,7 @@ html, body {
 
 #page7InputContainer {
   display: none;
+  z-index: 5900;
 }
 
 #textInput {
@@ -135,7 +136,6 @@ html, body {
   border: none;
   font-size: 2.9vh;
   color: #FFFFFF;
-  z-index: 9900;
 
   position: absolute;
   top: 53%;
@@ -147,7 +147,6 @@ html, body {
 .nameInputLabel {
   font-size: 2.9vh;
   color: #FFFFFF;
-  z-index: 9900;
   position: absolute;
   bottom: 18.4%;
   left: 49.5%;
@@ -161,7 +160,6 @@ html, body {
   border: none;
   font-size: 2.9vh;
   color: #FFFFFF;
-  z-index: 9900;
 
   position: absolute;
   bottom: 18.5%;

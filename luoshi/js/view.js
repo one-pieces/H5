@@ -1,7 +1,7 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define(factory);
+    define(['weixin'], factory);
   } else if (typeof exports === 'object') {
     // Node, CommonJS之类的
     module.exports = factory;
@@ -9,7 +9,7 @@
     // 浏览器全局变量(root 即 window)
     root.View = factory(root);
   }
-}(this, function () {
+}(this, function (wx) {
   var View = {};
 
   //ContentView1
@@ -588,7 +588,7 @@
 
   //ContentView6
   View.ContentView6 = (function() {
-    function ContentView6(callback) {
+    function ContentView6(callback, cardInfo) {
       this.Container_constructor();
       var mc = new createjs.MovieClip();
 
@@ -604,33 +604,6 @@
         callback && callback();
       });
       mc.timeline.addTween(createjs.Tween.get(button));
-
-      [
-        {
-          text: '丹桂飘香，皓月当空',
-          position: [255, 580]
-        },
-        {
-          text: '心中有爱，便是团圆',
-          position: [255, 630]
-        },
-        {
-          text: '2017中秋佳节',
-          position: [290, 680]
-        },
-        {
-          text: '罗氏邀您上传全家福并许下心愿',
-          position: [200, 730]
-        },
-        {
-          text: '记录和家人在一起的温馨时刻',
-          position: [215, 780]
-        }
-      ].forEach(function(item) {
-        var wenziItem = new createjs.Text(item.text, '26px Arial', '#000000');
-        wenziItem.setTransform(item.position[0], item.position[1]);
-        mc.timeline.addTween(createjs.Tween.get(wenziItem));
-      });
 
       // 月亮
       var moon = new createjs.Bitmap(queue.getResult('page6_moon'));
@@ -653,10 +626,65 @@
       zhaopiankuang.setTransform(78, 105);
       mc.timeline.addTween(createjs.Tween.get(zhaopiankuang));
 
-      // 照片
-      var picture = new createjs.Bitmap(queue.getResult('page6_01-picture'));
-      picture.setTransform(78, 105);
-      mc.timeline.addTween(createjs.Tween.get(picture));
+      console.log('cardInfo', cardInfo);
+      if (cardInfo) {
+        // 照片 'http://zq.guiyuanshiye.com/u1/2017/09/27/1506522460232629.png'
+        var picture = new createjs.Bitmap((cardInfo.image || queue.getResult('page6_01-picture')));
+        picture.setTransform(78, 105);
+        mc.timeline.addTween(createjs.Tween.get(picture));
+
+        // 祝福语
+        var inputText = (cardInfo.content || '中秋快乐！')
+          .split('').reduce(function(preResult, item, index) {
+          if (index && index % 15 == 0) {
+            preResult.push(' ');
+          }
+          preResult.push(item);
+          return preResult;
+        }, []).join('');
+        var zhufuyu = new createjs.Text(inputText, '30px Arial', '#000000');
+        zhufuyu.setTransform(150, 580);
+        zhufuyu.lineWidth = 200;
+        zhufuyu.lineHeight = 40;
+        mc.timeline.addTween(createjs.Tween.get(zhufuyu));
+
+        // 祝福人名字
+        var zhufuname = new createjs.Text('落款：' + (cardInfo.name || '来自星星的'), '30px Arial', '#000000');
+        zhufuname.setTransform(380, 780);
+        mc.timeline.addTween(createjs.Tween.get(zhufuname));
+      } else {
+        // 祝福文字
+        [
+          {
+            text: '丹桂飘香，皓月当空',
+            position: [255, 580]
+          },
+          {
+            text: '心中有爱，便是团圆',
+            position: [255, 630]
+          },
+          {
+            text: '2017中秋佳节',
+            position: [290, 680]
+          },
+          {
+            text: '罗氏邀您上传全家福并许下心愿',
+            position: [200, 730]
+          },
+          {
+            text: '记录和家人在一起的温馨时刻',
+            position: [215, 780]
+          }
+        ].forEach(function(item) {
+          var wenziItem = new createjs.Text(item.text, '26px Arial', '#000000');
+          wenziItem.setTransform(item.position[0], item.position[1]);
+          mc.timeline.addTween(createjs.Tween.get(wenziItem));
+        });
+        // 照片
+        var picture = new createjs.Bitmap(queue.getResult('page6_01-picture'));
+        picture.setTransform(78, 105);
+        mc.timeline.addTween(createjs.Tween.get(picture));
+      }
 
       // 底框
       var dikuang = new createjs.Bitmap(queue.getResult('page6_dikuang'));
@@ -888,8 +916,12 @@
           alert('你还没有写你的名字噢~');
           return;
         }
+        console.log('loagind111');
+        // 加载loading
+        $('#loading1').show();
         // 生成祝福图片
         var cont = new createjs.Container();
+        var photoCont = new createjs.Container();
         var page8Background = new createjs.Bitmap(queue.getResult('page8_background'));
         cont.addChild(page8Background);
 
@@ -903,6 +935,7 @@
         photo.mask.scaleX = 0.87;
         photo.mask.scaleY = 0.87;
         cont.addChild(photo);
+        photoCont.addChild(photo);
 
         // 祝福语
         inputText = inputText.split('').reduce(function(preResult, item, index) {
@@ -917,15 +950,16 @@
         zhufuyu.lineWidth = 200;
         zhufuyu.lineHeight = 40;
         cont.addChild(zhufuyu);
-        // 提示语
-        var tips = new createjs.Text('扫码定制你的心愿', '25px Arial', '#ffffff');
-        tips.setTransform(273, 1165);
-        cont.addChild(tips);
 
         // 祝福人名字
         var zhufuname = new createjs.Text('落款：' + nameText, '30px Arial', '#000000');
         zhufuname.setTransform(380, 780);
         cont.addChild(zhufuname);
+
+        // 提示语
+        var tips = new createjs.Text('扫码定制你的心愿', '25px Arial', '#ffffff');
+        tips.setTransform(273, 1165);
+        cont.addChild(tips);
 
         // 照片框
         var zhaopiankuang = new createjs.Bitmap(queue.getResult('page6_zhaopiankuang'));
@@ -955,8 +989,48 @@
         erweima.scaleY = 0.6;
         cont.addChild(erweima);
 
-        cont.cache(0, 0, 750, 1334);
-        callback && callback(cont.cacheCanvas.toDataURL());
+        // 获取用户截图
+        photoCont.cache(photo.mask.x, photo.mask.y, 676 * photo.mask.scaleX, 484 * photo.mask.scaleY);
+        var imgDateUrl = photoCont.cacheCanvas.toDataURL();
+        // 保存截图
+        $.ajax({
+          type: 'post',
+          url: 'http://zq.guiyuanshiye.com/image/add',
+          data: {'file': imgDateUrl},
+          dataType: 'json',
+          async: false,
+          success: function (json) {
+            // 保存用户祝福卡信息
+            $.ajax({
+              type: 'post',
+              url: 'http://zq.guiyuanshiye.com/card/add',
+              data: {'name': nameText, 'image': json.data.url, 'content': inputText},
+              dataType: 'json',
+              async: false,
+              success: function (r) {
+                $('#loading1').hide();
+                // 设置微信分享到个人配置
+                wx.onMenuShareAppMessage({
+                  title: ' ', // 分享标题
+                  desc: nameText + '的中秋心愿只说给你听！快来打开看看吧！', // 分享描述
+                  link: window.location.href + '?cardId=' + r.data.id, // 分享链接
+                  imgUrl: 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg', // 分享图标
+                  type: '', // 分享类型,music、video或link，不填默认为link
+                  dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                  success: function () {
+                    // 用户确认分享后执行的回调函数
+                  },
+                  cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                  }
+                });
+                // 生成祝福图，并跳转至下一页
+                cont.cache(0, 0, 750, 1334);
+                callback && callback(cont.cacheCanvas.toDataURL());
+              }
+            });
+          }
+        });
       });
       mc.timeline.addTween(createjs.Tween.get(confirmBtn));
 
