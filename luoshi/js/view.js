@@ -1017,7 +1017,7 @@
                 wx.onMenuShareAppMessage({
                   title: '罗氏祝您花好月圆人团圆', // 分享标题
                   desc: nameText + '的中秋心愿只说给你听！快来打开看看吧！', // 分享描述
-                  link: window.location.href + '?cardId=' + r.data.id, // 分享链接
+                  link: 'http://zq.guiyuanshiye.com//long?cardId=' + r.data.id, // 分享链接
                   imgUrl: 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg', // 分享图标
                   type: '', // 分享类型,music、video或link，不填默认为link
                   dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
