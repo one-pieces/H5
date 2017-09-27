@@ -15,6 +15,8 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     cardId: null
   };
 
+  self.aduio = document.getElementById('myAudio');
+
   self.open = function() {
     console.log('start', createjs, window.location.search.split('&'));
     this.cardId = (function() {
@@ -168,54 +170,35 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
 
   self.init = function() {
     // 音频播放逻辑
-
-    document.addEventListener("WeixinJSBridgeReady", function () {
-      (function() {
-        createjs.Sound.alternateExtensions = ['mp3'];	// 源格式不支持时，用此格式替换
-        createjs.Sound.addEventListener('fileload', playSound); // 加载完回调
-        createjs.Sound.registerSound('assets/audio/music.mp3');  // 注册
-        function playSound(event) {
-          var soundInstance = createjs.Sound.play(event.src);  // 播放实例
-          soundInstance.loop = true;
-          $('#audioBtn').show();
-          var isSoundPlaying = true;
-          $('#audioBtn').click(function() {
-            if (isSoundPlaying) {
-              soundInstance.stop();
-              $('#audioBtn').addClass('muted');
-              isSoundPlaying = false;
-            } else {
-              soundInstance.play();
-              $('#audioBtn').removeClass('muted');
-              isSoundPlaying = true;
-            }
-          });
-        }
-      })();
-    }, false);
-
     (function() {
-      createjs.Sound.alternateExtensions = ['mp3'];	// 源格式不支持时，用此格式替换
-      createjs.Sound.addEventListener('fileload', playSound); // 加载完回调
-      createjs.Sound.registerSound('assets/audio/music.mp3');  // 注册
-      function playSound(event) {
-        var soundInstance = createjs.Sound.play(event.src);  // 播放实例
-        soundInstance.loop = true;
-        $('#audioBtn').show();
-        var isSoundPlaying = true;
-        $('#audioBtn').click(function() {
-          if (isSoundPlaying) {
-            soundInstance.stop();
-            $('#audioBtn').addClass('muted');
-            isSoundPlaying = false;
-          } else {
-            soundInstance.play();
-            $('#audioBtn').removeClass('muted');
-            isSoundPlaying = true;
-          }
-        });
-      }
+      self.aduio.play();
+      $('#audioBtn').show();
+      $('#audioBtn').click(function() {
+        if (!self.aduio.paused) {
+          self.aduio.pause();
+          $('#audioBtn').addClass('muted');
+        } else {
+          self.aduio.play();
+          $('#audioBtn').removeClass('muted');
+        }
+      });
     })();
+
+    // document.addEventListener("WeixinJSBridgeReady", function () {
+    //   (function() {
+    //     self.aduio.play();
+    //     $('#audioBtn').show();
+    //     $('#audioBtn').click(function() {
+    //       if (!self.aduio.paused) {
+    //         self.aduio.pause();
+    //         $('#audioBtn').addClass('muted');
+    //       } else {
+    //         self.aduio.play();
+    //         $('#audioBtn').removeClass('muted');
+    //       }
+    //     });
+    //   })();
+    // }, false);
 
     var swiper = new Swiper('.swiper-container', {
       pagination: false,
