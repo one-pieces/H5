@@ -134,7 +134,7 @@ html, body {
   outline: none;
   resize: none;
   border: none;
-  font-size: 1.4rem;
+  font-size: 1em;
   color: #FFFFFF;
 
   position: absolute;
@@ -145,10 +145,10 @@ html, body {
 }
 
 .nameInputLabel {
-  font-size: 1.4rem;
+  font-size: 1em;
   color: #FFFFFF;
   position: absolute;
-  bottom: 18.5%;
+  bottom: 18.4%;
   left: 49.5%;
 }
 
@@ -158,7 +158,7 @@ html, body {
   outline: none;
   resize: none;
   border: none;
-  font-size: 1.4rem;
+  font-size: 1em;
   color: #FFFFFF;
 
   position: absolute;

@@ -32,6 +32,8 @@ require(['jquery', 'script', 'jquery.validator', 'zhCN'], function ($, script, v
 
   $(document).ready(function () {
     $('body').height($('body')[0].clientHeight);
+    // iphone6 plus 设备高度为736
+    $('body').css({'font-size': $('body')[0].clientHeight * 20 / 736});
   });
 
   script.open();
