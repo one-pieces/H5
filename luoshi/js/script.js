@@ -184,21 +184,21 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
       });
     })();
 
-    // document.addEventListener("WeixinJSBridgeReady", function () {
-    //   (function() {
-    //     self.aduio.play();
-    //     $('#audioBtn').show();
-    //     $('#audioBtn').click(function() {
-    //       if (!self.aduio.paused) {
-    //         self.aduio.pause();
-    //         $('#audioBtn').addClass('muted');
-    //       } else {
-    //         self.aduio.play();
-    //         $('#audioBtn').removeClass('muted');
-    //       }
-    //     });
-    //   })();
-    // }, false);
+    document.addEventListener("WeixinJSBridgeReady", function () {
+      (function() {
+        self.aduio.play();
+        $('#audioBtn').show();
+        $('#audioBtn').click(function() {
+          if (!self.aduio.paused) {
+            self.aduio.pause();
+            $('#audioBtn').addClass('muted');
+          } else {
+            self.aduio.play();
+            $('#audioBtn').removeClass('muted');
+          }
+        });
+      })();
+    }, false);
 
     var swiper = new Swiper('.swiper-container', {
       pagination: false,
