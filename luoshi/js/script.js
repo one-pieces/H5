@@ -1,4 +1,4 @@
-define(['jquery', 'createjs', 'View', 'Swiper'], function ($, createjs, View, Swiper) {
+define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs, View, Swiper, wx) {
   var self = {
     homePage: {
       stage: null,
