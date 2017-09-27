@@ -232,7 +232,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
       // 获取用户祝福卡信息
       $('#loading1').show();
       $.ajax({
-        type: 'get',
+        type: 'post',
         url: 'http://zq.guiyuanshiye.com/card/detail',
         data: {id: this.cardId},
         dataType: 'json',

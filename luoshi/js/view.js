@@ -939,7 +939,7 @@
         photo.mask.scaleX = 0.87;
         photo.mask.scaleY = 0.87;
         cont.addChild(photo);
-        photoCont.addChild(photo);
+        photoCont.addChild(photo.clone());
 
         // 祝福语
         inputText = inputText.split('').reduce(function(preResult, item, index) {
@@ -1015,7 +1015,7 @@
                 $('#loading1').hide();
                 // 设置微信分享到个人配置
                 wx.onMenuShareAppMessage({
-                  title: ' ', // 分享标题
+                  title: '罗氏祝您花好月圆人团圆', // 分享标题
                   desc: nameText + '的中秋心愿只说给你听！快来打开看看吧！', // 分享描述
                   link: window.location.href + '?cardId=' + r.data.id, // 分享链接
                   imgUrl: 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg', // 分享图标
