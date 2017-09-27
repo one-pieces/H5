@@ -184,7 +184,16 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
       });
     })();
 
-    document.addEventListener("WeixinJSBridgeReady", function () {
+    wx.config({
+      // 配置信息, 即使不正确也能使用 wx.ready
+      debug: false,
+      appId: '',
+      timestamp: 1,
+      nonceStr: '',
+      signature: '',
+      jsApiList: []
+    });
+    wx.ready(function() {
       (function() {
         self.aduio.play();
         $('#audioBtn').show();
@@ -198,7 +207,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
           }
         });
       })();
-    }, false);
+    });
 
     var swiper = new Swiper('.swiper-container', {
       pagination: false,
