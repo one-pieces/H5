@@ -1012,12 +1012,29 @@
               async: false,
               success: function (r) {
                 $('#loading1').hide();
+                // 分享到朋友圈
+                var title = nameText + '的中秋心愿只说给你听！';
+                var desc = '快来打开看看吧！';
+                var link = 'http://zq.guiyuanshiye.com//long?cardId=' + r.data.id;
+                var imgUrl = 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg';
+                wx.onMenuShareTimeline({
+                  title: title, // 分享标题
+                  desc: desc, // 分享描述
+                  link: link, // 分享链接
+                  imgUrl: imgUrl, // 分享图标
+                  success: function () {
+                    // 用户确认分享后执行的回调函数
+                  },
+                  cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                  }
+                });
                 // 设置微信分享到个人配置
                 wx.onMenuShareAppMessage({
-                  title: nameText + '的中秋心愿只说给你听！', // 分享标题
-                  desc: '快来打开看看吧！', // 分享描述
-                  link: 'http://zq.guiyuanshiye.com//long?cardId=' + r.data.id, // 分享链接
-                  imgUrl: 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg', // 分享图标
+                  title: title, // 分享标题
+                  desc: desc, // 分享描述
+                  link: link, // 分享链接
+                  imgUrl: imgUrl, // 分享图标
                   type: '', // 分享类型,music、video或link，不填默认为link
                   dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                   success: function () {
