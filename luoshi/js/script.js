@@ -154,13 +154,30 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     function handleComplete(event) {
       event.currentTarget.removeEventListener("progress", handleProgress);
       event.currentTarget.removeEventListener("complete", handleComplete);
+      $('#loading').hide();
+
+      // 音频播放逻辑
+      (function() {
+        self.aduio.play();
+        // self.aduio.pause();
+        $('#audioBtn').show();
+        $('#audioBtn').on('click', function() {
+          if (!self.aduio.paused) {
+            self.aduio.pause();
+            $('#audioBtn').addClass('muted');
+          } else {
+            self.aduio.play();
+            $('#audioBtn').removeClass('muted');
+          }
+        });
+        // $('#audioBtn').click();
+      })();
 
       if (this.cardId) {
-        $('#loading').hide();
-        $('#photoView').show();
         self.initPhotoPage();
+      } else {
+        self.initMainPage();
       }
-      self.init();
     }
     function handleProgress(event) {
       $('#loading .text').text((queue.progress*100|0) + '%');
@@ -168,43 +185,8 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     }
   };
 
-  self.init = function() {
-    // 音频播放逻辑
-    (function() {
-      self.aduio.play();
-      self.aduio.pause();
-      $('#audioBtn').show();
-      $('#audioBtn').on('click', function() {
-        if (!self.aduio.paused) {
-          self.aduio.pause();
-          $('#audioBtn').addClass('muted');
-        } else {
-          self.aduio.play();
-          $('#audioBtn').removeClass('muted');
-        }
-      });
-      $('#audioBtn').click();
-    })();
-
-    var swiper = new Swiper('.swiper-container', {
-      pagination: false,
-      speed: 400,
-      paginationClickable: true,
-      direction: 'vertical',
-      onInit: function(swiper) {
-        // swiperAnimateCache(swiper);
-        // swiperAnimate(swiper);
-        $('#loading').hide();
-        self.initHomePage();
-      },
-      onSlideChangeEnd: function(swiper) {
-        // swiperAnimate(swiper);
-        self.initMainPage();
-      }
-    });
-  };
-
   self.initPhotoPage = function() {
+    $('#photoView').show();
     var canvas = document.getElementById('photoView');
     this.photoPage.stage = new createjs.Stage(canvas);
     this.photoPage.container = new createjs.Container();
@@ -230,6 +212,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
         var contentView6 = new View.ContentView6(function click() {
           contentView6.parent.removeChild(contentView6);
           $('#photoView').hide();
+          self.initMainPage();
         }, json.data && {name: json.data.name, image: 'http://zq.guiyuanshiye.com/' + json.data.image, content: json.data.content} || null);
         self.photoPage.container.addChild(contentView6);
       }
@@ -237,23 +220,8 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     this.photoPage.stage.update();
   };
 
-  self.initHomePage = function() {
-    var canvas = document.getElementById('homeView');
-    this.homePage.stage = new createjs.Stage(canvas);
-    this.homePage.container = new createjs.Container();
-    this.homePage.stage.addChild(this.homePage.container);
-    createjs.Touch.enable(this.homePage.stage);
-
-    createjs.Ticker.timingMode =  createjs.Ticker.RAF_SYNCHED;
-    createjs.Ticker.setFPS(30);
-    createjs.Ticker.addEventListener('tick', this.homePage.stage);
-
-    var contentView1 = new View.ContentView1();
-    this.homePage.container.addChild(contentView1);
-    this.homePage.stage.update();
-  };
-
   self.initMainPage = function() {
+    $('#mainView').show();
     var canvas = document.getElementById('mainView');
     this.mainPage.stage = new createjs.Stage(canvas);
     this.mainPage.container = new createjs.Container();
@@ -264,39 +232,45 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', this.mainPage.stage);
     
-    // 没有cardId，则从第二页开始显示
-    var contentView2 = new View.ContentView2(function() {
+    var contentView1 = new View.ContentView1(function() {
       setTimeout(function() {
-        contentView2.parent.removeChild(contentView2);
+        contentView1.parent.removeChild(contentView1);
       }, 2500);
-      var contentView3 = new View.ContentView3(function() {
+      // contentView1.parent.removeChild(contentView1);
+      var contentView2 = new View.ContentView2(function() {
         setTimeout(function() {
-          contentView3.parent.removeChild(contentView3);
-        });
-        var contentView4 = new View.ContentView4(function() {
+          contentView2.parent.removeChild(contentView2);
+        }, 2500);
+        var contentView3 = new View.ContentView3(function() {
           setTimeout(function() {
-            contentView4.parent.removeChild(contentView4);
+            contentView3.parent.removeChild(contentView3);
           });
-          var contentView5 = new View.ContentView5(function() {
+          var contentView4 = new View.ContentView4(function() {
             setTimeout(function() {
-              contentView5.parent.removeChild(contentView5);
+              contentView4.parent.removeChild(contentView4);
             });
-            var contentView6 = new View.ContentView6(function click() {
-              contentView6.parent.removeChild(contentView6);
-              var contentView7 = new View.ContentView7(function(imgDataURL) {
-                self.htmlPage(imgDataURL);
+            var contentView5 = new View.ContentView5(function() {
+              setTimeout(function() {
+                contentView5.parent.removeChild(contentView5);
               });
-              self.mainPage.container.addChild(contentView7);
+              var contentView6 = new View.ContentView6(function click() {
+                contentView6.parent.removeChild(contentView6);
+                var contentView7 = new View.ContentView7(function(imgDataURL) {
+                  self.htmlPage(imgDataURL);
+                });
+                self.mainPage.container.addChild(contentView7);
+              });
+              self.mainPage.container.addChild(contentView6);
             });
-            self.mainPage.container.addChild(contentView6);
+            self.mainPage.container.addChild(contentView5);
           });
-          self.mainPage.container.addChild(contentView5);
+          self.mainPage.container.addChild(contentView4);
         });
-        self.mainPage.container.addChild(contentView4);
+        self.mainPage.container.addChild(contentView3);
       });
-      self.mainPage.container.addChild(contentView3);
-    });
-    this.mainPage.container.addChild(contentView2);
+      self.mainPage.container.addChild(contentView2);
+    })
+    this.mainPage.container.addChild(contentView1);
 
     // var contentView7 = new View.ContentView7(function(imgDataURL) {
     //   self.htmlPage(imgDataURL);

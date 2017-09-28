@@ -14,7 +14,7 @@
 
   //ContentView1
   View.ContentView1 = (function() {
-    function ContentView1() {
+    function ContentView1(callback) {
       this.Container_constructor();
       var mc = new createjs.MovieClip();
 
@@ -112,26 +112,6 @@
         .to({rotation: -10}, 40, createjs.Ease.quadInOut)
         .to({rotation: -8}, 40)
         .to({rotation: -10}, 40, createjs.Ease.quadInOut));
-      // var guihua2 = new createjs.Bitmap(queue.getResult('page1_03-guihua'));
-      // guihua2.setTransform(-30, 1080);
-      // guihua2.regX = 0;
-      // guihua2.regY = 190;
-      // mc.timeline.addTween(createjs.Tween.get(guihua2, {loop: true})
-      //   .to({rotation: 15})
-      //   .to({rotation: 18}, 40)
-      //   .to({rotation: 15}, 40, createjs.Ease.quadInOut)
-      //   .to({rotation: 13}, 40)
-      //   .to({rotation: 15}, 40, createjs.Ease.quadInOut));
-      // var guihua3 = new createjs.Bitmap(queue.getResult('page1_03-guihua'));
-      // guihua3.setTransform(-50, 1050);
-      // guihua3.regX = 0;
-      // guihua3.regY = 190;
-      // mc.timeline.addTween(createjs.Tween.get(guihua3, {loop: true})
-      //   .to({rotation: 40})
-      //   .to({rotation: 42}, 40)
-      //   .to({rotation: 40}, 40, createjs.Ease.quadInOut)
-      //   .to({rotation: 38}, 40)
-      //   .to({rotation: 40}, 40, createjs.Ease.quadInOut));
       var guihua4 = new createjs.Bitmap(queue.getResult('page1_03-guihua'));
       guihua4.setTransform(5, 1040);
       guihua4.regX = 0;
@@ -185,7 +165,23 @@
 
       mc.gotoAndPlay('start');
 
-      this.content = mc;
+      var cmc = new createjs.MovieClip();
+      var content = new createjs.Container();
+      content.addChild(mc);
+
+      cmc.timeline.addTween(createjs.Tween.get(content)
+        .wait(60)
+        .to({alpha: 0}, 30)
+        .call(complete).wait(1));
+
+      function complete() {
+        console.log('container1 complete');
+        callback && callback();
+      }
+
+      cmc.gotoAndPlay('start');
+
+      this.content = cmc;
       this.addChild(this.content);
     }
     createjs.extend(ContentView1, createjs.Container);
@@ -270,31 +266,28 @@
 
       // 文字
       var wenzi1 = new createjs.Bitmap(queue.getResult('page2_20-wenzi1'));
-      wenzi1.setTransform(200, 200);
-      wenzi1.scaleX = 1.2;
-      wenzi1.scaleY = 1.2;
+      wenzi1.setTransform(140, 60);
+      wenzi1.scaleX = 1.5;
+      wenzi1.scaleY = 1.5;
+      wenzi1.alpha = 0;
       var wenzi2 = new createjs.Bitmap(queue.getResult('page2_21-wenzi2'));
-      wenzi2.setTransform(250, 200);
-      wenzi2.scaleX = 1.2;
-      wenzi2.scaleY = 1.2;
+      wenzi2.setTransform(350, 200);
+      wenzi2.scaleX = 1.5;
+      wenzi2.scaleY = 1.5;
       wenzi2.alpha = 0;
-      // var wenzi3 = new createjs.Bitmap(queue.getResult('page2_22-wenzi3'));
-      // wenzi3.setTransform(330, 200);
-      // wenzi3.alpha = 0;
-      cmc.timeline.addTween(createjs.Tween.get(wenzi1).to({alpha: 0}, 70));
-      cmc.timeline.addTween(createjs.Tween.get(wenzi2).wait(70).to({alpha: 1}, 70).to({alpha: 0}, 70));
-      // cmc.timeline.addTween(createjs.Tween.get(wenzi3).wait(120).to({alpha: 1}, 40).to({alpha: 0}, 40));
+      cmc.timeline.addTween(createjs.Tween.get(wenzi1).to({alpha: 1}, 70).wait(90).to({alpha: 0}, 10));
+      cmc.timeline.addTween(createjs.Tween.get(wenzi2).wait(70).to({alpha: 1}, 70).wait(20).to({alpha: 0}, 10));
 
       var content = new createjs.Container();
       content.addChild(mc);
       var helf = content.getBounds().width/2;
-      content.x = helf - 100;
+      content.x = helf - 900;
       content.y = 0;
       content.regX = helf;
       content.regY = 0;
       cmc.timeline.addTween(createjs.Tween.get(content)
-        // .to({x: -helf + 850}, 250, createjs.Ease.sineInOut).wait(5)
-        .to({x: -helf + 1650}, 250, createjs.Ease.sineInOut).wait(5)
+        .wait(170)
+        // .to({x: -helf + 1650}, 250, createjs.Ease.sineInOut).wait(5)
         .to({x: 400, scaleX: 7, scaleY: 7, alpha: 0.8}, 30, createjs.Ease.circIn)
         .call(complete).wait(100));
 
@@ -361,7 +354,7 @@
           text: '中秋快乐，阖家幸福！',
           position: [235, 1150],
           startWait: 210,
-          endWait: 50
+          endWait: 110
         }
       ].forEach(function(item) {
         var wenziItem = new createjs.Text(item.text, '30px Arial', '#ffffff');
@@ -386,7 +379,7 @@
       content.regY = 0;
       cmc.timeline.addTween(createjs.Tween.get(content)
         .to({alpha: 1}, 30)
-        .wait(260)
+        .wait(320)
         .to({alpha: 0.5}, 10)
         .call(complete).wait(1));
 
@@ -658,32 +651,38 @@
         mc.timeline.addTween(createjs.Tween.get(zhufuname));
       } else {
         // 祝福文字
-        [
-          {
-            text: '丹桂飘香，皓月当空',
-            position: [255, 580]
-          },
-          {
-            text: '心中有爱，便是团圆',
-            position: [255, 630]
-          },
-          {
-            text: '2017中秋佳节',
-            position: [290, 680]
-          },
-          {
-            text: '罗氏邀您上传全家福并许下心愿',
-            position: [200, 730]
-          },
-          {
-            text: '记录和家人在一起的温馨时刻',
-            position: [215, 780]
-          }
-        ].forEach(function(item) {
-          var wenziItem = new createjs.Text(item.text, '26px Arial', '#000000');
-          wenziItem.setTransform(item.position[0], item.position[1]);
-          mc.timeline.addTween(createjs.Tween.get(wenziItem));
-        });
+        // [
+        //   {
+        //     text: '丹桂飘香，皓月当空',
+        //     position: [255, 580]
+        //   },
+        //   {
+        //     text: '心中有爱，便是团圆',
+        //     position: [255, 630]
+        //   },
+        //   {
+        //     text: '2017中秋佳节',
+        //     position: [290, 680]
+        //   },
+        //   {
+        //     text: '罗氏邀您上传全家福并许下心愿',
+        //     position: [200, 730]
+        //   },
+        //   {
+        //     text: '记录和家人在一起的温馨时刻',
+        //     position: [215, 780]
+        //   }
+        // ].forEach(function(item) {
+        //   var wenziItem = new createjs.Text(item.text, '26px Arial', '#000000');
+        //   wenziItem.setTransform(item.position[0], item.position[1]);
+        //   mc.timeline.addTween(createjs.Tween.get(wenziItem));
+        // });
+        var wenziItem = new createjs.Text('这是我的全家福，', '26px Arial', '#000000');
+        wenziItem.setTransform(285, 630);
+        mc.timeline.addTween(createjs.Tween.get(wenziItem));
+        var wenziItem1 = new createjs.Text('也来制作一个你的全家福吧！', '26px Arial', '#000000');
+        wenziItem1.setTransform(215, 680);
+        mc.timeline.addTween(createjs.Tween.get(wenziItem1));
         // 照片
         var picture = new createjs.Bitmap(queue.getResult('page6_01-picture'));
         picture.setTransform(78, 105);
