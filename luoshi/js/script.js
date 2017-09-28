@@ -186,31 +186,6 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
       $('#audioBtn').click();
     })();
 
-    // wx.config({
-    //   // 配置信息, 即使不正确也能使用 wx.ready
-    //   debug: false,
-    //   appId: '',
-    //   timestamp: 1,
-    //   nonceStr: '',
-    //   signature: '',
-    //   jsApiList: []
-    // });
-    // wx.ready(function() {
-    //   (function() {
-    //     self.aduio.play();
-    //     $('#audioBtn').show();
-    //     $('#audioBtn').click(function() {
-    //       if (!self.aduio.paused) {
-    //         self.aduio.pause();
-    //         $('#audioBtn').addClass('muted');
-    //       } else {
-    //         self.aduio.play();
-    //         $('#audioBtn').removeClass('muted');
-    //       }
-    //     });
-    //   })();
-    // });
-
     var swiper = new Swiper('.swiper-container', {
       pagination: false,
       speed: 400,
@@ -393,7 +368,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
         wx.ready(function () {
           var url = window.location.href,
             title = '罗氏祝您全家团圆美满，万事如意！',
-            desc = '月圆夜，全家福，在这个中秋，写下你的心愿，定个幸福时刻！',
+            desc = '月圆夜，全家福，在这个中秋，写下你的心愿，定格幸福时刻！',
             // imgUrl = 'http://www.tron-m.com/long/assets/img/share.jpg';
             imgUrl = 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg';
 
