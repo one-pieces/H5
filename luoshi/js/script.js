@@ -154,30 +154,36 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     function handleComplete(event) {
       event.currentTarget.removeEventListener("progress", handleProgress);
       event.currentTarget.removeEventListener("complete", handleComplete);
-      $('#loading').hide();
+      $('#loaded-tips').show();
+      $('#loading').on('click', function() {
+        $('#loading').hide();
 
-      // 音频播放逻辑
-      (function() {
-        self.aduio.play();
-        // self.aduio.pause();
-        $('#audioBtn').show();
-        $('#audioBtn').on('click', function() {
-          if (!self.aduio.paused) {
-            self.aduio.pause();
-            $('#audioBtn').addClass('muted');
-          } else {
-            self.aduio.play();
-            $('#audioBtn').removeClass('muted');
-          }
-        });
-        // $('#audioBtn').click();
-      })();
+        // 音频播放逻辑
+        (function() {
+          document.addEventListener("WeixinJSBridgeReady", function() {
+            wx.invoke("getNetworkType", {}, function() {
+              self.aduio.play();
+            });
+          }, false);
+          self.aduio.play();
+          $('#audioBtn').show();
+          $('#audioBtn').on('click', function() {
+            if (!self.aduio.paused) {
+              self.aduio.pause();
+              $('#audioBtn').addClass('muted');
+            } else {
+              self.aduio.play();
+              $('#audioBtn').removeClass('muted');
+            }
+          });
+        })();
 
-      if (this.cardId) {
-        self.initPhotoPage();
-      } else {
-        self.initMainPage();
-      }
+        if (this.cardId) {
+          self.initPhotoPage();
+        } else {
+          self.initMainPage();
+        }
+      });
     }
     function handleProgress(event) {
       $('#loading .text').text((queue.progress*100|0) + '%');
