@@ -178,7 +178,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
           });
         })();
 
-        if (this.cardId) {
+        if (self.cardId) {
           self.initPhotoPage();
         } else {
           self.initMainPage();

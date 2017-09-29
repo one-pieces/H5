@@ -1021,6 +1021,7 @@
                   var desc = '快来打开看看吧！';
                   var link = 'http://zq.guiyuanshiye.com//long?cardId=' + r.data.id;
                   var imgUrl = 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg';
+                  window.savedCardId = r.data.id;
                   wx.onMenuShareTimeline({
                     title: title, // 分享标题
                     desc: desc, // 分享描述
@@ -1274,7 +1275,7 @@
             clearTimeout(timeOut);
             var ajax = $.ajax({
               'url': 'http://zq.guiyuanshiye.com/user/add',
-              'data': $(form).serialize(),
+              'data': Object.assign({}, $(form).serialize(), {card_id: window.savedCardId}),
               'type': 'post',
               'dataType': 'json',
               'async': true
