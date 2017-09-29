@@ -346,11 +346,11 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
           console.log("getWXConfig has error:" + json.msg);
         }
         wx.ready(function () {
-          var url = window.location.href,
+          var url = 'http://zq.guiyuanshiye.com/long',
             title = '罗氏祝您全家团圆美满，万事如意！',
             desc = '月圆夜，全家福，在这个中秋，写下你的心愿，定格幸福时刻！',
             // imgUrl = 'http://www.tron-m.com/long/assets/img/share.jpg';
-            imgUrl = 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg';
+            imgUrl = 'http://zq.guiyuanshiye.com/long/assets/img/share/wechat.jpg';
 
           wx.onMenuShareTimeline({
             title: title, // 分享标题
