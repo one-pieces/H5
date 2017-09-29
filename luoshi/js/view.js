@@ -348,7 +348,7 @@
           startWait: 130
         },
         {
-          text: '周虹总经理携全家恭祝',
+          text: '周虹总经理恭祝',
           position: [225, 1100],
           startWait: 170
         },
