@@ -349,7 +349,7 @@
         },
         {
           text: '周虹总经理恭祝',
-          position: [225, 1100],
+          position: [265, 1100],
           startWait: 170
         },
         {
