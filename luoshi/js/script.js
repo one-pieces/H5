@@ -329,7 +329,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
       // url: 'WeixinJSSDKServlet?type=getWxConfig',
       // url: 'http://www.tron-m.com/tron-api/jssdk/share.do',
       url: 'http://zq.guiyuanshiye.com/weixin/GetJsSign',
-      data: { url: 'http://zq.guiyuanshiye.com/long' },
+      data: { url: window.location.href },
       dataType: 'json',
       success: function (json) {
         if (json.code == 0) {
@@ -346,7 +346,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
           console.log("getWXConfig has error:" + json.msg);
         }
         wx.ready(function () {
-          var url = 'http://zq.guiyuanshiye.com/long',
+          var url = window.location.href,
             title = '罗氏祝您全家团圆美满，万事如意！',
             desc = '月圆夜，全家福，在这个中秋，写下你的心愿，定格幸福时刻！',
             // imgUrl = 'http://www.tron-m.com/long/assets/img/share.jpg';
