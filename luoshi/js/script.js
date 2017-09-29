@@ -241,7 +241,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     var contentView1 = new View.ContentView1(function() {
       setTimeout(function() {
         contentView1.parent.removeChild(contentView1);
-      }, 2500);
+      }, 100);
       // contentView1.parent.removeChild(contentView1);
       var contentView2 = new View.ContentView2(function() {
         setTimeout(function() {

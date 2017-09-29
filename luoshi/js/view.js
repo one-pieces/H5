@@ -171,7 +171,7 @@
 
       cmc.timeline.addTween(createjs.Tween.get(content)
         .wait(60)
-        .to({alpha: 0}, 30)
+        .to({alpha: 0.5}, 30)
         .call(complete).wait(1));
 
       function complete() {
@@ -285,7 +285,9 @@
       content.y = 0;
       content.regX = helf;
       content.regY = 0;
+      content.alpha = 0.3;
       cmc.timeline.addTween(createjs.Tween.get(content)
+        .to({alpha: 1}, 30)
         .wait(170)
         // .to({x: -helf + 1650}, 250, createjs.Ease.sineInOut).wait(5)
         .to({x: 400, scaleX: 7, scaleY: 7, alpha: 0.8}, 30, createjs.Ease.circIn)
@@ -922,135 +924,146 @@
         console.log('loagind111');
         // 加载loading
         $('#loading1').show();
-        // 生成祝福图片
-        var cont = new createjs.Container();
-        var photoCont = new createjs.Container();
-        var page8Background = new createjs.Bitmap(queue.getResult('page8_background'));
-        cont.addChild(page8Background);
 
-        // 底框
-        var dikuang = new createjs.Bitmap(queue.getResult('page6_dikuang'));
-        dikuang.setTransform(55, 80);
-        cont.addChild(dikuang);
+        setTimeout(function() {
+          // 生成祝福图片
+          var cont = new createjs.Container();
+          var photoCont = new createjs.Container();
+          var page8Background = new createjs.Bitmap(queue.getResult('page8_background'));
+          cont.addChild(page8Background);
 
-        // 上一页截图
-        photo.mask.setTransform(78, 105);
-        photo.mask.scaleX = 0.87;
-        photo.mask.scaleY = 0.87;
-        cont.addChild(photo);
-        photoCont.addChild(photo.clone());
+          // 底框
+          var dikuang = new createjs.Bitmap(queue.getResult('page6_dikuang'));
+          dikuang.setTransform(55, 80);
+          cont.addChild(dikuang);
 
-        // 祝福语
-        inputText = inputText.split('').reduce(function(preResult, item, index) {
-          if (index && index % 15 == 0) {
-            preResult.push(' ');
-          }
-          preResult.push(item);
-          return preResult;
-        }, []).join('');
-        var zhufuyu = new createjs.Text(inputText, '30px Arial', '#000000');
-        zhufuyu.setTransform(150, 580);
-        zhufuyu.lineWidth = 200;
-        zhufuyu.lineHeight = 40;
-        cont.addChild(zhufuyu);
+          // 上一页截图
+          photo.mask.setTransform(78, 105);
+          photo.mask.scaleX = 0.87;
+          photo.mask.scaleY = 0.87;
+          cont.addChild(photo);
+          photoCont.addChild(photo.clone());
 
-        // 祝福人名字
-        var zhufuname = new createjs.Text('落款：' + nameText, '30px Arial', '#000000');
-        zhufuname.setTransform(380, 780);
-        cont.addChild(zhufuname);
+          // 祝福语
+          inputText = inputText.split('').reduce(function(preResult, item, index) {
+            if (index && index % 15 == 0) {
+              preResult.push(' ');
+            }
+            preResult.push(item);
+            return preResult;
+          }, []).join('');
+          var zhufuyu = new createjs.Text(inputText, '30px Arial', '#000000');
+          zhufuyu.setTransform(150, 580);
+          zhufuyu.lineWidth = 200;
+          zhufuyu.lineHeight = 40;
+          cont.addChild(zhufuyu);
 
-        // 提示语
-        var tips = new createjs.Text('扫码定制你的心愿', '25px Arial', '#ffffff');
-        tips.setTransform(273, 1165);
-        cont.addChild(tips);
+          // 祝福人名字
+          var zhufuname = new createjs.Text('落款：' + nameText, '30px Arial', '#000000');
+          zhufuname.setTransform(380, 780);
+          cont.addChild(zhufuname);
 
-        // 照片框
-        var zhaopiankuang = new createjs.Bitmap(queue.getResult('page6_zhaopiankuang'));
-        zhaopiankuang.setTransform(78, 105);
-        cont.addChild(zhaopiankuang);
+          // 提示语
+          var tips = new createjs.Text('扫码定制你的心愿', '25px Arial', '#ffffff');
+          tips.setTransform(273, 1165);
+          cont.addChild(tips);
 
-        // 月亮
-        var moon = new createjs.Bitmap(queue.getResult('page6_moon'));
-        moon.setTransform(530, -140);
-        cont.addChild(moon);
+          // 照片框
+          var zhaopiankuang = new createjs.Bitmap(queue.getResult('page6_zhaopiankuang'));
+          zhaopiankuang.setTransform(78, 105);
+          cont.addChild(zhaopiankuang);
 
-        // 标签
-        var biaoqian2 = new createjs.Bitmap(queue.getResult('page6_biaoqian2'));
-        biaoqian2.setTransform(630, 740);
-        cont.addChild(biaoqian2);
-        var biaoqian3 = new createjs.Bitmap(queue.getResult('page6_biaoqian3'));
-        biaoqian3.setTransform(0, 50);
-        cont.addChild(biaoqian3);
-        var biaoqian4 = new createjs.Bitmap(queue.getResult('page6_biaoqian4'));
-        biaoqian4.setTransform(-25, 720);
-        cont.addChild(biaoqian4);
+          // 月亮
+          var moon = new createjs.Bitmap(queue.getResult('page6_moon'));
+          moon.setTransform(530, -140);
+          cont.addChild(moon);
 
-        // 二维码
-        var erweima = new createjs.Bitmap(queue.getResult('share_erweima'));
-        erweima.setTransform(290, 980);
-        erweima.scaleX = 0.6;
-        erweima.scaleY = 0.6;
-        cont.addChild(erweima);
+          // 标签
+          var biaoqian2 = new createjs.Bitmap(queue.getResult('page6_biaoqian2'));
+          biaoqian2.setTransform(630, 740);
+          cont.addChild(biaoqian2);
+          var biaoqian3 = new createjs.Bitmap(queue.getResult('page6_biaoqian3'));
+          biaoqian3.setTransform(0, 50);
+          cont.addChild(biaoqian3);
+          var biaoqian4 = new createjs.Bitmap(queue.getResult('page6_biaoqian4'));
+          biaoqian4.setTransform(-25, 720);
+          cont.addChild(biaoqian4);
 
-        // 获取用户截图
-        photoCont.cache(photo.mask.x, photo.mask.y, 676 * photo.mask.scaleX, 484 * photo.mask.scaleY);
-        var imgDateUrl = photoCont.cacheCanvas.toDataURL();
-        // 保存截图
-        $.ajax({
-          type: 'post',
-          url: 'http://zq.guiyuanshiye.com/image/add',
-          data: {'file': imgDateUrl},
-          dataType: 'json',
-          async: false,
-          success: function (json) {
-            // 保存用户祝福卡信息
-            $.ajax({
-              type: 'post',
-              url: 'http://zq.guiyuanshiye.com/card/add',
-              data: {'name': nameText, 'image': json.data.url, 'content': inputText},
-              dataType: 'json',
-              async: false,
-              success: function (r) {
-                $('#loading1').hide();
-                // 分享到朋友圈
-                var title = nameText + '的中秋心愿只说给你听！';
-                var desc = '快来打开看看吧！';
-                var link = 'http://zq.guiyuanshiye.com//long?cardId=' + r.data.id;
-                var imgUrl = 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg';
-                wx.onMenuShareTimeline({
-                  title: title, // 分享标题
-                  desc: desc, // 分享描述
-                  link: link, // 分享链接
-                  imgUrl: imgUrl, // 分享图标
-                  success: function () {
-                    // 用户确认分享后执行的回调函数
-                  },
-                  cancel: function () {
-                    // 用户取消分享后执行的回调函数
-                  }
-                });
-                // 设置微信分享到个人配置
-                wx.onMenuShareAppMessage({
-                  title: title, // 分享标题
-                  desc: desc, // 分享描述
-                  link: link, // 分享链接
-                  imgUrl: imgUrl, // 分享图标
-                  type: '', // 分享类型,music、video或link，不填默认为link
-                  dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                  success: function () {
-                    // 用户确认分享后执行的回调函数
-                  },
-                  cancel: function () {
-                    // 用户取消分享后执行的回调函数
-                  }
-                });
-                // 生成祝福图，并跳转至下一页
-                cont.cache(0, 0, 750, 1334);
-                callback && callback(cont.cacheCanvas.toDataURL());
-              }
-            });
-          }
-        });
+          // 二维码
+          var erweima = new createjs.Bitmap(queue.getResult('share_erweima'));
+          erweima.setTransform(290, 980);
+          erweima.scaleX = 0.6;
+          erweima.scaleY = 0.6;
+          cont.addChild(erweima);
+
+          // 获取用户截图
+          photoCont.cache(photo.mask.x, photo.mask.y, 676 * photo.mask.scaleX, 484 * photo.mask.scaleY);
+          var imgDateUrl = photoCont.cacheCanvas.toDataURL();
+          // 保存截图
+          $.ajax({
+            type: 'post',
+            url: 'http://zq.guiyuanshiye.com/image/add',
+            data: {'file': imgDateUrl},
+            dataType: 'json',
+            async: false,
+            success: function (json) {
+              // 保存用户祝福卡信息
+              $.ajax({
+                type: 'post',
+                url: 'http://zq.guiyuanshiye.com/card/add',
+                data: {'name': nameText, 'image': json.data.url, 'content': inputText},
+                dataType: 'json',
+                async: false,
+                success: function (r) {
+                  $('#loading1').hide();
+                  // 分享到朋友圈
+                  var title = nameText + '的中秋心愿只说给你听！';
+                  var desc = '快来打开看看吧！';
+                  var link = 'http://zq.guiyuanshiye.com//long?cardId=' + r.data.id;
+                  var imgUrl = 'http://zq.guiyuanshiye.com//long/assets/img/share/wechat.jpg';
+                  wx.onMenuShareTimeline({
+                    title: title, // 分享标题
+                    desc: desc, // 分享描述
+                    link: link, // 分享链接
+                    imgUrl: imgUrl, // 分享图标
+                    success: function () {
+                      // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                      // 用户取消分享后执行的回调函数
+                    }
+                  });
+                  // 设置微信分享到个人配置
+                  wx.onMenuShareAppMessage({
+                    title: title, // 分享标题
+                    desc: desc, // 分享描述
+                    link: link, // 分享链接
+                    imgUrl: imgUrl, // 分享图标
+                    type: '', // 分享类型,music、video或link，不填默认为link
+                    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function () {
+                      // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                      // 用户取消分享后执行的回调函数
+                    }
+                  });
+                  // 生成祝福图，并跳转至下一页
+                  cont.cache(0, 0, 750, 1334);
+                  callback && callback(cont.cacheCanvas.toDataURL());
+                },
+                error: function() {
+                  $('#loading1').hide();
+                  showToaster('上传失败！');
+                }
+              });
+            },
+            error: function() {
+              $('#loading1').hide();
+              showToaster('上传失败！');
+            }
+          });
+        }, 500);
       });
       mc.timeline.addTween(createjs.Tween.get(confirmBtn));
 
