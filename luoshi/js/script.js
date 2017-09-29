@@ -329,7 +329,7 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
       // url: 'WeixinJSSDKServlet?type=getWxConfig',
       // url: 'http://www.tron-m.com/tron-api/jssdk/share.do',
       url: 'http://zq.guiyuanshiye.com/weixin/GetJsSign',
-      data: { url: window.location.href },
+      data: { url: 'http://zq.guiyuanshiye.com/long' },
       dataType: 'json',
       success: function (json) {
         if (json.code == 0) {
