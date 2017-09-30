@@ -1,4 +1,4 @@
-define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs, View, Swiper, wx) {
+define(['jquery', 'createjs', 'View', 'weixin'], function ($, createjs, View, wx) {
   var self = {
     homePage: {
       stage: null,
@@ -290,12 +290,10 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
     img.src = imgDataURL;
     $(img).css({width: '100%', height: '100%', position: 'absolute'}).appendTo('#page8 .content');
     $('#page8').show();
-    $('.swiper-container').hide();
     $('#page7InputContainer').hide();
 
     $('#page8 .redo-btn').on('click', function() {
       $('#page8').hide();
-      $('.swiper-container').show();
       $('#page7InputContainer').show();
       $('#textInput').val('');
       $('#nameInput').val('');
@@ -316,7 +314,6 @@ define(['jquery', 'createjs', 'View', 'Swiper', 'weixin'], function ($, createjs
         self.mainPage.container.addChild(contentView10);
       });
       self.mainPage.container.addChild(contentView9);
-      $('.swiper-container').show();
       setTimeout(function() {
         $('#page8').hide();
       }, 800);
