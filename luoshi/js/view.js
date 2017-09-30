@@ -1235,23 +1235,11 @@
 
       // 姓名输入框
       $('#page10_nameInput').show();
-      var nameText = '';
-      $('#page10_nameInput').on('input', function(e) {
-        // console.log('input', e.target.value);
-        nameText = e.target.value;
-      });
       // 员工号输入框
       $('#page10_staffInput').show();
-      var staffText = '';
-      $('#page10_staffInput').on('input', function(e) {
-        staffText = e.target.value;
-      });
       // 手机号输入框
       $('#page10_phoneInput').show();
-      var phoneText = '';
-      $('#page10_phoneInput').on('input', function(e) {
-        phoneText = e.target.value;
-      });
+      var isLoading = false;
       $('#staffForm').validator({
         timely: 0,
         stopOnError: false,
@@ -1270,6 +1258,7 @@
         },
         valid: function (form) {
           $('#loading1').show();
+          isLoading = true;
           console.log('cccc');
           var timeOut = setTimeout(function() {
             clearTimeout(timeOut);
@@ -1280,7 +1269,7 @@
                 card_id:window.savedCardId
             };
 
-              var ajax = $.ajax({
+            var ajax = $.ajax({
               'url': 'http://zq.guiyuanshiye.com/user/add',
               'data': t,
               'type': 'post',
@@ -1289,6 +1278,7 @@
             });
             ajax.done(function (r) {
               $('#loading1').hide();
+              isLoading = false;
               (function() {
                 $('#confirmSuccess').show();
                 $('#confirmSuccess').on('click', function() {
@@ -1301,16 +1291,10 @@
                   });
                 });
               })();
-              // if (r.error) {
-                // showToaster(r.msg);
-              // }
-              // else {
-              //   window.location.href = r.msg;
-              //   return;
-              // }
             });
             ajax.fail(function (jqXHR, textStatus) {
               $('#loading1').hide();
+              isLoading = false;
               (function() {
                 $('#confirmFail').show();
                 $('#confirmFail .fail-btn').on('click', function() {
@@ -1326,18 +1310,9 @@
       var confirmBtn = new createjs.Bitmap(queue.getResult('page10_tijiao'));
       confirmBtn.setTransform(180, 935);
       confirmBtn.addEventListener('click', function(e) {
-        $('#staffForm').submit();
-        // $('#confirmSuccess').show();
-        // $('#confirmSuccess').on('click', function() {
-        //   $('#confirmSuccess').hide();
-        // });
-        // $('#confirmSuccess .success-btn').on('click', function() {
-        //   console.log('ddddd');
-        //   $('#share').show();
-        //   $('#share').on('click', function() {
-        //     $('#share').hide();
-        //   });
-        // });
+        if (!isLoading) {
+          $('#staffForm').submit();
+        }
       });
       mc.timeline.addTween(createjs.Tween.get(confirmBtn));
 
