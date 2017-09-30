@@ -634,7 +634,7 @@
 
         // 祝福语
         var inputText = (cardInfo.content || '中秋快乐！')
-          .split('').reduce(function(preResult, item, index) {
+          .replace(/ /g, '').split('').reduce(function(preResult, item, index) {
           if (index && index % 15 == 0) {
             preResult.push(' ');
           }
@@ -1273,9 +1273,16 @@
           console.log('cccc');
           var timeOut = setTimeout(function() {
             clearTimeout(timeOut);
-            var ajax = $.ajax({
+            var t={
+                name:$("#page10_nameInput").val(),
+                number:$("#page10_staffInput").val(),
+                mobile:$("#page10_phoneInput").val(),
+                card_id:window.savedCardId
+            };
+
+              var ajax = $.ajax({
               'url': 'http://zq.guiyuanshiye.com/user/add',
-              'data': Object.assign({}, $(form).serialize(), {card_id: window.savedCardId}),
+              'data': t,
               'type': 'post',
               'dataType': 'json',
               'async': true
