@@ -9,52 +9,6 @@ window.onload = function() {
   	};
   	//模型
   	var htmlMap = {
-    taskPage: '<div id="img-section" class="img-section ">\n' +
-    '    <img class="animImg animImg1" src="assets/img/ani/1.jpg" alt="" />\n' +
-    '    <img class="animImg animImg2" src="assets/img/ani/2.jpg" alt="" />\n' +
-    '    <img class="animImg animImg3" src="assets/img/ani/3.jpg" alt="" />\n' +
-    '    <img class="animImg animImg4" src="assets/img/ani/4.jpg" alt="" />\n' +
-    '    <img class="animImg animImg5" src="assets/img/ani/5.jpg" alt="" />\n' +
-    '    <img class="animImg animImg6" src="assets/img/ani/6.jpg" alt="" />\n' +
-    '    <img class="animImg animImg7" src="assets/img/ani/7.jpg" alt="" />\n' +
-    '    <img class="animImg animImg8" src="assets/img/ani/8.jpg" alt="" />\n' +
-    '    <img class="animImg animImg9" src="assets/img/ani/9.jpg" alt="" />\n' +
-    '    <img class="animImg animImg10" src="assets/img/ani/10.jpg" alt="" />\n' +
-    '    <img class="animImg animImg11" src="assets/img/ani/11.jpg" alt="" />\n' +
-    '    <img class="animImg animImg12" src="assets/img/ani/12.jpg" alt="" />\n' +
-    '    <img class="animImg animImg13" src="assets/img/ani/13.jpg" alt="" />\n' +
-    '    <img class="animImg animImg14" src="assets/img/ani/14.jpg" alt="" />\n' +
-    '    <img class="animImg animImg15" src="assets/img/ani/15.jpg" alt="" />\n' +
-    '    <img class="animImg animImg16" src="assets/img/ani/16.jpg" alt="" />\n' +
-    '    <img class="animImg animImg17" src="assets/img/ani/17.jpg" alt="" />\n' +
-    '    <img class="animImg animImg18" src="assets/img/ani/18.jpg" alt="" />\n' +
-    '    <img class="animImg animImg19" src="assets/img/ani/19.jpg" alt="" />\n' +
-    '    <img class="animImg animImg20" src="assets/img/ani/20.jpg" alt="" />\n' +
-    '    <img class="animImg animImg21" src="assets/img/ani/21.jpg" alt="" />\n' +
-    '    <img class="animImg animImg22" src="assets/img/ani/22.jpg" alt="" />\n' +
-    '    <img class="animImg animImg23" src="assets/img/ani/23.jpg" alt="" />\n' +
-    '    <img class="animImg animImg24" src="assets/img/ani/24.jpg" alt="" />\n' +
-    '    <img class="animImg animImg25" src="assets/img/ani/25.jpg" alt="" />\n' +
-    '    <img class="animImg animImg26" src="assets/img/ani/26.jpg" alt="" />\n' +
-    '    <img class="animImg animImg27" src="assets/img/ani/27.jpg" alt="" />\n' +
-    '    <img class="animImg animImg28" src="assets/img/ani/28.jpg" alt="" />\n' +
-    '    <img class="animImg animImg29" src="assets/img/ani/29.jpg" alt="" />\n' +
-    '    <img class="animImg animImg30" src="assets/img/ani/30.jpg" alt="" />\n' +
-    '    <img class="animImg animImg31" src="assets/img/ani/31.jpg" alt="" />\n' +
-    '    <img class="animImg animImg32" src="assets/img/ani/32.jpg" alt="" />\n' +
-    '    <img class="animImg animImg33" src="assets/img/ani/33.jpg" alt="" />\n' +
-    '    <img class="animImg animImg34" src="assets/img/ani/34.jpg" alt="" />\n' +
-    '    <img class="animImg animImg35" src="assets/img/ani/35.jpg" alt="" />\n' +
-    '    <img class="animImg animImg36" src="assets/img/ani/36.jpg" alt="" />\n' +
-    '    <img class="animImg animImg37" src="assets/img/ani/37.jpg" alt="" />\n' +
-    '    <img class="animImg animImg38" src="assets/img/ani/38.jpg" alt="" />\n' +
-    '    <img class="animImg animImg39" src="assets/img/ani/39.jpg" alt="" />\n' +
-    '    <img class="animImg animImg40" src="assets/img/ani/40.jpg" alt="" />\n' +
-    '    <img class="animImg animImg41" src="assets/img/ani/41.jpg" alt="" />\n' +
-    '    <img class="animImg animImg42" src="assets/img/ani/42.jpg" alt="" />\n' +
-    '    <img class="animImg animImg43" src="assets/img/ani/43.jpg" alt="" />\n' +
-    '    <img class="animImg animImg44" src="assets/img/ani/44.jpg" alt="" />\n' +
-    '  </div>',
     endingPage: '<div id="img-prove" class="img-prove">\n' +
     '    <img id="btn-start" src="assets/img/jpg/start.jpg" alt="" />\n' +
     '  </div>',
@@ -301,73 +255,11 @@ window.onload = function() {
             'img/jpg/active.png',
             'img/jpg/share.png',
             'img/jpg/safari.png',
-            'img/jpg/start.jpg',
-            //动画png
-            'img/ani/1.jpg',
-            'img/ani/2.jpg',
-            'img/ani/3.jpg',
-            'img/ani/4.jpg',
-            'img/ani/5.jpg',
-            'img/ani/6.jpg',
-            'img/ani/7.jpg',
-            'img/ani/8.jpg',
-            'img/ani/9.jpg',
-            'img/ani/10.jpg',
-            'img/ani/11.jpg',
-            'img/ani/12.jpg',
-            'img/ani/13.jpg',
-            'img/ani/14.jpg',
-            'img/ani/15.jpg',
-            'img/ani/16.jpg',
-            'img/ani/17.jpg',
-            'img/ani/18.jpg',
-            'img/ani/19.jpg',
-            'img/ani/20.jpg',
-            'img/ani/21.jpg',
-            'img/ani/22.jpg',
-            'img/ani/23.jpg',
-            'img/ani/24.jpg',
-            'img/ani/25.jpg',
-            'img/ani/26.jpg',
-            'img/ani/27.jpg',
-            'img/ani/28.jpg',
-            'img/ani/29.jpg',
-            'img/ani/30.jpg',
-            'img/ani/31.jpg',
-            'img/ani/32.jpg',
-            'img/ani/33.jpg',
-            'img/ani/34.jpg',
-            'img/ani/35.jpg',
-            'img/ani/36.jpg',
-            'img/ani/37.jpg',
-            'img/ani/38.jpg',
-            'img/ani/39.jpg',
-            'img/ani/40.jpg',
-            'img/ani/41.jpg',
-            'img/ani/42.jpg',
-            'img/ani/43.jpg',
-            'img/ani/44.jpg',
-            
+            'img/jpg/start.jpg'
           ],
           onProgress: function (current, total) {
             var percent = parseInt(current / total * 100);
             $('.loadingInfo .percent').text(percent + '%..');
-//             if (percent == 100) {
-//             	setTimeout(function(){
-//             		$('#loading').hide();
-// 					$('body').append(htmlMap.taskPage);
-// 					if ( $("#img-section").length > 0 ) {
-// 						ani_Mate()
-// //					setTimeout(function(){
-// //						$("#img-section").hide()
-// //						$('body').append(htmlMap.endingPage);
-// //					},2000);
-// 				}
-//             },500)
-//
-//
-//
-//             }
           },
           onComplete: function (total) {
             $('#loading').hide();
