@@ -111,7 +111,7 @@ html, body {
 #loading {
   background: url('../assets/img/loading/loading_bg.jpg') no-repeat;
   /*background: url('../assets/img/loading/bg-01.jpg') no-repeat;*/
-  background-size: contain;
+  background-size: 100% 100%;
 }
 
 #loading .loadingInfo {
@@ -152,6 +152,116 @@ html, body {
   50% { background-image: url('../assets/img/loading/3.png'); }
   100% { background-image: url('../assets/img/loading/4.png'); }
 }
+#timer {
+	/*display: none;*/
+	background: url('../assets/img/timer/bg.jpg') no-repeat;
+	background-size: 100% 100%;
+}
+#timer .countDown {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #FFFFFF;
+	letter-spacing: 7px;
+}
+#timer .nextBtn {
+	width: 100%;
+	display: none;
+	text-align: center;
+	margin-top: 20%;
+	color: #FFFFFF;
+	letter-spacing: 7px;
+	font-size: 0.8em;
+}
+#timer .click {
+	margin-top: -25%;
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+.scaleAni {
+	animation: scale 1.5s infinite;
+	-webkit-animation: scale 1.5s infinite; /* Safari 和 Chrome */
+}
+@keyframes scale
+{
+	0% {
+		transform: scale(1.2);
+	}
+	50% {
+		transform: scale(1.22);
+	}
+	100% {
+		transform: scale(1.2);
+	}
+}
+
+@-webkit-keyframes scale /* Safari and Chrome */
+{
+	0% {
+		transform: scale(1.2);
+	}
+	50% {
+		transform: scale(1.25);
+	}
+	100% {
+		transform: scale(1.2);
+	}
+}
+#timer .bottom {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#timer .number {
+	font-size: 2.5em;
+}
+#timer .words {
+	opacity: 0;
+	font-size: 0.8em;
+	margin-top: 7%;
+}
+.up-fade {
+	animation: up-fade 0.8s forwards;
+	-webkit-animation: up-fade 0.8s forwards; /* Safari 和 Chrome */
+}
+@keyframes up-fade
+{
+	0% {
+		opacity: 0;
+		transform: translateY(250%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes up-fade /* Safari and Chrome */
+{
+	0% {
+		opacity: 0;
+		transform: translateY(250%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+#timer .bottom {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
 .safari{
 	position: absolute;
 	right: 0;

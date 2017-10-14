@@ -18,17 +18,40 @@
 		<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	</head>
 	<body>
+    <div id="timer" class="fullscreen">
+      <div class="countDown">
+        <div class="number">12:00</div>
+        <div id="word0" class="words">还在憋创意?</div>
+        <div id="word1" class="words">改文案?</div>
+        <div id="word2" class="words">想邮件?</div>
+        <div id="word3" class="words">凑PPT?</div>
+        <div id="word4" class="words" style="margin-left: -8px;">...</div>
+      </div>
+      <div class="nextBtn">
+        <img id="nextBtn" class="scaleAni" style="width: 100%;" src="./assets/img/timer/btn.png">
+        <div class="click">点击一下</div>
+        <div>来杯咖啡压压惊!</div>
+      </div>
+      <img class="bottom" src="./assets/img/timer/city.png">
+    </div>
 		<div id="video_player">
-		    <video id="start" x-webkit-airplay="true"  webkit-playsinline="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="false"    src="assets/vudeo/1.mp4" style="display: none;"  ></video>
-		 </div>
-		 <div class="My-audio">
-		    <audio id="audio" src="assets/audio/music.mp3" loop="loop" autoplay="autoplay"></audio>
-	    	<div id="audioBtn" class="audioBtn audioRotate"></div>
-	  	</div>
+			<video id="start" x-webkit-airplay="true"  webkit-playsinline="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="false"    src="assets/vudeo/1.mp4" style="display: none;"  ></video>
+		</div>
+		<div>
+			<audio id="audio" src="assets/audio/music.mp3" loop="loop" autoplay="autoplay"></audio>
+			<div id="audioBtn" class="audioBtn audioRotate"></div>
+		</div>
 		<div id="loading" class="fullscreen">
 	    <div class="loadingInfo">
 	      <div class="percent"></div>
 	    </div>
 	  </div>
+    <script>
+      $(document).ready(function () {
+        $('body').height($('body')[0].clientHeight);
+        // iphone6 plus 设备高度为736
+        $('body').css({'font-size': $('body')[0].clientHeight * 20 / 736});
+      });
+    </script>
 	</body>
 </html>

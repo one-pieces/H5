@@ -370,15 +370,42 @@ window.onload = function() {
 //             }
           },
           onComplete: function (total) {
-              
-              $('#audioBtn').show().on("click" ,function() {
-                if (self.aduio.paused) {
-                  self.playAudio();
-                }
-                else{
-                  self.puaseAudio();
-                }
-              });
+            $('#loading').hide();
+            var numbers = ['01:00', '01:30', '02:00', '02:30', '03:00'];
+            animate(0);
+            function animate(index) {
+              if (index > 4) {
+                $('.countDown').hide();
+                $('.nextBtn').show();
+                $('#nextBtn').on('touchstart', function() {
+                  $('#timer').hide();
+                  $('#video_player').show();
+                  $('#start').show();
+                  flagStart = false;
+                  flagEnd = false;
+                  video.play();
+                  $('.audioBtn').hide()
+                  self.aduio.pause();
+                });
+                return;
+              }
+              $('#word' + index).addClass('up-fade')
+                .on('webkitAnimationStart', function() {
+                  $('#timer .number').text(numbers[index]);
+                })
+                .on('webkitAnimationEnd', function() {
+                  animate(index + 1);
+                });
+            }
+
+            $('#audioBtn').show().on("click" ,function() {
+              if (self.aduio.paused) {
+                self.playAudio();
+              }
+              else{
+                self.puaseAudio();
+              }
+            });
           }
         });
         loader2.start();
