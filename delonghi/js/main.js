@@ -267,18 +267,21 @@ window.onload = function() {
             animate(0);
             function animate(index) {
               if (index > 4) {
-                $('.countDown').hide();
-                $('.nextBtn').show();
-                $('#nextBtn').on('touchstart', function() {
-                  $('#timer').hide();
-                  $('#video_player').show();
-                  $('#start').show();
-                  flagStart = false;
-                  flagEnd = false;
-                  video.play();
-                  $('.audioBtn').hide()
-                  self.aduio.pause();
-                });
+                var timeout = setTimeout(function() {
+                  $('.countDown').hide();
+                  $('.nextBtn').show();
+                  $('#nextBtn').on('touchstart', function() {
+                    $('#timer').hide();
+                    $('#video_player').show();
+                    $('#start').show();
+                    flagStart = false;
+                    flagEnd = false;
+                    video.play();
+                    $('.audioBtn').hide()
+                    self.aduio.pause();
+                  });
+                  clearTimeout(timeout);
+                }, 500);
                 return;
               }
               $('#word' + index).addClass('up-fade')
