@@ -270,7 +270,7 @@ window.onload = function() {
                 var timeout = setTimeout(function() {
                   $('.countDown').hide();
                   $('.nextBtn').show();
-                  $('#nextBtn').on('touchstart', function() {
+                  $('#nextBtn').on('touchstart click', function() {
                     $('#timer').hide();
                     $('#video_player').show();
                     $('#start').show();

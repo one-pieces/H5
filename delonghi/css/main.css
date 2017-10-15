@@ -170,12 +170,12 @@ html, body {
 }
 #timer .nextBtn {
 	width: 100%;
+	height: 100%;
 	display: none;
 	text-align: center;
-	margin-top: 10%;
 	color: #FFFFFF;
 	letter-spacing: 7px;
-	font-size: 0.8em;
+	font-size: 0.9em;
 	animation: scale0 1.1s forwards;
 	-webkit-animation: scale0 1.1s forwards; /* Safari 和 Chrome */
 }
@@ -185,7 +185,7 @@ html, body {
 		transform: scale(0.2);
 	}
 	100% {
-		transform: scale(1.2);
+		transform: scale(1);
 	}
 }
 
@@ -195,42 +195,67 @@ html, body {
 		transform: scale(0.2);
 	}
 	100% {
-		transform: scale(1.2);
+		transform: scale(1);
 	}
 }
+#timer .nextBtn .btn {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: -50px;
+	left: 0;
+}
+#timer .nextBtn .btn-bg {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#timer .nextBtn .btn-cricle {
+	width: 67%;
+	position: absolute;
+	top: 16%;
+	left: 6%;
+}
+#timer .nextBtn .btn-tips {
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+}
 #timer .click {
-	margin-top: -25%;
 	margin-bottom: 10px;
 	font-weight: bold;
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 }
 .scaleAni {
-	animation: scale 1.1s infinite;
-	-webkit-animation: scale 1.1s infinite; /* Safari 和 Chrome */
+	animation: scale 1.3s infinite ease-in;
+	-webkit-animation: scale 1.3s infinite ease-in; /* Safari 和 Chrome */
 }
 @keyframes scale
 {
 	0% {
-		transform: scale(1.2);
+		transform: scale(1.3);
 	}
 	50% {
-		transform: scale(1.23);
+		transform: scale(1.4);
 	}
 	100% {
-		transform: scale(1.2);
+		transform: scale(1.3);
 	}
 }
 
 @-webkit-keyframes scale /* Safari and Chrome */
 {
 	0% {
-		transform: scale(1.2);
+		transform: scale(1.3);
 	}
 	50% {
-		transform: scale(1.23);
+		transform: scale(1.4);
 	}
 	100% {
-		transform: scale(1.2);
+		transform: scale(1.3);
 	}
 }
 #timer .bottom {
